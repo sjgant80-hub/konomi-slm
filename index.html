@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Konomi SLM</title>
+<meta name="description" content="A small model that keeps its knowledge in a verified, readable pattern-library instead of opaque weights. It answers from a pattern that predicted held-out cases, or it abstains — it does not hallucinate. Runs in your browser." />
+<meta name="color-scheme" content="dark light" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"A small language-model architecture where knowledge lives in a verified, lossless-compressed, readable pattern-library (predict held-out cases or be cut) and a tiny model only routes. Answers carry a tamper-evident receipt; out-of-distribution inputs are abstained, not hallucinated."}
+</script>
+<style>
+  :root{
+    --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7;
+    --line:#1f2835; --accent:#5ad1a8; --accent2:#6aa8ff; --warn:#f0b254; --bad:#e06a6a; --ok:#5ad1a8;
+    --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+    --bg:#f6f8fb; --panel:#ffffff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0;
+  }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px 80px}
+  header{padding:54px 0 22px;border-bottom:1px solid var(--line)}
+  h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px;letter-spacing:-.02em;font-weight:760}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:66ch;margin:14px 0 0}
+  h2{font-size:20px;margin:40px 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .grid{display:grid;gap:12px}
+  @media(min-width:620px){.cards{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .card h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:8px}
+  .pill{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+  .pill.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 50%,var(--line))}
+  .pill.bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 50%,var(--line))}
+  .pill.real{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 50%,var(--line))}
+  .kv{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:2px 0}
+  .kv b{color:var(--ink);font-weight:600}
+  button{font-family:var(--sans);font-size:14px;font-weight:600;color:#06110c;background:var(--accent);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;transition:transform .05s ease,opacity .2s}
+  button:hover{opacity:.92} button:active{transform:translateY(1px)} button:disabled{opacity:.45;cursor:not-allowed}
+  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  select,input{font-family:var(--mono);font-size:13px;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+  input{width:110px}
+  label.f{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--line)}
+  .verdict{border-radius:12px;padding:16px;margin-top:14px;border:1px solid var(--line)}
+  .verdict.v{background:color-mix(in srgb,var(--ok) 10%,var(--panel2));border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+  .verdict.a{background:color-mix(in srgb,var(--warn) 10%,var(--panel2));border-color:color-mix(in srgb,var(--warn) 40%,var(--line))}
+  .big{font-size:22px;font-weight:720;letter-spacing:-.01em}
+  .mono{font-family:var(--mono)} .muted{color:var(--muted)} .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:10px}
+  summary{cursor:pointer;font-size:13px;color:var(--muted)}
+  pre{overflow:auto;font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0 0}
+  .foot{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)}
+  .note{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI SLM · the inversion</div>
+    <h1>Knowledge in verified patterns,<br>not opaque weights.</h1>
+    <p class="lede">Every other small model shrinks a big one until accuracy falls off a cliff — the model <em>is</em> the knowledge, so compressing it loses the knowledge. This inverts that. Knowledge lives in a <b>verified, readable pattern-library</b> — each pattern predicted held-out cases it never saw, or it was cut — and a tiny model only <b>routes</b>. It answers from a verified pattern, or it <b>abstains</b>. It does not hallucinate. It runs entirely in this browser.</p>
+  </header>
+
+  <h2>1 · Grow the library</h2>
+  <p class="sub">The library is a handful of tiny Konomi seeds. A ribosome grows each into a working pattern on local data and grades it on held-out cases. Only patterns that clear the gate stay.</p>
+  <div class="panel">
+    <div class="row"><button id="grow">Grow the library</button><span id="growState" class="muted mono" style="font-size:12.5px">idle</span></div>
+    <div id="summary" class="grid" style="margin-top:14px"></div>
+    <div id="libCards" class="grid cards" style="margin-top:12px"></div>
+  </div>
+
+  <h2>2 · Ask the SLM</h2>
+  <p class="sub">Pick a domain, give it a case. It routes to a verified pattern and answers with a receipt — or, if the input is outside anything it has verified, it refuses.</p>
+  <div class="panel" id="askPanel" aria-disabled="true" style="opacity:.5;pointer-events:none">
+    <div class="row">
+      <select id="domain"></select>
+      <button class="ghost" id="exReal">Use a real held-out case</button>
+      <button class="ghost" id="exJunk">Make it out-of-distribution</button>
+    </div>
+    <div id="features" class="grid" style="margin-top:12px"></div>
+    <div class="row" style="margin-top:12px"><button id="ask">Ask</button></div>
+    <div id="result"></div>
+  </div>
+
+  <h2>3 · Own it</h2>
+  <p class="sub">The whole library is a few hundred bytes of seeds. Download it and the last receipt — yours, offline, re-growable.</p>
+  <div class="panel row">
+    <button class="ghost" id="dlLib" disabled>Download the library (seeds)</button>
+    <button class="ghost" id="dlReceipt" disabled>Download the last receipt</button>
+  </div>
+
+  <div class="foot">
+    <p><b>Honest scope.</b> v1 proves the architecture on structured-prediction domains, where "predict held-out or die" is measurable. The verified patterns are interpretable scorecards, not free-form text generation. The small model's job (free text → which domain) is optional and kept out of everything graded. The defensible claim is <em>"beats a flat model on any domain it has a verified pattern for, and refuses instead of guessing on anything it doesn't"</em> — not "beats GPT at everything." Breadth grows as the library grows.</p>
+    <p>Powered by the Konomi architecture, created by <b>Thomas Frumkin</b>. The grow→grade-on-held-out ribosome, the SENTINEL guard, and the real UCI Online Shoppers dataset (Sakar &amp; Kastro, 2018, CC&nbsp;BY&nbsp;4.0) are vendored from the seed-library / fall-spore lineage. The logic on this page is the same code the mutation gate tests — nothing is faked here.</p>
+  </div>
+</div>
+
+<script type="module">
+import { buildLibrary, answer, verifyReceipt, GATE_AUC, ROUTE_MIN } from './konomi-slm.mjs';
+import { loadDomain, DOMAIN_IDS, DOMAIN_META } from './vendor/seed-library/domains.mjs';
+
+const $ = (s,r=document)=>r.querySelector(s);
+const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;};
+const LABELS = { // y=1 meaning per domain, as plain words
+  shopper:['no purchase','will purchase'], triage:['stable','CRITICAL'],
+  water:['not potable','potable'], crop:['hold','plant now'],
+};
+let LIB=null, DATASETS={}, LASTRECEIPT=null, CTX={};
+
+async function loadCsv(){
+  try{ const r=await fetch('./vendor/seed-library/data/online_shoppers_intention.csv'); if(r.ok) CTX.shopperCsv=await r.text(); }catch(e){ /* synthetic domains still work offline */ }
+}
+
+function summaryCards(lib){
+  const s=$('#summary'); s.innerHTML='';
+  const mk=(label,val,cls)=>{const c=el('div','card');const k=el('div','kv');k.append(el('span','muted',label),Object.assign(el('b',cls||''),{textContent:val}));c.append(k);return c;};
+  s.append(
+    mk('verified into library', lib.domains.length+' / '+DOMAIN_IDS.length,'ok'),
+    mk('library size', lib.libraryBytes+' bytes of seeds'),
+    mk('compression (lossless)', lib.ratio+'×'),
+    mk('mean held-out AUC', lib.meanHeldAuc),
+  );
+}
+function libCards(lib){
+  const box=$('#libCards'); box.innerHTML='';
+  for(const id of DOMAIN_IDS){
+    const p=lib.patterns[id]; const cut=lib.cut.find(c=>c.domain===id);
+    const c=el('div','card'); const h=el('h3');
+    h.append(el('span',null,(DOMAIN_META[id]&&DOMAIN_META[id].title)||id));
+    h.append(el('span','pill '+(p?'ok':'bad'), p?'VERIFIED':'CUT'));
+    if(p&&p.real) h.append(el('span','pill real','REAL data'));
+    c.append(h);
+    if(p){
+      const add=(k,v)=>{const r=el('div','kv');r.append(el('span',null,k),Object.assign(el('b'),{textContent:v}));c.append(r);};
+      add('held-out AUC', p.heldAuc+ (p.heldAuc>=GATE_AUC?'  ✓':''));
+      add('held-out accuracy', p.heldAcc);
+      add('held-out cases', p.held);
+      add('seed size', p.seedStr.length+' bytes');
+      add('rules in pattern', p.rules.length);
+    } else { c.append(el('div','kv muted',(cut&&cut.why)||'not verified')); }
+    box.append(c);
+  }
+}
+
+function buildFeatureInputs(id){
+  const p=LIB.patterns[id]; const box=$('#features'); box.innerHTML='';
+  for(const f of p.features){
+    const d=p.dist[f]; const l=el('label','f'); l.append(el('span',null,f));
+    const inp=el('input'); inp.type='number'; inp.step='any'; inp.dataset.feat=f; inp.value=d.med;
+    l.append(inp); box.append(l);
+  }
+}
+function readInput(){ const o={}; for(const inp of document.querySelectorAll('#features input')) o[inp.dataset.feat]=Number(inp.value); return o; }
+function setInput(o){ for(const inp of document.querySelectorAll('#features input')) if(o[inp.dataset.feat]!=null) inp.value=o[inp.dataset.feat]; }
+
+function realExample(id){
+  const ds=DATASETS[id]; if(!ds) return null;
+  const i=ds.heldRows[Math.floor(ds.heldRows.length/2)]; // deterministic mid held-out case
+  const o={}; for(const f of ds.features) o[f]=Math.round(ds.cols[f][i]*1000)/1000; return o;
+}
+function junkExample(id){
+  const p=LIB.patterns[id]; const o={};
+  for(const f of p.features){ const d=p.dist[f]; o[f]=Math.round((d.max+4*(d.max-d.min+1))*100)/100; } return o;
+}
+
+function renderResult(a, id){
+  const box=$('#result'); box.innerHTML='';
+  if(a.verdict==='VERIFIED'){
+    LASTRECEIPT=a.receipt; $('#dlReceipt').disabled=false;
+    const v=el('div','verdict v');
+    v.append(Object.assign(el('div','big ok'),{textContent:(LABELS[id]?LABELS[id][a.label]:('label '+a.label))}));
+    v.append(Object.assign(el('div','muted'),{textContent:`verified pattern · route fit ${a.routeScore} · confidence ${a.confidence}`}));
+    const d=el('details'); d.append(Object.assign(el('summary'),{textContent:'the receipt (tamper-evident)'}));
+    const pre=el('pre'); pre.textContent=JSON.stringify(a.receipt,null,2); d.append(pre);
+    const vr=el('div','row'); const b=el('button','ghost');b.textContent='verify receipt'; const bt=el('button','ghost');bt.textContent='tamper one field';
+    const out=el('span','mono'); out.style.fontSize='12.5px';
+    b.onclick=()=>{const r=verifyReceipt(LASTRECEIPT);out.textContent=r.genuine?'  ✓ genuine':'  ✗ changed';out.className='mono '+(r.genuine?'ok':'bad');};
+    bt.onclick=()=>{const forged={...LASTRECEIPT,label:LASTRECEIPT.label^1};const r=verifyReceipt(forged);out.textContent='  flipped label → '+(r.genuine?'still genuine?!':'✗ caught');out.className='mono '+(r.genuine?'bad':'ok');};
+    vr.append(b,bt,out); d.append(vr); v.append(d); box.append(v);
+  } else {
+    const v=el('div','verdict a');
+    v.append(Object.assign(el('div','big warn'),{textContent:'ABSTAIN — I won’t guess'}));
+    v.append(Object.assign(el('div','muted'),{textContent:a.why+(a.routeScore!=null?`  (route fit ${a.routeScore} < ${ROUTE_MIN})`:'')}));
+    box.append(v);
+  }
+}
+
+function download(name, text, type='text/plain'){
+  const b=new Blob([text],{type}); const u=URL.createObjectURL(b); const a=document.createElement('a');
+  a.href=u; a.download=name; a.click(); URL.revokeObjectURL(u);
+}
+
+$('#grow').onclick=async()=>{
+  $('#grow').disabled=true; $('#growState').textContent='loading data…';
+  await loadCsv();
+  $('#growState').textContent='growing + grading on held-out…';
+  await new Promise(r=>setTimeout(r,20));
+  LIB=buildLibrary(DOMAIN_IDS,CTX);
+  for(const id of DOMAIN_IDS){ const ds=loadDomain(id,CTX); if(ds.ok!==false) DATASETS[id]=ds; }
+  summaryCards(LIB); libCards(LIB);
+  const sel=$('#domain'); sel.innerHTML='';
+  for(const id of LIB.domains){ const o=el('option',null,(DOMAIN_META[id]&&DOMAIN_META[id].title)||id); o.value=id; sel.append(o); }
+  if(LIB.domains.length){ buildFeatureInputs(LIB.domains[0]); const ex=realExample(LIB.domains[0]); if(ex) setInput(ex);
+    const ap=$('#askPanel'); ap.style.opacity='1'; ap.style.pointerEvents='auto'; ap.setAttribute('aria-disabled','false'); }
+  $('#dlLib').disabled=false;
+  $('#growState').textContent='library grown — '+LIB.domains.length+' verified patterns, '+LIB.libraryBytes+' bytes';
+  $('#grow').disabled=false;
+};
+$('#domain').onchange=e=>{ buildFeatureInputs(e.target.value); const ex=realExample(e.target.value); if(ex) setInput(ex); $('#result').innerHTML=''; };
+$('#exReal').onclick=()=>{ const ex=realExample($('#domain').value); if(ex){setInput(ex);$('#result').innerHTML='';} };
+$('#exJunk').onclick=()=>{ setInput(junkExample($('#domain').value)); $('#result').innerHTML=''; };
+$('#ask').onclick=()=>{ const id=$('#domain').value; renderResult(answer(LIB,readInput()), id); };
+$('#dlLib').onclick=()=>{ if(LIB) download('konomi-slm-library.txt', Object.values(LIB.seeds).join('\n')+'\n'); };
+$('#dlReceipt').onclick=()=>{ if(LASTRECEIPT) download('konomi-slm-receipt.json', JSON.stringify(LASTRECEIPT,null,2),'application/json'); };
+</script>
+</body>
+</html>

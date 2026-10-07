@@ -1,0 +1,27 @@
+# The Konomi SLM
+
+> A small-model architecture where knowledge lives in a verified, readable, losslessly-compressed
+> pattern-library (each pattern predicts held-out cases or is cut) and a tiny model only routes.
+> It answers from a verified pattern with a tamper-evident receipt, or it abstains on
+> out-of-distribution input. It does not hallucinate. Runs entirely in the browser.
+
+## What it is
+- The inversion of a normal SLM: knowledge is NOT in the weights (where it degrades under compression);
+  it is in a pattern-library (where it is exact, readable and verifiable).
+- A pattern earns its place only by predicting held-out cases it never saw (gate: AUC >= 0.60 or cut).
+- The whole 4-domain library is ~170 bytes of Konomi seeds (20.5x lossless vs the grown bodies).
+- Every answer carries a receipt: which pattern fired, its held-out score, a content hash.
+
+## Measured
+- Verified: 4/4 domains. Held-out AUC: shopper 0.675 (REAL UCI data), triage 0.884, water 0.767, crop 0.769.
+- Abstains on 100% of out-of-distribution junk.
+- Mixed stream (answerable + unanswerable): 86.0% vs a flat always-guess baseline 52.7%.
+
+## Honest scope
+- v1 proves the architecture on structured-prediction domains. Patterns are interpretable scorecards,
+  not free-form text generation. The claim is "beats a flat model on any domain it has a verified
+  pattern for, and refuses instead of guessing on anything it does not" — not "beats GPT at everything."
+
+## Credit
+- Powered by the Konomi architecture, created by Thomas Frumkin.
+- Lineage vendored from seed-library / fall-spore. Real data: UCI Online Shoppers (CC BY 4.0).

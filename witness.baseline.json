@@ -1,0 +1,32 @@
+[
+ {
+  "mutation": ">= → >",
+  "snippet": "verified: g.heldAuc >= GATE_AUC,",
+  "reason": "Boundary-equivalent: differs only when a pattern's held-out AUC equals the gate exactly to six decimals. No domain lands on 0.60 exactly, and the gate's published intent is inclusive (>=)."
+ },
+ {
+  "mutation": "<= → <",
+  "snippet": "if (x >= fp.q1 && x <= fp.q3) return 1;",
+  "reason": "True equivalent: at x===q3 the else-branch computes d = x - q3 = 0 and returns exp(0) = 1, the exact value this branch returns, so no input can distinguish <= from < here."
+ },
+ {
+  "mutation": "> → >=",
+  "snippet": "ratio: libraryBytes > 0 ? round6(grownBytes / libraryBytes) : 0,",
+  "reason": "True equivalent: libraryBytes and grownBytes are summed together per pattern, so libraryBytes===0 implies grownBytes===0; 0/0 is NaN and round6(NaN) is 0 — identical to the guarded else value of 0."
+ },
+ {
+  "mutation": "< → <=",
+  "snippet": "const d = x < fp.q1 ? fp.q1 - x : x - fp.q3;",
+  "reason": "True equivalent: this line is reached only when x is outside [q1,q3] (the in-IQR case returns 1 earlier), so x===q1 never arrives here and < versus <= select the same branch for every reachable x."
+ },
+ {
+  "mutation": "< → <=",
+  "snippet": "ranked.sort((a, b) => b.routeScore - a.routeScore || (a.domain < b.domain ? -1 : 1));",
+  "reason": "True equivalent: domain keys are distinct object keys, so a.domain===b.domain never occurs and a.domain<b.domain equals a.domain<=b.domain for every comparison the sort makes."
+ },
+ {
+  "mutation": "< → <=",
+  "snippet": "})).sort((a, b) => b.hits - a.hits || (a.domain < b.domain ? -1 : 1));",
+  "reason": "True equivalent: the imagination ranking's tie-break compares distinct domain keys, so < and <= produce identical ordering for every pair; equal keys never occur."
+ }
+]

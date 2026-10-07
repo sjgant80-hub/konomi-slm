@@ -1,0 +1,15 @@
+The Konomi SLM
+
+Powered by the Konomi architecture, created by Thomas Frumkin.
+
+Vendored under ./vendor/seed-library (verbatim), reused and credited:
+  - the grow -> grade-on-held-out ribosome, seeded RNG, stratified split and AUC
+    (seed-library / fall-spore / pattern-organs, sjgant80-hub)
+  - the SENTINEL-style verify-before-you-parse guard
+  - the hand-rolled FIPS-180-4 SHA-256 / HMAC
+
+Real data: Online Shoppers Purchasing Intention dataset — Sakar & Kastro,
+UCI Machine Learning Repository (2018), DOI 10.24432/C5F88Q, CC BY 4.0.
+The three survival domains (triage, water, crop) are realistic-synthetic,
+generated deterministically from a known rule plus seeded noise — stated on
+the page and in domains.mjs.

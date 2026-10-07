@@ -1,0 +1,5 @@
+node_modules/
+*.witnessbak
+*.mjs.bak
+witness.err.log
+.DS_Store
