@@ -31,6 +31,21 @@ npm run witness # the mutation gate — mutate the kernel, the tests must catch 
 npm run duel    # optional, ungraded: verified pattern vs llama3.2:1b (needs local Ollama)
 ```
 
+## The ladder — tier 1 builds tier 2
+
+Scaling here is **library-growth, not weight-training**. `node tools/run-tier.mjs` grows tier 2 from tier 1: tier 1's champion patterns warm-start tier 2's search, every existing domain is kept only if it holds-or-beats tier 1 (**monotone — never worse**), and new verticals broaden it. Measured rung:
+
+```
+TIER 1: 4 domains · mean held-out AUC 0.774 · 170 bytes of seeds
+TIER 2: 7 domains · mean held-out AUC 0.786 · 405 bytes of seeds
+  shopper (REAL)  0.675 → 0.781  ▲      triage 0.884 → 0.884  = held
+  water 0.767 → 0.803  ▲                crop   0.769 → 0.803  ▲
+  + fraud 0.749 · + maintenance 0.809 · + credit 0.673   (new, gated in)
+  monotone: YES — no domain regressed · library still tiny (14.4×)
+```
+
+That is the whole scaling story: 1B→2B→…→70B is the **library compounding** — more verified domains (breadth = polymath), deeper patterns (depth), each rung provably dominating the last with a tier-over-tier receipt — CPU-only, because you grow libraries, not weights. A frontier/local model can *propose* a new domain (imagination); only what the gate verifies on held-out enters, so it stays owned, never a fork.
+
 ## Honest scope
 
 v1 proves the **architecture** on structured-prediction domains, where "predict held-out or die" is measurable. The verified patterns are interpretable scorecards, not free-form text generation. The small model's job (free text → which domain) is optional and kept out of everything graded. The defensible claim is *"beats a flat model on any domain it has a verified pattern for, and refuses instead of guessing on anything it doesn't"* — not "beats GPT at everything." Breadth grows as the library grows.

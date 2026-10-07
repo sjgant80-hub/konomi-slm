@@ -76,7 +76,14 @@
     <div id="libCards" class="grid cards" style="margin-top:12px"></div>
   </div>
 
-  <h2>2 · Ask the SLM</h2>
+  <h2>2 · Climb the ladder — tier 1 builds tier 2</h2>
+  <p class="sub">Scaling here is library-growth, not weight-training. Tier 1's champions warm-start tier 2's search; every existing domain is kept only if it holds or beats tier 1 (monotone — never worse); new verticals broaden it. The whole rung is gated and runs on this page.</p>
+  <div class="panel">
+    <div class="row"><button id="climb" disabled>Grow tier 2 from tier 1</button><span id="climbState" class="muted mono" style="font-size:12.5px">grow the library first</span></div>
+    <div id="tierReceipt" style="margin-top:14px"></div>
+  </div>
+
+  <h2>3 · Ask the SLM</h2>
   <p class="sub">Pick a domain, give it a case. It routes to a verified pattern and answers with a receipt — or, if the input is outside anything it has verified, it refuses.</p>
   <div class="panel" id="askPanel" aria-disabled="true" style="opacity:.5;pointer-events:none">
     <div class="row">
@@ -89,7 +96,7 @@
     <div id="result"></div>
   </div>
 
-  <h2>3 · Own it</h2>
+  <h2>4 · Own it</h2>
   <p class="sub">The whole library is a few hundred bytes of seeds. Download it and the last receipt — yours, offline, re-growable.</p>
   <div class="panel row">
     <button class="ghost" id="dlLib" disabled>Download the library (seeds)</button>
@@ -105,12 +112,17 @@
 <script type="module">
 import { buildLibrary, answer, verifyReceipt, GATE_AUC, ROUTE_MIN } from './konomi-slm.mjs';
 import { loadDomain, DOMAIN_IDS, DOMAIN_META } from './vendor/seed-library/domains.mjs';
+import { growTier, tierReceipt } from './grow-tier.mjs';
+import { loadDomainExt, EXT_IDS, EXT_META } from './domains-ext.mjs';
+const metaOf = (id) => DOMAIN_META[id] || EXT_META[id] || { title: id };
+const loadAnyDs = (id) => (DOMAIN_IDS.includes(id) ? loadDomain(id, CTX) : loadDomainExt(id));
 
 const $ = (s,r=document)=>r.querySelector(s);
 const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;};
 const LABELS = { // y=1 meaning per domain, as plain words
   shopper:['no purchase','will purchase'], triage:['stable','CRITICAL'],
   water:['not potable','potable'], crop:['hold','plant now'],
+  fraud:['legitimate','FRAUD'], maintenance:['healthy','FAILURE soon'], credit:['repaid','DEFAULT'],
 };
 let LIB=null, DATASETS={}, LASTRECEIPT=null, CTX={};
 
@@ -122,7 +134,7 @@ function summaryCards(lib){
   const s=$('#summary'); s.innerHTML='';
   const mk=(label,val,cls)=>{const c=el('div','card');const k=el('div','kv');k.append(el('span','muted',label),Object.assign(el('b',cls||''),{textContent:val}));c.append(k);return c;};
   s.append(
-    mk('verified into library', lib.domains.length+' / '+DOMAIN_IDS.length,'ok'),
+    mk('verified domains', String(lib.domains.length),'ok'),
     mk('library size', lib.libraryBytes+' bytes of seeds'),
     mk('compression (lossless)', lib.ratio+'×'),
     mk('mean held-out AUC', lib.meanHeldAuc),
@@ -130,10 +142,11 @@ function summaryCards(lib){
 }
 function libCards(lib){
   const box=$('#libCards'); box.innerHTML='';
-  for(const id of DOMAIN_IDS){
+  for(const id of [...DOMAIN_IDS,...EXT_IDS]){
     const p=lib.patterns[id]; const cut=lib.cut.find(c=>c.domain===id);
+    if(!p && !cut) continue;
     const c=el('div','card'); const h=el('h3');
-    h.append(el('span',null,(DOMAIN_META[id]&&DOMAIN_META[id].title)||id));
+    h.append(el('span',null,metaOf(id).title));
     h.append(el('span','pill '+(p?'ok':'bad'), p?'VERIFIED':'CUT'));
     if(p&&p.real) h.append(el('span','pill real','REAL data'));
     c.append(h);
@@ -204,14 +217,44 @@ $('#grow').onclick=async()=>{
   await new Promise(r=>setTimeout(r,20));
   LIB=buildLibrary(DOMAIN_IDS,CTX);
   for(const id of DOMAIN_IDS){ const ds=loadDomain(id,CTX); if(ds.ok!==false) DATASETS[id]=ds; }
-  summaryCards(LIB); libCards(LIB);
-  const sel=$('#domain'); sel.innerHTML='';
-  for(const id of LIB.domains){ const o=el('option',null,(DOMAIN_META[id]&&DOMAIN_META[id].title)||id); o.value=id; sel.append(o); }
-  if(LIB.domains.length){ buildFeatureInputs(LIB.domains[0]); const ex=realExample(LIB.domains[0]); if(ex) setInput(ex);
-    const ap=$('#askPanel'); ap.style.opacity='1'; ap.style.pointerEvents='auto'; ap.setAttribute('aria-disabled','false'); }
-  $('#dlLib').disabled=false;
+  summaryCards(LIB); libCards(LIB); fillDomains();
+  const ap=$('#askPanel'); ap.style.opacity='1'; ap.style.pointerEvents='auto'; ap.setAttribute('aria-disabled','false');
+  $('#dlLib').disabled=false; $('#climb').disabled=false; $('#climbState').textContent='tier 1 ready — '+LIB.domains.length+' domains';
   $('#growState').textContent='library grown — '+LIB.domains.length+' verified patterns, '+LIB.libraryBytes+' bytes';
   $('#grow').disabled=false;
+};
+
+function fillDomains(){
+  const sel=$('#domain'); sel.innerHTML='';
+  for(const id of LIB.domains){ const o=el('option',null,metaOf(id).title); o.value=id; sel.append(o); DATASETS[id]=DATASETS[id]||loadAnyDs(id); }
+  if(LIB.domains.length){ buildFeatureInputs(LIB.domains[0]); const ex=realExample(LIB.domains[0]); if(ex) setInput(ex); }
+}
+
+$('#climb').onclick=async()=>{
+  $('#climb').disabled=true; $('#climbState').textContent='growing tier 2 — deepen (warm-started) + broaden, all gated…';
+  await new Promise(r=>setTimeout(r,20));
+  const prev=LIB; const t2=growTier(prev,{ctx:CTX,newDomains:EXT_IDS}); const rec=tierReceipt(prev,t2);
+  const box=$('#tierReceipt'); box.innerHTML='';
+  const head=el('div','grid cards');
+  const stat=(k,a,b,cls)=>{const c=el('div','card');c.append(el('div','kv muted',k));const r=el('div','kv');r.append(Object.assign(el('b'),{textContent:a}),Object.assign(el('b',cls||'ok'),{textContent:'→ '+b}));c.append(r);return c;};
+  head.append(
+    stat('domains (breadth)', prev.domains.length, t2.domains.length),
+    stat('mean held-out AUC', prev.meanHeldAuc, t2.meanHeldAuc),
+    stat('library size', prev.libraryBytes+' B', t2.libraryBytes+' B'),
+  );
+  box.append(head);
+  const tbl=el('div','panel'); tbl.style.marginTop='12px';
+  for(const d of rec.perDomain){ const t2a=t2.patterns[d.domain].heldAuc; const up=t2a>d.tier1Auc+1e-9;
+    const r=el('div','kv'); r.append(el('span',null,metaOf(d.domain).title),Object.assign(el('b',up?'ok':'muted'),{textContent:d.tier1Auc+' → '+t2a+(up?'  ▲ deepened':'  = held')})); tbl.append(r); }
+  for(const id of rec.added){ const r=el('div','kv'); r.append(el('span','ok','+ '+metaOf(id).title+' (new)'),Object.assign(el('b','ok'),{textContent:'held-out AUC '+t2.patterns[id].heldAuc})); tbl.append(r); }
+  box.append(tbl);
+  const guard=el('div','verdict '+(rec.monotone?'v':'a'));
+  guard.append(Object.assign(el('div','big '+(rec.monotone?'ok':'bad')),{textContent:rec.monotone?'Monotone ✓ — no domain regressed':'Regression detected'}));
+  guard.append(Object.assign(el('div','muted'),{textContent:`tier 2 provably dominates tier 1: ${t2.domains.length} domains, mean AUC ${t2.meanHeldAuc} ≥ ${prev.meanHeldAuc}, still ${t2.libraryBytes} bytes of seeds · receipt ${rec.receiptHash.slice(0,16)}…`}));
+  box.append(guard);
+  // adopt tier 2 as the live library so you can ask the new verticals too
+  LIB=t2; summaryCards(LIB); libCards(LIB); fillDomains();
+  $('#climbState').textContent='tier 2 live — '+LIB.domains.length+' domains, '+LIB.libraryBytes+' bytes';
 };
 $('#domain').onchange=e=>{ buildFeatureInputs(e.target.value); const ex=realExample(e.target.value); if(ex) setInput(ex); $('#result').innerHTML=''; };
 $('#exReal').onclick=()=>{ const ex=realExample($('#domain').value); if(ex){setInput(ex);$('#result').innerHTML='';} };

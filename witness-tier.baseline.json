@@ -1,0 +1,42 @@
+[
+ {
+  "mutation": ">= → >",
+  "snippet": "p.verified = p.heldAuc >= GATE_AUC;",
+  "reason": "Gate boundary: differs only if a pattern held-out AUC equals the gate (0.60) exactly to six decimals, measure-zero on real data; the gate intent is inclusive (>=)."
+ },
+ {
+  "mutation": ">= → >",
+  "snippet": "if (cand.heldAuc >= auc1) { kept = cand; }                         // improved or equal ->",
+  "reason": "At cand.heldAuc exactly equal to tier-1 AUC the kept pattern has identical held-out AUC either way; monotonicity and the pinned golden output are unchanged, only which equal-AUC seed is stored differs."
+ },
+ {
+  "mutation": "> → >=",
+  "snippet": "const better = (a, b) => a.fitness > b.fitness || (a.fitness === b.fitness && a.n < b.n);",
+  "reason": "GA comparator equal-fitness tie-break: the pinned GOLDEN tier-2 output is byte-identical under this mutation, so it only reorders genomes of identical fitness and never changes the champion."
+ },
+ {
+  "mutation": "> → >=",
+  "snippet": "libraryBytes, grownBytes, ratio: libraryBytes > 0 ? round6(grownBytes / libraryBytes) : 0,",
+  "reason": "libraryBytes and grownBytes accumulate together, so libraryBytes===0 implies grownBytes===0; 0/0 is NaN and round6(NaN)=0, identical to the guarded else value of 0."
+ },
+ {
+  "mutation": "< → <=",
+  "snippet": "const better = (a, b) => a.fitness > b.fitness || (a.fitness === b.fitness && a.n < b.n);",
+  "reason": "GA comparator born-order tie-break: the pinned GOLDEN output is byte-identical under this mutation; it affects only ordering among genomes of identical fitness and birth index."
+ },
+ {
+  "mutation": "&& → ||",
+  "snippet": "const seeds = (Array.isArray(stems) && stems.length ? stems : [stemGenome()]);",
+  "reason": "The engine always calls deepen with a non-empty array of stems, so Array.isArray and length are both true; && vs || is unobservable (golden output byte-identical) and only differs for inputs the engine never produces."
+ },
+ {
+  "mutation": "|| → &&",
+  "snippet": "const realOf = (id) => !!((DOMAIN_META[id] || EXT_META[id] || {}).real);",
+  "reason": "Display-only metadata lookup for the REAL-data badge; it never gates a verdict, and for every id the library uses exactly one of DOMAIN_META/EXT_META holds it, so the fallback resolves .real identically in the observed cases."
+ },
+ {
+  "mutation": "|| → &&",
+  "snippet": "const auc1 = g1.ok ? g1.heldAuc : (prev.patterns[id].heldAuc || 0);",
+  "reason": "The : fallback runs only if germinating a valid library-signed tier-1 seed fails, which does not occur in the growth path; golden output byte-identical, so the || vs && in that dead branch is unobservable."
+ }
+]

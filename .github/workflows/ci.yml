@@ -19,7 +19,13 @@ jobs:
         run: node --test
       - name: measured report
         run: node tools/run.mjs
-      - name: mutation gate
+      - name: ladder report (tier 1 builds tier 2)
+        run: node tools/run-tier.mjs
+      - name: mutation gate (kernel)
         run: node tools/witness.mjs mutate konomi-slm.mjs --cap 400 --baseline witness.baseline.json --timeout 60000 --test node --test tests/konomi-slm.test.mjs > witness.out.json
+      - name: mutation gate (growth engine)
+        run: node tools/witness.mjs mutate grow-tier.mjs --cap 400 --baseline witness-tier.baseline.json --timeout 60000 --test node --test tests/grow-tier.test.mjs > witness-tier.out.json
       - name: refuse anything short of clean
-        run: node scripts/check-clean.mjs
+        run: |
+          node scripts/check-clean.mjs witness.out.json
+          node scripts/check-clean.mjs witness-tier.out.json
