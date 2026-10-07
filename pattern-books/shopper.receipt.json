@@ -1,0 +1,35 @@
+{
+  "model": "patternforge/1",
+  "domain": "shopper",
+  "selectedBy": "bred from proposal",
+  "valAuc": 0.932509,
+  "heldAuc": 0.813532,
+  "heldAcc": 0.844868,
+  "held": 4725,
+  "ownedSeed": "◊ seed.v1 shopper 7 f:1e785a2176032512f516 3ad3c7c0c75d",
+  "ownedSeedBytes": 55,
+  "hypotheses": [
+    {
+      "feature": "ProductRelated_Duration",
+      "direction": "high"
+    },
+    {
+      "feature": "PageValues",
+      "direction": "high"
+    },
+    {
+      "feature": "SpecialDay",
+      "direction": "high"
+    },
+    {
+      "feature": "Informational_Duration",
+      "direction": "high"
+    },
+    {
+      "feature": "Administrative_Duration",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:14b",
+  "receiptHash": "79c756b8fe6cb2c8e3e4c4e14b9cca5884edc5042b3cf52bfc04a225dba379a5"
+}
