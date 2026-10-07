@@ -85,15 +85,97 @@ export function loadCredit() {
     });
 }
 
-export const EXT_IDS = ['fraud', 'maintenance', 'credit'];
+// ── churn: subscription churn (realistic-synthetic) ─────────────────────────────────────────────────────────
+const CHURN_NOTE = 'Subscription churn — churn=1. Ground-truth risk rises with short tenure, many support tickets, '
+  + 'a big usage drop, little contract left and few weekly logins. Realistic-synthetic.';
+export function loadChurn() {
+  return synth('churn', 'Subscription churn', CHURN_NOTE, 2400, 707,
+    ['tenureMonths', 'monthlySpend', 'supportTickets', 'usageDropPct', 'contractMonthsLeft', 'loginsPerWeek'], (r) => {
+      const tenureMonths = clamp(Math.max(0, 20 + 16 * gauss(r)), 0, 120);
+      const monthlySpend = clamp(Math.max(0, 55 + 25 * gauss(r)), 0, 400);
+      const supportTickets = clamp(Math.max(0, Math.round(1.5 + 1.8 * Math.abs(gauss(r)))), 0, 30);
+      const usageDropPct = clamp(15 + 20 * gauss(r), -40, 100);
+      const contractMonthsLeft = clamp(Math.max(0, 6 + 5 * gauss(r)), 0, 24);
+      const loginsPerWeek = clamp(Math.max(0, 6 + 4 * gauss(r)), 0, 50);
+      const latent = -0.05 * (tenureMonths - 18) + 0.28 * (supportTickets - 1.5) + 0.035 * (usageDropPct - 10)
+        - 0.12 * (contractMonthsLeft - 6) - 0.14 * (loginsPerWeek - 6) - 0.4;
+      return { tenureMonths, monthlySpend, supportTickets, usageDropPct, contractMonthsLeft, loginsPerWeek, latent };
+    });
+}
+
+// ── energy: grid-overload forecast (realistic-synthetic) ────────────────────────────────────────────────────
+const ENERGY_NOTE = 'Grid overload — overload=1. Ground-truth risk rises with high load, temperature extremes, peak '
+  + 'hours and low wind supply. Realistic-synthetic.';
+export function loadEnergy() {
+  return synth('energy', 'Grid overload', ENERGY_NOTE, 2400, 808,
+    ['loadMW', 'tempC', 'hourOfDay', 'humidity', 'windMW', 'priceMWh'], (r) => {
+      const loadMW = clamp(Math.max(0, 600 + 150 * gauss(r)), 0, 2000);
+      const tempC = clamp(18 + 11 * gauss(r), -15, 48);
+      const hourOfDay = clamp(14 + 5 * gauss(r), 0, 23);
+      const humidity = clamp(55 + 18 * gauss(r), 0, 100);
+      const windMW = clamp(Math.max(0, 120 + 70 * gauss(r)), 0, 600);
+      const priceMWh = clamp(Math.max(0, 55 + 30 * gauss(r)), 0, 600);
+      const latent = 0.006 * (loadMW - 620) + 0.07 * Math.abs(tempC - 20) + 0.12 * Math.max(0, hourOfDay - 16)
+        - 0.004 * (windMW - 120) + 0.003 * (priceMWh - 55) - 1.3;
+      return { loadMW, tempC, hourOfDay, humidity, windMW, priceMWh, latent };
+    });
+}
+
+// ── intrusion: network intrusion (realistic-synthetic) ──────────────────────────────────────────────────────
+const INTRUSION_NOTE = 'Network intrusion — intrusion=1. Ground-truth risk rises with failed logins, many distinct '
+  + 'ports touched, lopsided byte ratios, long connections and off-hours activity. Realistic-synthetic.';
+export function loadIntrusion() {
+  return synth('intrusion', 'Network intrusion', INTRUSION_NOTE, 2400, 909,
+    ['bytesInKB', 'bytesOutKB', 'connSeconds', 'failedLogins', 'distinctPorts', 'offHours'], (r) => {
+      const bytesInKB = clamp(Math.max(0, 120 + 90 * gauss(r)), 0, 5000);
+      const bytesOutKB = clamp(Math.max(0, 90 + 80 * gauss(r)), 0, 5000);
+      const connSeconds = clamp(Math.max(0, 30 + 40 * Math.abs(gauss(r))), 0, 1000);
+      const failedLogins = clamp(Math.max(0, Math.round(0.8 + 1.6 * Math.abs(gauss(r)))), 0, 50);
+      const distinctPorts = clamp(Math.max(1, Math.round(3 + 4 * Math.abs(gauss(r)))), 1, 200);
+      const offHours = r() < 0.35 ? 1 : 0;
+      const latent = 0.5 * (failedLogins - 1) + 0.12 * (distinctPorts - 4) + 0.004 * (connSeconds - 30)
+        + 0.001 * (bytesOutKB - bytesInKB) + 0.7 * offHours - 1.2;
+      return { bytesInKB, bytesOutKB, connSeconds, failedLogins, distinctPorts, offHours, latent };
+    });
+}
+
+// ── inventory: stockout risk (realistic-synthetic) ──────────────────────────────────────────────────────────
+const INVENTORY_NOTE = 'Inventory stockout — stockout=1. Ground-truth risk rises with low days-of-stock, long lead '
+  + 'time, high demand variance, a big reorder gap and low supplier reliability. Realistic-synthetic.';
+export function loadInventory() {
+  return synth('inventory', 'Inventory stockout', INVENTORY_NOTE, 2400, 1010,
+    ['daysOfStock', 'leadTimeDays', 'demandVar', 'reorderGap', 'seasonalityIdx', 'supplierReliab'], (r) => {
+      const daysOfStock = clamp(Math.max(0, 18 + 10 * gauss(r)), 0, 120);
+      const leadTimeDays = clamp(Math.max(0, 10 + 6 * gauss(r)), 0, 90);
+      const demandVar = clamp(Math.max(0, 0.4 + 0.25 * Math.abs(gauss(r))), 0, 3);
+      const reorderGap = clamp(5 + 6 * gauss(r), -30, 60);
+      const seasonalityIdx = clamp(1 + 0.4 * gauss(r), 0, 3);
+      const supplierReliab = clamp(0.82 + 0.12 * gauss(r), 0, 1);
+      const latent = -0.10 * (daysOfStock - 16) + 0.06 * (leadTimeDays - 9) + 1.2 * (demandVar - 0.4)
+        + 0.05 * (reorderGap - 4) - 2.0 * (supplierReliab - 0.8) - 0.3;
+      return { daysOfStock, leadTimeDays, demandVar, reorderGap, seasonalityIdx, supplierReliab, latent };
+    });
+}
+
+export const EXT_IDS = ['fraud', 'maintenance', 'credit', 'churn', 'energy', 'intrusion', 'inventory'];
+// the ladder climbs one batch of new verticals per rung (tier 1 -> 2 -> 3)
+export const LADDER_BATCHES = [['fraud', 'maintenance', 'credit'], ['churn', 'energy', 'intrusion', 'inventory']];
 export const EXT_META = {
   fraud: { title: 'Card fraud', real: false, survival: 'finance', note: FRAUD_NOTE },
   maintenance: { title: 'Predictive maintenance', real: false, survival: 'industry', note: MAINT_NOTE },
   credit: { title: 'Loan default', real: false, survival: 'finance', note: CREDIT_NOTE },
+  churn: { title: 'Subscription churn', real: false, survival: 'commerce', note: CHURN_NOTE },
+  energy: { title: 'Grid overload', real: false, survival: 'energy', note: ENERGY_NOTE },
+  intrusion: { title: 'Network intrusion', real: false, survival: 'security', note: INTRUSION_NOTE },
+  inventory: { title: 'Inventory stockout', real: false, survival: 'supply chain', note: INVENTORY_NOTE },
 };
 export function loadDomainExt(name) {
   if (name === 'fraud') return loadFraud();
   if (name === 'maintenance') return loadMaintenance();
   if (name === 'credit') return loadCredit();
+  if (name === 'churn') return loadChurn();
+  if (name === 'energy') return loadEnergy();
+  if (name === 'intrusion') return loadIntrusion();
+  if (name === 'inventory') return loadInventory();
   return { ok: false, error: 'unknown ext domain: ' + name };
 }

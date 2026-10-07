@@ -5,35 +5,38 @@ import { fileURLToPath } from 'node:url';
 import { buildLibrary } from '../konomi-slm.mjs';
 import { growTier, tierReceipt } from '../grow-tier.mjs';
 import { DOMAIN_IDS } from '../vendor/seed-library/domains.mjs';
-import { EXT_IDS } from '../domains-ext.mjs';
+import { LADDER_BATCHES } from '../domains-ext.mjs';
 
 const CSV = fileURLToPath(new URL('../vendor/seed-library/data/online_shoppers_intention.csv', import.meta.url));
 const ctx = { shopperCsv: fs.readFileSync(CSV, 'utf8') };
 
-const tier1 = buildLibrary(DOMAIN_IDS, ctx);
-const tier2 = growTier(tier1, { ctx, newDomains: EXT_IDS });
-const receipt = tierReceipt(tier1, tier2);
+// climb every rung: tier 1 (vendored domains) then one batch of new verticals per rung
+const tiers = [buildLibrary(DOMAIN_IDS, ctx)];
+const receipts = [];
+for (const batch of LADDER_BATCHES) {
+  const prev = tiers[tiers.length - 1];
+  const next = growTier(prev, { ctx, newDomains: batch });
+  receipts.push(tierReceipt(prev, next));
+  tiers.push(next);
+}
 
-if (process.argv.includes('--json')) { console.log(JSON.stringify({ tier1: { domains: tier1.domains, meanHeldAuc: tier1.meanHeldAuc, libraryBytes: tier1.libraryBytes }, tier2: { domains: tier2.domains, meanHeldAuc: tier2.meanHeldAuc, libraryBytes: tier2.libraryBytes }, receipt }, null, 2)); }
-else {
+if (process.argv.includes('--json')) {
+  console.log(JSON.stringify({ tiers: tiers.map((t, i) => ({ tier: i + 1, domains: t.domains, meanHeldAuc: t.meanHeldAuc, libraryBytes: t.libraryBytes })), receipts }, null, 2));
+} else {
   const P = (s) => console.log(s);
-  P('\n◊ THE LADDER — tier 1 builds tier 2 (grow the library, never train weights)\n' + '='.repeat(66));
-  P(`\nTIER 1: ${tier1.domains.length} domains · mean held-out AUC ${tier1.meanHeldAuc} · ${tier1.libraryBytes} bytes of seeds`);
-  P(`TIER 2: ${tier2.domains.length} domains · mean held-out AUC ${tier2.meanHeldAuc} · ${tier2.libraryBytes} bytes of seeds`);
-  P(`\nPER DOMAIN (tier1 AUC -> tier2 AUC, champion-warm-started, monotone-gated):`);
-  for (const d of receipt.perDomain) {
-    const t2 = tier2.patterns[d.domain];
-    const arrow = t2.heldAuc > d.tier1Auc + 1e-9 ? '  ▲ deepened' : '  = held';
-    P(`  ${d.domain.padEnd(12)} ${String(d.tier1Auc).padEnd(9)} -> ${String(t2.heldAuc).padEnd(9)}${arrow}`);
+  P('\n◊ THE LADDER — each tier builds the next (grow the library, never train weights)\n' + '='.repeat(66));
+  tiers.forEach((t, i) => P(`TIER ${i + 1}: ${String(t.domains.length).padStart(2)} domains · mean held-out AUC ${t.meanHeldAuc} · ${t.libraryBytes} bytes of seeds`));
+  for (let i = 0; i < receipts.length; i++) {
+    const prev = tiers[i], next = tiers[i + 1], rec = receipts[i];
+    P(`\n── rung ${i + 1}→${i + 2} (champion-warm-started, monotone-gated) ──`);
+    for (const d of rec.perDomain) {
+      const t2 = next.patterns[d.domain]; const arrow = t2.heldAuc > d.tier1Auc + 1e-9 ? '▲ deepened' : '= held';
+      P(`  ${d.domain.padEnd(12)} ${String(d.tier1Auc).padEnd(9)} -> ${String(t2.heldAuc).padEnd(9)} ${arrow}`);
+    }
+    for (const id of rec.added) P(`  + ${id.padEnd(12)} held-out AUC ${next.patterns[id].heldAuc}  (new, ${next.patterns[id].real ? 'REAL' : 'synthetic'})`);
+    for (const c of next.cut) P(`  CUT: ${c.domain} — ${c.why}`);
+    P(`  monotone: ${rec.monotone ? 'YES ✓' : 'NO ✗'}   receipt ${rec.receiptHash.slice(0, 16)}…`);
   }
-  if (receipt.added.length) {
-    P(`\nBROADENED (new verified domains — polymath):`);
-    for (const id of receipt.added) P(`  + ${id.padEnd(12)} held-out AUC ${tier2.patterns[id].heldAuc}  (${tier2.patterns[id].real ? 'REAL' : 'synthetic'})`);
-  }
-  if (tier2.cut.length) for (const c of tier2.cut) P(`  CUT: ${c.domain} — ${c.why}`);
-  P(`\nGUARANTEE:`);
-  P(`  monotone (no existing domain regressed): ${receipt.monotone ? 'YES ✓' : 'NO ✗'}`);
-  P(`  breadth: ${tier1.domains.length} -> ${tier2.domains.length} domains   mean AUC: ${tier1.meanHeldAuc} -> ${tier2.meanHeldAuc} (>= tier 1)`);
-  P(`  library still tiny: ${tier2.libraryBytes} bytes of seeds (${tier2.ratio}x compression)`);
-  P(`  receipt ${receipt.receiptHash}\n`);
+  const first = tiers[0], last = tiers[tiers.length - 1];
+  P(`\nLADDER: ${first.domains.length} → ${last.domains.length} domains · mean AUC ${first.meanHeldAuc} → ${last.meanHeldAuc} · ${first.libraryBytes} → ${last.libraryBytes} bytes · every rung monotone\n`);
 }

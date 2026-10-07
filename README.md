@@ -38,12 +38,12 @@ npm run duel    # optional, ungraded: verified pattern vs llama3.2:1b (needs loc
 Scaling here is **library-growth, not weight-training**. `node tools/run-tier.mjs` grows tier 2 from tier 1: tier 1's champion patterns warm-start tier 2's search, every existing domain is kept only if it holds-or-beats tier 1 (**monotone — never worse**), and new verticals broaden it. Measured rung:
 
 ```
-TIER 1: 4 domains · mean held-out AUC 0.774 · 170 bytes of seeds
-TIER 2: 7 domains · mean held-out AUC 0.786 · 405 bytes of seeds
-  shopper (REAL)  0.675 → 0.781  ▲      triage 0.884 → 0.884  = held
-  water 0.767 → 0.803  ▲                crop   0.769 → 0.803  ▲
-  + fraud 0.749 · + maintenance 0.809 · + credit 0.673   (new, gated in)
-  monotone: YES — no domain regressed · library still tiny (14.4×)
+TIER 1:  4 domains · mean held-out AUC 0.774 · 170 bytes of seeds
+TIER 2:  7 domains · mean held-out AUC 0.786 · 405 bytes of seeds
+TIER 3: 11 domains · mean held-out AUC 0.787 · 650 bytes of seeds
+  rung 1→2  shopper (REAL) 0.675→0.781 ▲ · water/crop ▲ · triage held · + fraud/maintenance/credit
+  rung 2→3  shopper 0.781→0.783 ▲ · fraud 0.749→0.765 ▲ · maintenance 0.809→0.834 ▲ · + churn/energy/intrusion/inventory
+  every rung monotone — no domain ever regresses · library stays a few hundred bytes
 ```
 
 That is the whole scaling story: 1B→2B→…→70B is the **library compounding** — more verified domains (breadth = polymath), deeper patterns (depth), each rung provably dominating the last with a tier-over-tier receipt — CPU-only, because you grow libraries, not weights. A frontier/local model can *propose* a new domain (imagination); only what the gate verifies on held-out enters, so it stays owned, never a fork.
