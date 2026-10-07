@@ -1,0 +1,31 @@
+{
+  "model": "patternforge/1",
+  "domain": "credit",
+  "selectedBy": "bred from stem",
+  "valAuc": 0.723061,
+  "heldAuc": 0.672461,
+  "heldAcc": 0.638889,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 credit 7 f:7ffb03f64de739e18a3d 22cfa736a911",
+  "ownedSeedBytes": 54,
+  "hypotheses": [
+    {
+      "feature": "delinquencies",
+      "direction": "high"
+    },
+    {
+      "feature": "utilisation",
+      "direction": "high"
+    },
+    {
+      "feature": "loanToValue",
+      "direction": "low"
+    },
+    {
+      "feature": "incomeK",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "c6a7a72753ab74704f2a48cb6f1c57648ac7eb8dffc5c887fab025d241397174"
+}

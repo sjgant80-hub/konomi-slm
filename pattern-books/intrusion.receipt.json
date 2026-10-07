@@ -1,0 +1,35 @@
+{
+  "model": "patternforge/1",
+  "domain": "intrusion",
+  "selectedBy": "bred from stem + observed",
+  "valAuc": 0.737935,
+  "heldAuc": 0.756727,
+  "heldAcc": 0.702778,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 intrusion 7 f:ff74afd0500e0addd62d 36321ce2a332",
+  "ownedSeedBytes": 57,
+  "hypotheses": [
+    {
+      "feature": "bytesInKB",
+      "direction": "high"
+    },
+    {
+      "feature": "bytesOutKB",
+      "direction": "high"
+    },
+    {
+      "feature": "connSeconds",
+      "direction": "high"
+    },
+    {
+      "feature": "failedLogins",
+      "direction": "high"
+    },
+    {
+      "feature": "distinctPorts",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "0aadac6ab4081256291c9cee649a3db5c4eef5234f9db3abc188791b3b92800d"
+}

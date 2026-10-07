@@ -1,0 +1,27 @@
+{
+  "model": "patternforge/1",
+  "domain": "energy",
+  "selectedBy": "bred from proposal + observed",
+  "valAuc": 0.761344,
+  "heldAuc": 0.782707,
+  "heldAcc": 0.743056,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 energy 7 f:1f9844318bb426348c0a 0c71bf22850a",
+  "ownedSeedBytes": 54,
+  "hypotheses": [
+    {
+      "feature": "loadMW",
+      "direction": "high"
+    },
+    {
+      "feature": "humidity",
+      "direction": "low"
+    },
+    {
+      "feature": "priceMWh",
+      "direction": "low"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "df57d0d56a45d14ead730af0c4fd50da2db2af77dde4b1dce9811e5af06ded70"
+}

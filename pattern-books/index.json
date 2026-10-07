@@ -1,0 +1,69 @@
+{
+  "model": "qwen2.5:14b (e-commerce) + qwen2.5:7b (rest)",
+  "forged": [
+    {
+      "domain": "shopper",
+      "heldAuc": 0.813532,
+      "selectedBy": "bred from proposal",
+      "feats": "ProductRelated_Duration/PageValues/SpecialDay/Informational_Duration/Administrative_Duration",
+      "secs": "-"
+    },
+    {
+      "domain": "marketing",
+      "heldAuc": 0.645106,
+      "selectedBy": "bred from stem + observed",
+      "feats": "pastPurchases/timeOnSiteMin/adExposures",
+      "secs": "77"
+    },
+    {
+      "domain": "churn",
+      "heldAuc": 0.781674,
+      "selectedBy": "bred from proposal + observed",
+      "feats": "usageDropPct/supportTickets/contractMonthsLeft/loginsPerWeek",
+      "secs": "69"
+    },
+    {
+      "domain": "credit",
+      "heldAuc": 0.672461,
+      "selectedBy": "bred from stem",
+      "feats": "delinquencies/utilisation/loanToValue/incomeK",
+      "secs": "64"
+    },
+    {
+      "domain": "fraud",
+      "heldAuc": 0.768272,
+      "selectedBy": "bred from proposal + observed",
+      "feats": "merchantRisk/cardNotPresent",
+      "secs": "58"
+    },
+    {
+      "domain": "maintenance",
+      "heldAuc": 0.781302,
+      "selectedBy": "bred from proposal",
+      "feats": "hoursSinceService",
+      "secs": "62"
+    },
+    {
+      "domain": "intrusion",
+      "heldAuc": 0.756727,
+      "selectedBy": "bred from stem + observed",
+      "feats": "bytesInKB/bytesOutKB/connSeconds/failedLogins/distinctPorts",
+      "secs": "73"
+    },
+    {
+      "domain": "inventory",
+      "heldAuc": 0.820803,
+      "selectedBy": "bred from proposal",
+      "feats": "demandVar/reorderGap/seasonalityIdx/supplierReliab/daysOfStock/leadTimeDays",
+      "secs": "132"
+    },
+    {
+      "domain": "energy",
+      "heldAuc": 0.782707,
+      "selectedBy": "bred from proposal + observed",
+      "feats": "loadMW/humidity/priceMWh",
+      "secs": "126"
+    }
+  ],
+  "count": 9
+}

@@ -1,0 +1,39 @@
+{
+  "model": "patternforge/1",
+  "domain": "inventory",
+  "selectedBy": "bred from proposal",
+  "valAuc": 0.806289,
+  "heldAuc": 0.820803,
+  "heldAcc": 0.759722,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 inventory 7 f:bf29bb5122813014c735 8db282c76544",
+  "ownedSeedBytes": 57,
+  "hypotheses": [
+    {
+      "feature": "demandVar",
+      "direction": "high"
+    },
+    {
+      "feature": "reorderGap",
+      "direction": "high"
+    },
+    {
+      "feature": "seasonalityIdx",
+      "direction": "high"
+    },
+    {
+      "feature": "supplierReliab",
+      "direction": "low"
+    },
+    {
+      "feature": "daysOfStock",
+      "direction": "high"
+    },
+    {
+      "feature": "leadTimeDays",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "55cd9d71228ea962452625199743b02171113e1f8cb1b8ade8efb1acdb3f6805"
+}

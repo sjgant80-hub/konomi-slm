@@ -1,0 +1,23 @@
+{
+  "model": "patternforge/1",
+  "domain": "fraud",
+  "selectedBy": "bred from proposal + observed",
+  "valAuc": 0.756335,
+  "heldAuc": 0.768272,
+  "heldAcc": 0.8,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 fraud 7 f:3f14143ee50fb696b020 7fd212d5f038",
+  "ownedSeedBytes": 53,
+  "hypotheses": [
+    {
+      "feature": "merchantRisk",
+      "direction": "high"
+    },
+    {
+      "feature": "cardNotPresent",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "e71d28a2ea6b3584c9c734c1f13d0dceacd9221510e87cb8e100a93367f8f22b"
+}

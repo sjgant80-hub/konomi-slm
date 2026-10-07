@@ -1,0 +1,27 @@
+{
+  "model": "patternforge/1",
+  "domain": "marketing",
+  "selectedBy": "bred from stem + observed",
+  "valAuc": 0.657523,
+  "heldAuc": 0.645106,
+  "heldAcc": 0.615278,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 marketing 7 f:3fdcb208ce83be9a2c2c 28ee329690b2",
+  "ownedSeedBytes": 57,
+  "hypotheses": [
+    {
+      "feature": "pastPurchases",
+      "direction": "high"
+    },
+    {
+      "feature": "timeOnSiteMin",
+      "direction": "high"
+    },
+    {
+      "feature": "adExposures",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "a6ead233faf22be635120cb1b510f7ba8657ca8f40e18a4a0623e1bf8da1e061"
+}

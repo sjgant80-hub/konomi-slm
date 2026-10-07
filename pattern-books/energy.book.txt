@@ -1,0 +1,10 @@
+PATTERN BOOK — energy (predicts: "the grid overloads")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.782707 · held-out accuracy 0.743056 · 720 held-out cases
+
+  • when loadMW is at or below 576.950332  →  makes "the grid overloads" LESS likely  (weight -1)
+  • when tempC is at or below 14.901353  →  makes "the grid overloads" MORE likely  (weight +1)
+  • when loadMW is at or below 467.049349  →  makes "the grid overloads" LESS likely  (weight -1)
+  • when tempC is above 23.350887  →  makes "the grid overloads" MORE likely  (weight +0.25)
+  • when loadMW is at or below 770.625392  →  makes "the grid overloads" LESS likely  (weight -2)

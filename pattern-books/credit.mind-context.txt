@@ -1,0 +1,12 @@
+Verified patterns for credit (predicting "the loan defaults"), each proven on held-out data:
+PATTERN BOOK — credit (predicts: "the loan defaults")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.672461 · held-out accuracy 0.638889 · 720 held-out cases
+
+  • when utilisation is above 0.851107  →  makes "the loan defaults" MORE likely  (weight +2)
+  • when dti is above 0.369155  →  makes "the loan defaults" MORE likely  (weight +1)
+  • when utilisation is above 0.352015  →  makes "the loan defaults" MORE likely  (weight +1)
+  • when incomeK is at or below 42.652414  →  makes "the loan defaults" MORE likely  (weight +2)
+  • when loanToValue is above 0.740593  →  makes "the loan defaults" MORE likely  (weight +0.5)
+  • when delinquencies is above 1  →  makes "the loan defaults" MORE likely  (weight +2)

@@ -1,0 +1,10 @@
+PATTERN BOOK — churn (predicts: "the customer churns")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.781674 · held-out accuracy 0.718056 · 720 held-out cases
+
+  • when usageDropPct is above 22.389064  →  makes "the customer churns" MORE likely  (weight +1)
+  • when supportTickets is at or below 2  →  makes "the customer churns" LESS likely  (weight -0.25)
+  • when contractMonthsLeft is at or below 6.732864  →  makes "the customer churns" MORE likely  (weight +1)
+  • when tenureMonths is at or below 25.364184  →  makes "the customer churns" MORE likely  (weight +0.5)
+  • when tenureMonths is at or below 14.821066  →  makes "the customer churns" MORE likely  (weight +1)

@@ -1,0 +1,11 @@
+PATTERN BOOK — marketing (predicts: "the lead converts")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.645106 · held-out accuracy 0.615278 · 720 held-out cases
+
+  • when emailOpens is above 4.116435  →  makes "the lead converts" MORE likely  (weight +0.5)
+  • when daysSinceLast is at or below 11.546605  →  makes "the lead converts" LESS likely  (weight -1)
+  • when clickRate is above 0.069703  →  makes "the lead converts" MORE likely  (weight +2)
+  • when emailOpens is above 5.463747  →  makes "the lead converts" MORE likely  (weight +2)
+  • when timeOnSiteMin is at or below 5.192783  →  makes "the lead converts" LESS likely  (weight -1)
+  • when pastPurchases is above 1  →  makes "the lead converts" MORE likely  (weight +0.5)

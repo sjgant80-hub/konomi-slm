@@ -1,0 +1,19 @@
+{
+  "model": "patternforge/1",
+  "domain": "maintenance",
+  "selectedBy": "bred from proposal",
+  "valAuc": 0.82467,
+  "heldAuc": 0.781302,
+  "heldAcc": 0.904167,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 maintenance 7 f:9f385cc1cb8fa56ab602 bf2560dcc523",
+  "ownedSeedBytes": 59,
+  "hypotheses": [
+    {
+      "feature": "hoursSinceService",
+      "direction": "high"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "e2d906b9271351a12fef2fb77793df60ca35d5a674f57c765fd6d1357ecc02f7"
+}

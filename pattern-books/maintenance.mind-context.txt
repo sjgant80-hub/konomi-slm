@@ -1,0 +1,11 @@
+Verified patterns for maintenance (predicting "the machine fails soon"), each proven on held-out data:
+PATTERN BOOK — maintenance (predicts: "the machine fails soon")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.781302 · held-out accuracy 0.904167 · 720 held-out cases
+
+  • when hoursSinceService is at or below 780.037284  →  makes "the machine fails soon" LESS likely  (weight -2)
+  • when tempC is at or below 51.309356  →  makes "the machine fails soon" LESS likely  (weight -2)
+  • when loadPct is above 49.082811  →  makes "the machine fails soon" MORE likely  (weight +2)
+  • when loadPct is above 62.422202  →  makes "the machine fails soon" MORE likely  (weight +0.25)
+  • when ageMonths is above 48.059781  →  makes "the machine fails soon" MORE likely  (weight +0.25)

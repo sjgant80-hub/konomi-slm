@@ -1,0 +1,12 @@
+Verified patterns for intrusion (predicting "a network intrusion"), each proven on held-out data:
+PATTERN BOOK — intrusion (predicts: "a network intrusion")
+source: realistic-synthetic, from a known rule
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.756727 · held-out accuracy 0.702778 · 720 held-out cases
+
+  • when failedLogins is above 3  →  makes "a network intrusion" MORE likely  (weight +1)
+  • when offHours is at or below 0  →  makes "a network intrusion" LESS likely  (weight -0.5)
+  • when failedLogins is above 1  →  makes "a network intrusion" MORE likely  (weight +0.25)
+  • when failedLogins is at or below 2  →  makes "a network intrusion" LESS likely  (weight -1)
+  • when distinctPorts is above 6  →  makes "a network intrusion" MORE likely  (weight +0.5)
+  • when offHours is above 0  →  makes "a network intrusion" MORE likely  (weight +0.5)

@@ -157,7 +157,27 @@ export function loadInventory() {
     });
 }
 
-export const EXT_IDS = ['fraud', 'maintenance', 'credit', 'churn', 'energy', 'intrusion', 'inventory'];
+// ── marketing: lead / campaign conversion (realistic-synthetic) ─────────────────────────────────────────────
+const MARKETING_NOTE = 'Marketing — converts=1. Ground-truth lift rises with more email opens and clicks, recent site '
+  + 'visits, time on site, past purchases, and recency; high ad fatigue dampens it. Realistic-synthetic.';
+export function loadMarketing() {
+  return synth('marketing', 'Lead conversion', MARKETING_NOTE, 2400, 1111,
+    ['emailOpens', 'clickRate', 'siteVisits', 'timeOnSiteMin', 'pastPurchases', 'daysSinceLast', 'adExposures'], (r) => {
+      const emailOpens = clamp(Math.max(0, 4 + 3 * gauss(r)), 0, 40);
+      const clickRate = clamp(0.12 + 0.08 * gauss(r), 0, 1);
+      const siteVisits = clamp(Math.max(0, 3 + 3 * Math.abs(gauss(r))), 0, 60);
+      const timeOnSiteMin = clamp(Math.max(0, 6 + 5 * gauss(r)), 0, 120);
+      const pastPurchases = clamp(Math.max(0, Math.round(1 + 1.5 * Math.abs(gauss(r)))), 0, 40);
+      const daysSinceLast = clamp(Math.max(0, 40 + 30 * gauss(r)), 0, 400);
+      const adExposures = clamp(Math.max(0, 8 + 6 * Math.abs(gauss(r))), 0, 80);
+      const latent = 0.10 * (emailOpens - 4) + 3.0 * (clickRate - 0.12) + 0.08 * (siteVisits - 3)
+        + 0.05 * (timeOnSiteMin - 6) + 0.18 * (pastPurchases - 1) - 0.006 * (daysSinceLast - 40)
+        - 0.03 * Math.max(0, adExposures - 25) - 0.4;
+      return { emailOpens, clickRate, siteVisits, timeOnSiteMin, pastPurchases, daysSinceLast, adExposures, latent };
+    });
+}
+
+export const EXT_IDS = ['fraud', 'maintenance', 'credit', 'churn', 'energy', 'intrusion', 'inventory', 'marketing'];
 // the ladder climbs one batch of new verticals per rung (tier 1 -> 2 -> 3)
 export const LADDER_BATCHES = [['fraud', 'maintenance', 'credit'], ['churn', 'energy', 'intrusion', 'inventory']];
 export const EXT_META = {
@@ -168,6 +188,7 @@ export const EXT_META = {
   energy: { title: 'Grid overload', real: false, survival: 'energy', note: ENERGY_NOTE },
   intrusion: { title: 'Network intrusion', real: false, survival: 'security', note: INTRUSION_NOTE },
   inventory: { title: 'Inventory stockout', real: false, survival: 'supply chain', note: INVENTORY_NOTE },
+  marketing: { title: 'Lead conversion', real: false, survival: 'marketing', note: MARKETING_NOTE },
 };
 export function loadDomainExt(name) {
   if (name === 'fraud') return loadFraud();
@@ -177,5 +198,6 @@ export function loadDomainExt(name) {
   if (name === 'energy') return loadEnergy();
   if (name === 'intrusion') return loadIntrusion();
   if (name === 'inventory') return loadInventory();
+  if (name === 'marketing') return loadMarketing();
   return { ok: false, error: 'unknown ext domain: ' + name };
 }

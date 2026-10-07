@@ -1,0 +1,31 @@
+{
+  "model": "patternforge/1",
+  "domain": "churn",
+  "selectedBy": "bred from proposal + observed",
+  "valAuc": 0.748062,
+  "heldAuc": 0.781674,
+  "heldAcc": 0.718056,
+  "held": 720,
+  "ownedSeed": "◊ seed.v1 churn 7 f:df64fb1821432a148f08 8e5fd32c4bd5",
+  "ownedSeedBytes": 53,
+  "hypotheses": [
+    {
+      "feature": "usageDropPct",
+      "direction": "high"
+    },
+    {
+      "feature": "supportTickets",
+      "direction": "high"
+    },
+    {
+      "feature": "contractMonthsLeft",
+      "direction": "low"
+    },
+    {
+      "feature": "loginsPerWeek",
+      "direction": "low"
+    }
+  ],
+  "proposer": "qwen2.5:7b",
+  "receiptHash": "17f16a5e4bb296dd42dcb7adf5cbbaccd647c3bd8462423a4c56f6c998c4b44d"
+}
