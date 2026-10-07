@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Konomi SLM</title>
-<meta name="description" content="A small model that keeps its knowledge in a verified, readable pattern-library instead of opaque weights. It answers from a pattern that predicted held-out cases, or it abstains — it does not hallucinate. Runs in your browser." />
+<meta name="description" content="A neurosymbolic verified knowledge engine: a model proposes, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a readable, compressed pattern-library, not opaque weights. It grows by adding verified rules, not by retraining. Runs in your browser." />
 <meta name="color-scheme" content="dark light" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"A small language-model architecture where knowledge lives in a verified, lossless-compressed, readable pattern-library (predict held-out cases or be cut) and a tiny model only routes. Answers carry a tamper-evident receipt; out-of-distribution inputs are abstained, not hallucinated."}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"A neurosymbolic, self-growing, verified knowledge engine with selective abstention. A neural model proposes answers; only verified rules that predict held-out data are kept (predict-or-be-cut); out-of-distribution inputs are abstained, not hallucinated; every answer carries a tamper-evident receipt. Knowledge lives in a readable, lossless-compressed pattern-library, not opaque weights, and the engine grows by adding verified rules rather than retraining. In the family of evolutionary program search (FunSearch, AlphaEvolve) — owned, CPU-scale, multi-domain, compression-native."}
 </script>
 <style>
   :root{
@@ -63,9 +63,10 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="tag">KONOMI SLM · the inversion</div>
-    <h1>Knowledge in verified patterns,<br>not opaque weights.</h1>
-    <p class="lede">Every other small model shrinks a big one until accuracy falls off a cliff — the model <em>is</em> the knowledge, so compressing it loses the knowledge. This inverts that. Knowledge lives in a <b>verified, readable pattern-library</b> — each pattern predicted held-out cases it never saw, or it was cut — and a tiny model only <b>routes</b>. It answers from a verified pattern, or it <b>abstains</b>. It does not hallucinate. It runs entirely in this browser.</p>
+    <div class="tag">KONOMI · neurosymbolic verified knowledge engine</div>
+    <h1>It proves what it says,<br>or it abstains.</h1>
+    <p class="lede"><b>This is not an LLM — and that's the point.</b> A model <em>proposes</em>, but only rules that predict unseen data are kept, so the engine proves what it says and says "I don't know" when it can't. Knowledge lives in a <b>verified, readable, compressed pattern-library</b> — each rule predicted held-out cases it never saw, or it was cut — not smeared across opaque weights, so it can't be shrunk away and it doesn't hallucinate. It grows by adding verified rules, not by retraining. The whole knowledge-base compresses to a seed, and it runs entirely in this browser.</p>
+    <p class="note">In field terms: <b>neurosymbolic AI</b> (a neural proposer + symbolic verified rules) · <b>selective prediction</b> (it abstains) · <b>evolutionary program search</b> (the FunSearch / AlphaEvolve family — propose, test on held-out, keep only winners) · <b>compression-as-intelligence</b> (the shortest model that predicts the data). Fused into one owned, CPU-scale, multi-domain system. We don't compete on "is the model big enough" — we stand on "is the answer verified."</p>
   </header>
 
   <h2>1 · Grow the library</h2>

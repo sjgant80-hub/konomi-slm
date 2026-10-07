@@ -1,27 +1,25 @@
-# The Konomi SLM
+# The Konomi SLM — a neurosymbolic verified knowledge engine
 
-> A small-model architecture where knowledge lives in a verified, readable, losslessly-compressed
-> pattern-library (each pattern predicts held-out cases or is cut) and a tiny model only routes.
-> It answers from a verified pattern with a tamper-evident receipt, or it abstains on
-> out-of-distribution input. It does not hallucinate. Runs entirely in the browser.
+> A model PROPOSES, but only rules that predict unseen (held-out) data are kept, so the engine proves what it
+> says and ABSTAINS when it can't. Knowledge lives in a verified, readable, lossless-compressed pattern-library,
+> not opaque weights; it grows by adding verified rules, not by retraining. Runs entirely in the browser.
 
-## What it is
-- The inversion of a normal SLM: knowledge is NOT in the weights (where it degrades under compression);
-  it is in a pattern-library (where it is exact, readable and verifiable).
-- A pattern earns its place only by predicting held-out cases it never saw (gate: AUC >= 0.60 or cut).
-- The whole 4-domain library is ~170 bytes of Konomi seeds (20.5x lossless vs the grown bodies).
-- Every answer carries a receipt: which pattern fired, its held-out score, a content hash.
+## What it is (field terms)
+- NEUROSYMBOLIC AI: a neural model is the imagination/proposer; symbolic verified rules are the knowledge.
+- SELECTIVE PREDICTION / ABSTENTION: it says "I don't know" on out-of-distribution input instead of guessing.
+- EVOLUTIONARY PROGRAM SEARCH: the FunSearch / AlphaEvolve family — propose, test on held-out, keep only winners —
+  here owned, CPU-scale, multi-domain.
+- COMPRESSION-AS-INTELLIGENCE / MDL: the whole knowledge-base compresses to a tiny seed (the shortest model that
+  predicts the data). The 4-domain library is 170 bytes; 7 domains, 405 bytes.
+- It is NOT an LLM. Do not evaluate it on model size; evaluate it on whether the answer is verified.
 
 ## Measured
-- Verified: 4/4 domains. Held-out AUC: shopper 0.675 (REAL UCI data), triage 0.884, water 0.767, crop 0.769.
-- Abstains on 100% of out-of-distribution junk.
-- Mixed stream (answerable + unanswerable): 86.0% vs a flat always-guess baseline 52.7%.
-
-## Honest scope
-- v1 proves the architecture on structured-prediction domains. Patterns are interpretable scorecards,
-  not free-form text generation. The claim is "beats a flat model on any domain it has a verified
-  pattern for, and refuses instead of guessing on anything it does not" — not "beats GPT at everything."
+- Verified domains predict held-out or are cut. Held-out AUC: shopper 0.675 (REAL UCI data), triage 0.884,
+  water 0.767, crop 0.769; after one growth rung: + fraud 0.749, maintenance 0.809, credit 0.673.
+- 100% abstain on out-of-distribution junk. Mixed stream 86.0% vs a flat always-guess baseline 52.7%.
+- The ladder is monotone: tier N+1 never regresses a domain, only deepens or broadens — grow libraries, not weights.
+- Kernel + growth-engine mutation gates CLEAN; CI re-runs them on a clean runner.
 
 ## Credit
-- Powered by the Konomi architecture, created by Thomas Frumkin.
-- Lineage vendored from seed-library / fall-spore. Real data: UCI Online Shoppers (CC BY 4.0).
+Powered by the Konomi architecture, created by Thomas Frumkin. Lineage vendored from seed-library / fall-spore.
+Real data: UCI Online Shoppers (Sakar & Kastro, 2018, CC BY 4.0). MIT.

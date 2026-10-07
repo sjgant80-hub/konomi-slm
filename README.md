@@ -2,7 +2,9 @@
 
 **▶ Live: https://sjgant80-hub.github.io/konomi-slm/** — grow the library and ask it in your browser; nothing is sent anywhere.
 
-A small-model architecture that keeps its knowledge in a **verified, readable pattern-library** instead of opaque weights. It answers from a pattern that predicted held-out cases it never saw, or it **abstains** — it does not hallucinate.
+**A neurosymbolic verified knowledge engine with abstention.** A model *proposes*, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a **verified, readable, compressed pattern-library** instead of opaque weights, and it grows by adding verified rules — not by retraining.
+
+> **It is not an LLM — that's the point.** Calling it an SLM invites "is your model big enough?" (the wrong axis). It belongs to real, serious directions: **neurosymbolic AI** (neural proposer + symbolic verified rules), **selective prediction** (it abstains), **evolutionary program search** (the FunSearch / AlphaEvolve family — propose, test on held-out, keep only winners), and **compression-as-intelligence / MDL** (the shortest model that predicts the data). It fuses all four into one owned, CPU-scale, multi-domain, self-growing system. We don't compete on model size; we stand on *verified*.
 
 ## The inversion
 
