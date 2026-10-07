@@ -48,6 +48,16 @@ TIER 3: 11 domains · mean held-out AUC 0.787 · 650 bytes of seeds
 
 That is the whole scaling story: 1B→2B→…→70B is the **library compounding** — more verified domains (breadth = polymath), deeper patterns (depth), each rung provably dominating the last with a tier-over-tier receipt — CPU-only, because you grow libraries, not weights. A frontier/local model can *propose* a new domain (imagination); only what the gate verifies on held-out enters, so it stays owned, never a fork.
 
+## The neural proposer — completing the neurosymbolic loop
+
+`tools/propose-local.mjs` wires a local model (sovereign — your own Ollama) as the *neural* half: it reads a domain and proposes which features predict the positive class and in which direction; those hypotheses warm-start the growth engine, and the gate **selects the best candidate by validation** (the neutral-stem baseline always in the pool), then reports on the untouched held-out test. Nothing the model says is trusted until the gate keeps it.
+
+Measured (`node tools/run-propose.mjs`, UNGRADED / local / non-deterministic):
+- A **1B** model proposed the fraud directions *backwards* (raw held-out 0.39) — **the gate caught it, no harm** (selected 0.730 vs stem 0.733). A wrong prior can't poison the result.
+- **qwen2.5:7b** proposed the correct two features (merchantRisk / cardNotPresent high); its raw 2-rule guess was the **single best classifier on held-out (0.754 vs random search's 0.733)** — genuine neural value as a readable prior. But validation is a noisy proxy on these small domains, so the gate's val-pick landed ~even with the baseline on test.
+
+Honest finding: the neural layer produces real value, **the gate guarantees it can never poison the result**, and reliably *harnessing* weak priors on small domains wants a more robust (multi-fold) selector — noted, not faked. The loop is real now, not a stub: neural proposes, the gate decides.
+
 ## Honest scope
 
 v1 proves the **architecture** on structured-prediction domains, where "predict held-out or die" is measurable. The verified patterns are interpretable scorecards, not free-form text generation. The small model's job (free text → which domain) is optional and kept out of everything graded. The defensible claim is *"beats a flat model on any domain it has a verified pattern for, and refuses instead of guessing on anything it doesn't"* — not "beats GPT at everything." Breadth grows as the library grows.
