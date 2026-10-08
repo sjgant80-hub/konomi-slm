@@ -1,0 +1,11 @@
+PATTERN BOOK — science (predicts: "the claim is falsifiable (scientific)")
+source: Popper's falsifiability / demarcation criterion (realistic-synthetic from that cited rule)
+verified: every rule below was kept only because the whole set predicted held-out cases it never saw
+held-out AUC 0.770598 · held-out accuracy 0.495833 · 480 held-out cases
+
+  • when predict is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.5)
+  • when test is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.5)
+  • when measur is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.25)
+  • when observ is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.5)
+  • when refut is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.5)
+  • when falsif is above 0  →  makes "the claim is falsifiable (scientific)" MORE likely  (weight +0.5)

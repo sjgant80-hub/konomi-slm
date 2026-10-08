@@ -63,7 +63,21 @@
       "selectedBy": "bred from proposal + observed",
       "feats": "loadMW/humidity/priceMWh",
       "secs": "70"
+    },
+    {
+      "domain": "science",
+      "heldAuc": 0.770598,
+      "selectedBy": "cross-bred (bred from proposal × proposal)",
+      "feats": "(search)",
+      "secs": "-"
+    },
+    {
+      "domain": "philosophy",
+      "heldAuc": 0.850178,
+      "selectedBy": "bred from proposal",
+      "feats": "(search)",
+      "secs": "-"
     }
   ],
-  "count": 9
+  "count": 11
 }

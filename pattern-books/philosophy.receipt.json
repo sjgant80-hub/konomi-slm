@@ -1,0 +1,14 @@
+{
+  "model": "patternforge/1",
+  "domain": "philosophy",
+  "selectedBy": "bred from proposal",
+  "valAuc": 0.832528,
+  "heldAuc": 0.850178,
+  "heldAcc": 0.585417,
+  "held": 480,
+  "ownedSeed": "◊ seed.v1 philosophy 7 f:3fdc3aaecd0d36d9b220 4b98434bb17c",
+  "ownedSeedBytes": 58,
+  "hypotheses": [],
+  "proposer": "stem (proposer unavailable)",
+  "receiptHash": "eedf79c247eab94b1f8298dda53e93c36d168949668afd93db252a318cd1b50d"
+}

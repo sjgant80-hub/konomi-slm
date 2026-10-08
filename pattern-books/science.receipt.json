@@ -1,0 +1,14 @@
+{
+  "model": "patternforge/1",
+  "domain": "science",
+  "selectedBy": "cross-bred (bred from proposal × proposal)",
+  "valAuc": 0.762668,
+  "heldAuc": 0.770598,
+  "heldAcc": 0.495833,
+  "held": 480,
+  "ownedSeed": "◊ seed.v1 science 7 f:3fdcc6ad5cce2dddd62d 0507faa9dbee",
+  "ownedSeedBytes": 55,
+  "hypotheses": [],
+  "proposer": "stem (proposer unavailable)",
+  "receiptHash": "d77287782ce09e536c4072327dcec01d352fd1112630081c67a49d07e2cae4bc"
+}
