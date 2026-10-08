@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konomi Evolution</title>
+<meta name="description" content="Organs evolve their own structure with the gate as the fitness function — held-out AUC, not an opinion. A variant survives only by predicting the unseen better, and the evolved organ is never worse than the all-features baseline. It often finds a smaller, fitter organ by dropping noise." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 20px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:68ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:34px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top} th{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+  td.n{font-family:var(--mono);text-align:right;white-space:nowrap} tr.imp td:first-child{color:var(--accent)}
+  .up{color:var(--accent)} .feats{color:var(--muted);font-family:var(--mono);font-size:12px}
+  .foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #status{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · evolution</div>
+    <h1>The organs evolve — the gate is the fitness.</h1>
+    <p class="lede">kard-evolve, generalised: an organ's <b>structure</b> evolves across generations, and its fitness is <b>held-out AUC — the gate, not an opinion</b>. A variant survives only by predicting the unseen better, the evolved organ is <b>never worse than the all-features baseline</b> (monotone), and it often finds a <b>smaller, fitter</b> organ by dropping noise. Precedent: a version evolved fitter and shipped (U → V).</p>
+  </header>
+  <h2>Evolved organs</h2>
+  <table><thead><tr><th>organ</th><th class="n">all features</th><th class="n">evolved</th><th class="n">lift</th><th>kept</th></tr></thead><tbody id="rows"></tbody></table>
+  <div id="status">loading…</div>
+  <div class="foot">Held-out is the fitness — same discipline as the <a href="neurons.html">neurons</a>, the <a href="council.html">council</a> and the <a href="synapses.html">synapses</a>: deterministic, re-runnable, no judge. The engine: <a href="./">the Konomi SLM</a>. Powered by the Konomi architecture, created by Thomas Frumkin.</div>
+</div>
+<script type="module">
+const el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+(async()=>{
+  let d; try{ d=await (await fetch('./pattern-books/evolution.json?cb='+Date.now())).json(); }catch(e){ document.querySelector('#status').textContent='no evolution recorded yet.'; return; }
+  const rows=document.querySelector('#rows');
+  for(const o of (d.organs||[])){ const tr=el('tr', o.improved?'imp':'');
+    tr.innerHTML=`<td>${o.domain}${o.real?' · REAL':''}</td><td class="n">${o.baselineAuc}</td><td class="n">${o.evolvedAuc}</td><td class="n"><span class="up">${o.lift>0?'+'+o.lift:o.lift}</span></td><td class="feats">${o.keptOf} · ${o.evolvedFeatures.join(', ')}</td>`;
+    rows.append(tr); }
+  document.querySelector('#status').textContent=`${(d.organs||[]).length} organs evolved · ${d.improved} found a smaller fitter config · mean lift +${d.meanLift} · none worse than baseline (monotone)`;
+})();
+</script>
+</body>
+</html>

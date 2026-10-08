@@ -1,0 +1,188 @@
+{
+  "organs": [
+    {
+      "domain": "shopper",
+      "baselineAuc": 0.697114,
+      "evolvedAuc": 0.815369,
+      "lift": 0.118255,
+      "keptOf": "2/10",
+      "evolvedFeatures": [
+        "BounceRates",
+        "PageValues"
+      ],
+      "improved": true,
+      "real": true
+    },
+    {
+      "domain": "triage",
+      "baselineAuc": 0.849581,
+      "evolvedAuc": 0.880481,
+      "lift": 0.0309,
+      "keptOf": "3/6",
+      "evolvedFeatures": [
+        "heartRate",
+        "spO2",
+        "systolicBP"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "water",
+      "baselineAuc": 0.702205,
+      "evolvedAuc": 0.793103,
+      "lift": 0.090898,
+      "keptOf": "3/6",
+      "evolvedFeatures": [
+        "ecoli",
+        "ph",
+        "turbidity"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "crop",
+      "baselineAuc": 0.748689,
+      "evolvedAuc": 0.78333,
+      "lift": 0.034641,
+      "keptOf": "5/6",
+      "evolvedFeatures": [
+        "dayLength",
+        "forecastRain",
+        "frostRisk",
+        "nitrogen",
+        "soilMoisture"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "fraud",
+      "baselineAuc": 0.745629,
+      "evolvedAuc": 0.797589,
+      "lift": 0.05196,
+      "keptOf": "4/6",
+      "evolvedFeatures": [
+        "amount",
+        "cardNotPresent",
+        "distanceKm",
+        "merchantRisk"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "maintenance",
+      "baselineAuc": 0.779807,
+      "evolvedAuc": 0.815472,
+      "lift": 0.035665,
+      "keptOf": "4/6",
+      "evolvedFeatures": [
+        "ageMonths",
+        "errorRate",
+        "loadPct",
+        "tempC"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "credit",
+      "baselineAuc": 0.630413,
+      "evolvedAuc": 0.666581,
+      "lift": 0.036168,
+      "keptOf": "4/6",
+      "evolvedFeatures": [
+        "dti",
+        "incomeK",
+        "loanToValue",
+        "utilisation"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "churn",
+      "baselineAuc": 0.733812,
+      "evolvedAuc": 0.788724,
+      "lift": 0.054912,
+      "keptOf": "4/6",
+      "evolvedFeatures": [
+        "contractMonthsLeft",
+        "loginsPerWeek",
+        "tenureMonths",
+        "usageDropPct"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "energy",
+      "baselineAuc": 0.78817,
+      "evolvedAuc": 0.78817,
+      "lift": 0,
+      "keptOf": "6/6",
+      "evolvedFeatures": [
+        "hourOfDay",
+        "humidity",
+        "loadMW",
+        "priceMWh",
+        "tempC",
+        "windMW"
+      ],
+      "improved": false,
+      "real": false
+    },
+    {
+      "domain": "intrusion",
+      "baselineAuc": 0.74999,
+      "evolvedAuc": 0.74999,
+      "lift": 0,
+      "keptOf": "6/6",
+      "evolvedFeatures": [
+        "bytesInKB",
+        "bytesOutKB",
+        "connSeconds",
+        "distinctPorts",
+        "failedLogins",
+        "offHours"
+      ],
+      "improved": false,
+      "real": false
+    },
+    {
+      "domain": "inventory",
+      "baselineAuc": 0.793752,
+      "evolvedAuc": 0.833164,
+      "lift": 0.039412,
+      "keptOf": "3/6",
+      "evolvedFeatures": [
+        "daysOfStock",
+        "leadTimeDays",
+        "reorderGap"
+      ],
+      "improved": true,
+      "real": false
+    },
+    {
+      "domain": "marketing",
+      "baselineAuc": 0.624579,
+      "evolvedAuc": 0.671049,
+      "lift": 0.04647,
+      "keptOf": "6/7",
+      "evolvedFeatures": [
+        "adExposures",
+        "clickRate",
+        "daysSinceLast",
+        "emailOpens",
+        "siteVisits",
+        "timeOnSiteMin"
+      ],
+      "improved": true,
+      "real": false
+    }
+  ],
+  "improved": 10,
+  "meanLift": 0.04494
+}
