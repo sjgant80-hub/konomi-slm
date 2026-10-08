@@ -1,0 +1,45 @@
+{
+  "thisHost": {
+    "host": {
+      "host": "simon",
+      "platform": "win32 x64",
+      "cpus": 12,
+      "ramGB": 15.7
+    },
+    "cortex": {
+      "ramGB": 15.7,
+      "tier": "edge",
+      "model": "qwen2.5:14b (≈9 GB) / qwen2.5:7b / llama3.2:1b",
+      "note": "laptop — the real small cortex runs here",
+      "neuronAddresses": 127,
+      "hostsFullMap": false,
+      "runsFrontierModel": false,
+      "bringUp": [
+        "# model already local: qwen2.5:14b (≈9 GB) / qwen2.5:7b / llama3.2:1b",
+        "node tools/run-neurons.mjs      # populate the 127-address neuron map",
+        "node tools/run-synapses.mjs     # wire the organs into one mind",
+        "node tools/run-sleep.mjs        # nightly consolidation (cron this)",
+        "node tools/run-evolution.mjs    # let the organs evolve",
+        "node tools/body.mjs             # bring the cortex up and report capacity"
+      ]
+    },
+    "isCortexBox": false
+  },
+  "box512": {
+    "ramGB": 512,
+    "tier": "cortex-XL",
+    "model": "GLM-5.3 (full), 4-bit ≈ 372–475 GB",
+    "note": "the full cortex — frontier-class, owned",
+    "neuronAddresses": 127,
+    "hostsFullMap": true,
+    "runsFrontierModel": true,
+    "bringUp": [
+      "ollama pull glm-5.3   # GLM-5.3 (full), 4-bit ≈ 372–475 GB",
+      "node tools/run-neurons.mjs      # populate the 127-address neuron map",
+      "node tools/run-synapses.mjs     # wire the organs into one mind",
+      "node tools/run-sleep.mjs        # nightly consolidation (cron this)",
+      "node tools/run-evolution.mjs    # let the organs evolve",
+      "node tools/body.mjs             # bring the cortex up and report capacity"
+    ]
+  }
+}
