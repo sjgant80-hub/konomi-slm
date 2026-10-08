@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konomi Sleep</title>
+<meta name="description" content="The nightly fold-cycle: consolidate the day's memories into compressed dreams, and keep a dream only if recall survives. It compresses what is safe and refuses to forget to save space." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --warn:#f0b254; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 20px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:66ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:36px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  .stat{display:grid;gap:12px;margin-top:6px}@media(min-width:560px){.stat{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .n{font-family:var(--mono);font-size:22px;font-weight:720;color:var(--accent)}
+  .card .k{color:var(--muted);font-size:12.5px;margin-top:3px}
+  .held{background:color-mix(in srgb,var(--accent) 11%,var(--panel));border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .row{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .row:last-child{border-bottom:0}
+  .row .w{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+  .kept .t{color:var(--accent)} .ref .t{color:var(--warn)}
+  .note{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;color:var(--muted);font-size:13.5px}
+  .note b{color:var(--ink)}
+  .foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #status{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · sleep</div>
+    <h1>It sleeps, and forgets nothing.</h1>
+    <p class="lede">Every night the mind runs a fold-cycle: cluster the day's memories, compress each cluster into one <b>dream</b> — and keep that dream <b>only if recall survives</b> the compression. A dream that would lose a memory is not consolidation, it's forgetting, so the gate refuses it and the raw memories stay. It compresses what is safe and <b>never forgets to save space.</b></p>
+  </header>
+  <h2>Last night's fold</h2>
+  <div class="stat" id="stat"></div>
+  <div class="note held" id="recall"></div>
+  <h2>Dreams kept (consolidated, recall held)</h2>
+  <div id="kept"></div>
+  <h2>Dreams refused (would lose recall — left raw)</h2>
+  <div id="refused"></div>
+  <div id="status">loading last night…</div>
+  <div class="foot">The dream-gate on memory itself — same discipline as the <a href="synapses.html">synapses</a> that cluster the organs and the <a href="council.html">council</a> that can't collude. Deterministic, re-runnable. The engine: <a href="./">the Konomi SLM</a>. Powered by the Konomi architecture, created by Thomas Frumkin.</div>
+</div>
+<script type="module">
+const $=(s)=>document.querySelector(s); const el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+(async()=>{
+  let r; try{ r=await (await fetch('./pattern-books/sleep.json?cb='+Date.now())).json(); }catch(e){ $('#status').textContent='no fold recorded yet.'; return; }
+  const st=$('#stat');
+  const card=(n,k,cls)=>{const c=el('div','card'+(cls?' '+cls:''));const a=el('div','n');a.textContent=n;const b=el('div','k');b.textContent=k;c.append(a,b);return c;};
+  st.append(
+    card(`${r.memoriesIn} → ${r.memoriesOut}`, 'memories folded into the journal'),
+    card(`${r.bytesIn} → ${r.bytesOut} B`, `${(1 - r.bytesOut / r.bytesIn > 0 ? Math.round((1 - r.bytesOut / r.bytesIn) * 100) : 0)}% smaller`),
+    card(`${r.recallBefore} → ${r.recallAfter}`, 'recall, before → after'),
+  );
+  $('#recall').innerHTML = r.recallHeld ? `<b>Recall held.</b> Every memory that could be recalled before the fold can still be recalled after — the mind got smaller without forgetting anything, across ${r.queries} recall queries.` : `<b>Recall dropped — this fold would forget. It must not ship.</b>`;
+  const kept=$('#kept'); (r.dreamsKept||[]).forEach(d=>{ const row=el('div','row kept'); const t=el('span','t'); t.textContent=d.from.join(' + ')+' → one dream'; const w=el('span','w'); w.textContent=d.bytes?`${d.bytes[0]}→${d.bytes[1]} B`:''; row.append(t,w); kept.append(row); });
+  if(!(r.dreamsKept||[]).length) kept.innerHTML='<div class="row muted">nothing was redundant enough to fold safely</div>';
+  const ref=$('#refused'); (r.dreamsRefused||[]).forEach(d=>{ const row=el('div','row ref'); const t=el('span','t'); t.textContent=d.from.join(' + '); const w=el('span','w'); w.textContent=d.why; row.append(t,w); ref.append(row); });
+  if(!(r.dreamsRefused||[]).length) ref.innerHTML='<div class="row muted">no fold risked a memory this run</div>';
+  $('#status').textContent = `${r.memoriesIn} memories in · ${r.memoriesOut} out · recall ${r.recallHeld?'held':'DROPPED'} · ${(r.singletons||[]).length} kept whole`;
+})();
+</script>
+</body>
+</html>

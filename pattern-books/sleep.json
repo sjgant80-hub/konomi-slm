@@ -1,0 +1,126 @@
+{
+  "memoriesIn": 22,
+  "memoriesOut": 12,
+  "bytesIn": 3769,
+  "bytesOut": 1755,
+  "recallBefore": 1,
+  "recallAfter": 1,
+  "recallHeld": true,
+  "dreamsKept": [
+    {
+      "dream": "dream:shopper+marketing+churn+credit+fraud+maintenance+intrusion+inventory+energy+science+philosophy",
+      "from": [
+        "shopper",
+        "marketing",
+        "churn",
+        "credit",
+        "fraud",
+        "maintenance",
+        "intrusion",
+        "inventory",
+        "energy",
+        "science",
+        "philosophy"
+      ],
+      "bytes": [
+        2188,
+        174
+      ]
+    }
+  ],
+  "dreamsRefused": [
+    {
+      "from": [
+        "inversion",
+        "say1",
+        "say2",
+        "say3",
+        "say4"
+      ],
+      "why": "recall 0.923077 < 1"
+    }
+  ],
+  "singletons": [
+    "council",
+    "synapses",
+    "ladder",
+    "corpus",
+    "cross-breed",
+    "door"
+  ],
+  "queries": 39,
+  "journal": [
+    {
+      "id": "dream:shopper+marketing+churn+credit+fraud+maintenance+intrusion+inventory+energy+science+philosophy",
+      "dream": true,
+      "from": [
+        "shopper",
+        "marketing",
+        "churn",
+        "credit",
+        "fraud",
+        "maintenance",
+        "intrusion",
+        "inventory",
+        "energy",
+        "science",
+        "philosophy"
+      ]
+    },
+    {
+      "id": "council",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "synapses",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "ladder",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "corpus",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "cross-breed",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "door",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "inversion",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "say1",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "say2",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "say3",
+      "dream": false,
+      "from": null
+    },
+    {
+      "id": "say4",
+      "dream": false,
+      "from": null
+    }
+  ]
+}
