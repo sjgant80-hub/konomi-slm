@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konomi Cortex</title>
+<meta name="description" content="The running cortex: the whole cognition stack booted into one living thing on this host — the verified pattern-library, the neuron map, the synapse graph, the last sleep fold, the evolution state, sized to the machine it's on. think() routes an input to a verified organ and answers, or abstains. Kernel-backed: the answer you see is computed live by the same code the gate runs." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --warn:#f0b254; --bad:#f07a7a; --radius:14px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 20px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:68ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:34px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .card .k{color:var(--muted);font-size:12px;letter-spacing:.03em} .card .v{font-family:var(--mono);font-size:19px;font-weight:650;margin-top:3px}
+  .card .v.ok{color:var(--accent)} .card .v.sub{font-size:13px;font-weight:500;color:var(--ink)}
+  .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px;box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent);animation:p 2s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .chip{font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:var(--muted)}
+  .chip b{color:var(--ink);font-weight:600}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+  select,button{font-family:var(--sans);font-size:14px;border-radius:9px;border:1px solid var(--line);padding:9px 13px;background:var(--panel2);color:var(--ink)}
+  button{cursor:pointer;background:var(--accent);color:#06281d;border-color:transparent;font-weight:650}
+  button.ghost{background:var(--panel2);color:var(--ink);font-weight:550}
+  button:disabled{opacity:.5;cursor:default}
+  .verdict{font-family:var(--mono);font-weight:700;font-size:15px}
+  .verdict.v{color:var(--accent)} .verdict.a{color:var(--warn)}
+  pre{overflow:auto;font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;margin:8px 0 0}
+  .foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #boot{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:10px}
+  .muted{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · the cortex</div>
+    <h1>The body, booted.</h1>
+    <p class="lede">The whole cognition stack — the verified <b>pattern-library</b> (the organs), the <b>neuron</b> map, the <b>synapse</b> graph, the last <b>sleep</b> fold, the <b>evolution</b> state — assembled into one running thing, sized to the machine it's on. <b>think()</b> is the body's single entry: it routes an input to a verified organ and answers with a receipt, or it abstains. At laptop scale this is the real small cortex; the same boot sizes up on a 512&nbsp;GB box.</p>
+    <div id="boot"><span class="pulse"></span>booting the cortex on this host…</div>
+  </header>
+
+  <h2>The running body</h2>
+  <div class="panel">
+    <div class="grid" id="vitals"></div>
+    <div class="stack" id="organsChips" style="margin-top:14px"></div>
+  </div>
+
+  <h2>think — the body's single entry</h2>
+  <div class="panel">
+    <p class="muted" style="margin:0 0 6px;font-size:14px">Pick an organ and hand the cortex a case. It routes to a verified pattern and answers with a tamper-evident receipt — or, if the case is outside everything it has verified, it refuses. This runs <b>live, in your browser</b>, computed by the same kernel the gate runs — nothing canned.</p>
+    <div class="row">
+      <select id="organ"></select>
+      <button id="real">a real case →</button>
+      <button id="junk" class="ghost">out-of-distribution →</button>
+    </div>
+    <div id="out"></div>
+  </div>
+
+  <div class="foot">
+    Status is the <b>measured</b> boot of this host, read from <code>pattern-books/cortex.json</code>; the <b>think</b> console boots the organ library live in your browser from the published seeds — kernel-backed, so what you see is what the gate computes. The frontier model only runs where the RAM exists; this page is the small cortex. The engine: <a href="./">the Konomi&nbsp;SLM</a> · the host plan: <a href="./body.html">the body</a> · the door: <a href="https://sjgant80-hub.github.io/kar-hub/">kar-hub</a>. Powered by the Konomi architecture, created by Thomas Frumkin.
+  </div>
+</div>
+
+<script type="module">
+import { buildLibrary, answer, GATE_AUC, ROUTE_MIN } from './konomi-slm.mjs';
+import { loadDomain, DOMAIN_IDS, DOMAIN_META } from './vendor/seed-library/domains.mjs';
+import { growTier } from './grow-tier.mjs';
+import { loadDomainExt, EXT_IDS, EXT_META } from './domains-ext.mjs';
+
+const $ = (s,r=document)=>r.querySelector(s);
+const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;};
+const metaOf=(id)=>DOMAIN_META[id]||EXT_META[id]||{title:id};
+const card=(k,v,cls)=>{const c=el('div','card');c.append(el('div','k',k));c.append(Object.assign(el('div','v '+(cls||'')),{textContent:v}));return c;};
+
+let LIB=null, CTX={}, DS={};
+
+// ── read the measured boot of this host (the shipped artifact) ──
+async function vitals(){
+  let d=null; try{ d=await (await fetch('./pattern-books/cortex.json?cb='+Date.now())).json(); }catch(e){}
+  const v=$('#vitals'); v.innerHTML='';
+  if(!d){ v.append(card('status','no boot report','')); return; }
+  v.append(
+    card('host', d.host+' · '+d.ram+' GB', 'sub'),
+    card('model tier', d.tier, 'sub'),
+    card('organs (verified)', String(d.organs), 'ok'),
+    card('library', d.libraryBytes+' B of seeds', 'sub'),
+    card('mean held-out AUC', String(d.meanHeldAuc), 'ok'),
+    card('neurons', d.neuronsVerified+' / '+d.neurons+' verified', 'ok'),
+    card('synapses', String(d.synapses), 'sub'),
+    card('sleep · recall', d.sleepRecallHeld?'held ✓':'—', d.sleepRecallHeld?'ok':''),
+    card('evolution', d.evolutionImproved+' organs fitter', 'sub'),
+    card('cortex box', d.isCortexBox?'yes':'no — small cortex here', 'sub'),
+  );
+  $('#boot').innerHTML='<span class="pulse"></span>live on <b style="color:var(--ink)">'+d.host+'</b> · model '+d.model;
+}
+
+// ── boot the organ library live in-browser (same assembly the Node cortex runs) ──
+async function bootLibrary(){
+  try{ const r=await fetch('./vendor/seed-library/data/online_shoppers_intention.csv'); if(r.ok) CTX.shopperCsv=await r.text(); }catch(e){}
+  let lib=buildLibrary([...DOMAIN_IDS], CTX);
+  try{ const full=growTier(lib,{ctx:CTX,newDomains:EXT_IDS}); if(full&&full.ok&&full.domains.length>=lib.domains.length) lib=full; }catch(e){}
+  LIB=lib;
+  for(const id of lib.domains){ const ds=DOMAIN_IDS.includes(id)?loadDomain(id,CTX):loadDomainExt(id); if(ds.ok!==false) DS[id]=ds; }
+  // organ chips
+  const box=$('#organsChips'); box.innerHTML='';
+  for(const id of lib.domains){ const c=el('span','chip'); c.innerHTML='<b>'+(metaOf(id).title||id)+'</b> · '+(lib.patterns[id].heldAuc); box.append(c); }
+  // organ picker
+  const sel=$('#organ'); sel.innerHTML='';
+  for(const id of lib.domains){ const o=el('option',null,metaOf(id).title||id); o.value=id; sel.append(o); }
+}
+
+function render(res){
+  const o=$('#out'); o.innerHTML='';
+  const head=el('div');
+  if(res.verdict==='VERIFIED'){
+    head.innerHTML='<span class="verdict v">● VERIFIED</span> &nbsp; <span class="muted">'+res.domain+' · label '+res.label+' · route '+res.routeScore+' · confidence '+res.confidence+'</span>';
+    o.append(head);
+    const pre=el('pre'); pre.textContent='// tamper-evident receipt — re-hash to check\n'+JSON.stringify(res.receipt,null,2); o.append(pre);
+  } else {
+    head.innerHTML='<span class="verdict a">○ ABSTAIN</span> &nbsp; <span class="muted">'+(res.why||'')+(res.routeScore!=null?' · route '+res.routeScore:'')+'</span>';
+    o.append(head);
+    const n=el('pre'); n.textContent='// no verified organ covers this input — the body refuses rather than guess.\n// route score '+(res.routeScore!=null?res.routeScore:0)+' < threshold '+ROUTE_MIN; o.append(n);
+  }
+}
+function caseFrom(id,real){
+  const ds=DS[id]; if(!ds) return {};
+  if(real){ const i=ds.heldRows?ds.heldRows[0]:0; return Object.fromEntries(ds.features.map(f=>[f, ds.cols[f][i]])); }
+  return Object.fromEntries(ds.features.map(f=>[f, 99999]));
+}
+
+(async()=>{
+  await vitals();
+  await bootLibrary();
+  $('#real').onclick=()=>{ const id=$('#organ').value; render(answer(LIB, caseFrom(id,true))); };
+  $('#junk').onclick=()=>{ const id=$('#organ').value; render(answer(LIB, caseFrom(id,false))); };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "host": "simon",
+  "ram": 15.7,
+  "tier": "edge",
+  "model": "qwen2.5:14b (≈9 GB) / qwen2.5:7b / llama3.2:1b",
+  "isCortexBox": false,
+  "organs": 12,
+  "libraryBytes": 713,
+  "meanHeldAuc": 0.773192,
+  "neurons": 12,
+  "neuronsVerified": 12,
+  "synapses": 19,
+  "sleepRecallHeld": true,
+  "evolutionImproved": 10,
+  "live": true
+}
