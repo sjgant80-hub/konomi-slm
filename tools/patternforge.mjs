@@ -16,7 +16,7 @@
 // The neural proposer is UNGRADED (a local LLM proposes; the gate decides). Everything measured is deterministic.
 // Powered by the Konomi architecture, created by Thomas Frumkin.
 import { deepen, patternFromGenome } from '../grow-tier.mjs';
-import { stemGenome, splitRows, fit, scoreRow, auc, round6, encodeSeed, makeSeed } from './../vendor/seed-library/seedlib.mjs';
+import { stemGenome, splitRows, fit, scoreRow, auc, round6, encodeSeed, makeSeed, crossGenome, rng } from './../vendor/seed-library/seedlib.mjs';
 import { sha256Hex } from './../vendor/seed-library/sha256.mjs';
 import { proposeGenome } from './propose-local.mjs';
 
@@ -57,6 +57,16 @@ export async function forgeOrgan(ds, { label1 = 'the positive outcome', seed = 7
   };
   const scored = Object.entries(pool).map(([how, g]) => ({ how, g, val: valAuc(g) }));
   let champ = scored.reduce((a, b) => (b.val > a.val ? b : a));
+
+  // 3b · CROSS-BREED: cross the two best parents; keep the child ONLY if it beats BOTH on validation (Simon's rule).
+  const parents = [...scored].sort((a, b) => b.val - a.val).slice(0, 2);
+  if (parents.length === 2) {
+    const child = crossGenome(parents[0].g, parents[1].g, rng(seed * 104729 + 3));
+    const childVal = valAuc(child);
+    if (childVal > parents[0].val && childVal > parents[1].val) {        // a child earns its place only by beating both parents
+      champ = { how: `cross-bred (${parents[0].how} × ${parents[1].how})`, g: child, val: childVal };
+    }
+  }
 
   // 4 · OBSERVE: one monotone self-improvement pass — deepen from the champion, keep only if val does not regress
   const g2 = deepen(ds, inner.rest, seed + 2, cfg, [champ.g]);
