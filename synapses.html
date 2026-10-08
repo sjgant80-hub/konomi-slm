@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konomi Synapses</title>
+<meta name="description" content="The organs wired into one mind: links that strengthen between organs sharing verified structure and field, weaken otherwise, and are pruned when too weak (the dream-gate). A graph of a mind, grown not trained." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 18px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:68ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-top:18px;padding:8px}
+  svg{width:100%;height:auto;display:block}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;font-size:12.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #status{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:12px}
+  text{font-family:var(--sans)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · synapses</div>
+    <h1>The organs, wired into one mind.</h1>
+    <p class="lede">Not a list of tools — a graph. Links <b>strengthen</b> between organs that share verified structure and field, <b>weaken</b> otherwise, and are <b>pruned</b> when too weak (the dream-gate). As build receipts land, organs that succeed together wire together. This is the shape of the mind behind <a href="https://sjgant80-hub.github.io/kar-hub/">the door</a>, growing without getting bigger.</p>
+  </header>
+  <div class="stage"><svg id="g" viewBox="0 0 760 560" role="img" aria-label="organ synapse graph"></svg></div>
+  <div class="legend" id="legend"></div>
+  <div id="status">loading the mind…</div>
+  <div class="foot">Edge thickness = synapse weight (field + shared pattern-book structure, Hebbian-ready). Deterministic, re-runnable. The engine: <a href="./">the Konomi SLM</a> · the books: <a href="pattern-books.html">pattern-books</a> · the council: <a href="council.html">gated council</a>. Powered by the Konomi architecture, created by Thomas Frumkin.</div>
+</div>
+<script type="module">
+const NS='http://www.w3.org/2000/svg';
+const COLORS={ money:'#5ad1a8', ops:'#6aa8ff', care:'#f0b254', knowledge:'#c98bdb', water:'#5ad1a8', agriculture:'#f0b254' };
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+(async()=>{
+  let d; try{ d=await (await fetch('./pattern-books/synapses.json?cb='+Date.now())).json(); }
+  catch(e){ document.querySelector('#status').textContent='synapse graph not found yet.'; return; }
+  const nodes=d.nodes||[], edges=d.edges||[];
+  // deterministic layout: sort by family then domain, place on a circle so families form contiguous arcs
+  const fam=n=>n.family||n.field||'other';
+  nodes.sort((a,b)=> (fam(a)<fam(b)?-1:fam(a)>fam(b)?1:(a.domain<b.domain?-1:1)));
+  const cx=380, cy=280, R=200, pos={};
+  nodes.forEach((n,i)=>{ const ang=(i/nodes.length)*2*Math.PI - Math.PI/2; pos[n.domain]={x:cx+R*Math.cos(ang), y:cy+R*Math.sin(ang), ang}; });
+  const svg=document.querySelector('#g'); svg.innerHTML='';
+  // edges first (under nodes)
+  const maxW=Math.max(0.0001,...edges.map(e=>e.w));
+  for(const e of edges){ const p=pos[e.a], q=pos[e.b]; if(!p||!q) continue;
+    svg.append(el('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:'#5ad1a8','stroke-width':(0.6+3.4*e.w/maxW).toFixed(2),'stroke-opacity':(0.12+0.5*e.w/maxW).toFixed(2),'stroke-linecap':'round'})); }
+  // nodes
+  for(const n of nodes){ const p=pos[n.domain]; const c=COLORS[fam(n)]||'#8b97a7';
+    svg.append(el('circle',{cx:p.x,cy:p.y,r:8,fill:c,stroke:'#0b0e12','stroke-width':2}));
+    const out=p.ang>Math.PI/2||p.ang<-Math.PI/2; const tx=p.x+(R>0?(Math.cos(p.ang)*16):0), ty=p.y+Math.sin(p.ang)*16;
+    const t=el('text',{x:tx,y:ty+4,fill:'#e8eef6','font-size':'12.5','text-anchor':out?'end':'start'}); t.textContent=n.domain; svg.append(t); }
+  // legend
+  const fams=[...new Set(nodes.map(fam))];
+  document.querySelector('#legend').innerHTML = fams.map(f=>`<span><span class="dot" style="background:${COLORS[f]||'#8b97a7'}"></span>${f}</span>`).join('');
+  document.querySelector('#status').textContent = `${nodes.length} organs · ${edges.length} synapses kept (dream-gate floor ${d.floor}) · strongest: ${edges[0]?.a}—${edges[0]?.b} ${edges[0]?.w}`;
+})();
+</script>
+</body>
+</html>

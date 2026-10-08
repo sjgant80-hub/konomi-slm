@@ -1,0 +1,215 @@
+{
+  "nodes": [
+    {
+      "domain": "shopper",
+      "field": "commerce",
+      "family": "money"
+    },
+    {
+      "domain": "marketing",
+      "field": "marketing",
+      "family": "money"
+    },
+    {
+      "domain": "churn",
+      "field": "commerce",
+      "family": "money"
+    },
+    {
+      "domain": "credit",
+      "field": "finance",
+      "family": "money"
+    },
+    {
+      "domain": "fraud",
+      "field": "finance",
+      "family": "money"
+    },
+    {
+      "domain": "maintenance",
+      "field": "industry",
+      "family": "ops"
+    },
+    {
+      "domain": "intrusion",
+      "field": "security",
+      "family": "ops"
+    },
+    {
+      "domain": "inventory",
+      "field": "supply",
+      "family": "money"
+    },
+    {
+      "domain": "energy",
+      "field": "energy",
+      "family": "ops"
+    },
+    {
+      "domain": "science",
+      "field": "epistemology",
+      "family": "knowledge"
+    },
+    {
+      "domain": "philosophy",
+      "field": "epistemology",
+      "family": "knowledge"
+    }
+  ],
+  "edges": [
+    {
+      "a": "science",
+      "b": "philosophy",
+      "w": 0.464465,
+      "same": 1,
+      "kin": 0,
+      "sim": 0.036163
+    },
+    {
+      "a": "shopper",
+      "b": "churn",
+      "w": 0.454694,
+      "same": 1,
+      "kin": 0,
+      "sim": 0.011736
+    },
+    {
+      "a": "credit",
+      "b": "fraud",
+      "w": 0.453473,
+      "same": 1,
+      "kin": 0,
+      "sim": 0.008682
+    },
+    {
+      "a": "maintenance",
+      "b": "energy",
+      "w": 0.231894,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.029735
+    },
+    {
+      "a": "shopper",
+      "b": "credit",
+      "w": 0.22476,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.0119
+    },
+    {
+      "a": "shopper",
+      "b": "marketing",
+      "w": 0.224738,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.011844
+    },
+    {
+      "a": "shopper",
+      "b": "inventory",
+      "w": 0.224652,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.011631
+    },
+    {
+      "a": "shopper",
+      "b": "fraud",
+      "w": 0.224422,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.011054
+    },
+    {
+      "a": "intrusion",
+      "b": "energy",
+      "w": 0.22379,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009476
+    },
+    {
+      "a": "marketing",
+      "b": "credit",
+      "w": 0.223721,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009302
+    },
+    {
+      "a": "churn",
+      "b": "credit",
+      "w": 0.223687,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009217
+    },
+    {
+      "a": "marketing",
+      "b": "churn",
+      "w": 0.22367,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009175
+    },
+    {
+      "a": "credit",
+      "b": "inventory",
+      "w": 0.223654,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009135
+    },
+    {
+      "a": "marketing",
+      "b": "inventory",
+      "w": 0.223637,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009092
+    },
+    {
+      "a": "churn",
+      "b": "inventory",
+      "w": 0.223604,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.009009
+    },
+    {
+      "a": "marketing",
+      "b": "fraud",
+      "w": 0.223456,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.008641
+    },
+    {
+      "a": "churn",
+      "b": "fraud",
+      "w": 0.223425,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.008562
+    },
+    {
+      "a": "fraud",
+      "b": "inventory",
+      "w": 0.223394,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.008486
+    },
+    {
+      "a": "maintenance",
+      "b": "intrusion",
+      "w": 0.223269,
+      "same": 0,
+      "kin": 1,
+      "sim": 0.008172
+    }
+  ],
+  "floor": 0.15,
+  "built": "deterministic (field + shared-structure); Hebbian-ready"
+}
