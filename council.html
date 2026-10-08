@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Gated Council</title>
+<meta name="description" content="A council of local models that cannot collude. Let models vote and they learn to game the vote; so this council never votes — many models propose, a deterministic held-out gate disposes. A proposal either predicts data it never saw, or it is not kept." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px 80px}
+  header{padding:56px 0 22px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(30px,5.4vw,46px);margin:10px 0 12px;letter-spacing:-.022em;font-weight:770;line-height:1.04}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:66ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:38px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px 4px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  tr:last-child td{border-bottom:0}
+  td.n{font-family:var(--mono);text-align:right}
+  tr.win{background:color-mix(in srgb,var(--accent) 11%,transparent)}
+  tr.win td:first-child{color:var(--accent);font-weight:600}
+  tr.anchor td:first-child{color:var(--accent2)}
+  .pill{font-family:var(--mono);font-size:10.5px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:6px}
+  .note{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;color:var(--muted);font-size:13.5px}
+  .note b{color:var(--ink)}
+  .foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #status{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · the gated council</div>
+    <h1>A council that can't collude.</h1>
+    <p class="lede">Let a swarm of models <b>vote</b> on answers and eliminate the losers, and they learn to game the vote — they collude to survive. So this council <b>never votes</b>. Many local models propose; a deterministic, re-runnable <b>held-out gate disposes</b>. There is nothing to rig: a proposal either predicts data it never saw, or it is not kept — and that is a fact, not an opinion a model can lobby.</p>
+  </header>
+
+  <h2>The scoreboard — ranked by the gate, not a vote</h2>
+  <div class="panel">
+    <table id="board"><thead><tr><th>council member</th><th style="text-align:right">validation</th><th style="text-align:right">held-out test</th></tr></thead><tbody id="rows"></tbody></table>
+  </div>
+  <div id="verdict" class="note"></div>
+  <div class="note"><b>The collusion-proof anchor.</b> One member runs no model at all — plain search. It is always present, so even if every language model proposed nonsense or went dark, the gate still keeps a verified organ off the search member. The floor holds without trusting any model.</div>
+
+  <div class="foot" id="prov">loading the run…</div>
+  <div class="foot">The engine: <a href="./">the Konomi SLM</a> · the library it feeds: <a href="pattern-books.html">pattern-books</a> · the front door: <a href="https://sjgant80-hub.github.io/kar-hub/">kar-hub</a>. Numbers from a real run on the UCI Online Shoppers set, re-runnable. Powered by the Konomi architecture, created by Thomas Frumkin.</div>
+</div>
+<script type="module">
+const $ = (s)=>document.querySelector(s);
+const fx = (v)=> (v==null?'—':Number(v).toFixed(4));
+(async()=>{
+  let r;
+  try{ r = await (await fetch('./pattern-books/shopper.council.receipt.json?cb='+Date.now())).json(); }
+  catch(e){ $('#prov').textContent='council receipt not found yet.'; return; }
+  const win = r.winner || '';
+  const tb = $('#rows'); tb.innerHTML='';
+  for(const s of (r.scoreboard||[])){
+    const tr = document.createElement('tr');
+    const isWin = win.startsWith(s.member) || win.includes(s.member);
+    if(isWin) tr.className='win'; else if(/search/.test(s.member)) tr.className='anchor';
+    tr.innerHTML = `<td>${s.member}${/search/.test(s.member)?'<span class="pill">no model</span>':''}${isWin?'<span class="pill">kept</span>':''}</td><td class="n">${fx(s.val)}</td><td class="n">${fx(s.test)}</td>`;
+    tb.appendChild(tr);
+  }
+  $('#verdict').innerHTML = `<b>The gate keeps: ${win}</b> — held-out AUC ${fx(r.heldAuc)} on ${r.held} cases it never saw. No member voted; the gate ranked every proposal by whether it predicted the unseen. ${(r.dropped&&r.dropped.length)?('Offline this run: '+r.dropped.join(', ')+'.'):''}`;
+  $('#prov').innerHTML = `council: ${(r.council||[]).join(', ')} + search · domain: ${r.domain} · receipt <span class="mono">${(r.receiptHash||'').slice(0,16)}…</span>`;
+})();
+</script>
+</body>
+</html>
