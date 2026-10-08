@@ -76,10 +76,9 @@
 </div>
 
 <script type="module">
-import { buildLibrary, answer, GATE_AUC, ROUTE_MIN } from './konomi-slm.mjs';
+import { buildLibrary, answer, ROUTE_MIN } from './konomi-slm.mjs';
 import { loadDomain, DOMAIN_IDS, DOMAIN_META } from './vendor/seed-library/domains.mjs';
-import { growTier } from './grow-tier.mjs';
-import { loadDomainExt, EXT_IDS, EXT_META } from './domains-ext.mjs';
+import { EXT_META } from './domains-ext.mjs';
 
 const $ = (s,r=document)=>r.querySelector(s);
 const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;};
@@ -108,19 +107,18 @@ async function vitals(){
   $('#boot').innerHTML='<span class="pulse"></span>live on <b style="color:var(--ink)">'+d.host+'</b> · model '+d.model;
 }
 
-// ── boot the organ library live in-browser (same assembly the Node cortex runs) ──
+// ── boot the live think library in-browser: germinate the seed-native organs (fast, no deepening) so the console
+// answers instantly. The full 12-organ body is the MEASURED boot above; here we route on the organs that germinate
+// straight from their published seeds — enough to show route -> verified organ, or abstain, computed by the kernel. ──
 async function bootLibrary(){
   try{ const r=await fetch('./vendor/seed-library/data/online_shoppers_intention.csv'); if(r.ok) CTX.shopperCsv=await r.text(); }catch(e){}
-  let lib=buildLibrary([...DOMAIN_IDS], CTX);
-  try{ const full=growTier(lib,{ctx:CTX,newDomains:EXT_IDS}); if(full&&full.ok&&full.domains.length>=lib.domains.length) lib=full; }catch(e){}
-  LIB=lib;
-  for(const id of lib.domains){ const ds=DOMAIN_IDS.includes(id)?loadDomain(id,CTX):loadDomainExt(id); if(ds.ok!==false) DS[id]=ds; }
-  // organ chips
+  LIB=buildLibrary([...DOMAIN_IDS], CTX);
+  for(const id of LIB.domains){ const ds=loadDomain(id,CTX); if(ds.ok!==false) DS[id]=ds; }
   const box=$('#organsChips'); box.innerHTML='';
-  for(const id of lib.domains){ const c=el('span','chip'); c.innerHTML='<b>'+(metaOf(id).title||id)+'</b> · '+(lib.patterns[id].heldAuc); box.append(c); }
-  // organ picker
+  box.append(el('span','chip','live in this console:'));
+  for(const id of LIB.domains){ const c=el('span','chip'); c.innerHTML='<b>'+(metaOf(id).title||id)+'</b> · AUC '+(LIB.patterns[id].heldAuc); box.append(c); }
   const sel=$('#organ'); sel.innerHTML='';
-  for(const id of lib.domains){ const o=el('option',null,metaOf(id).title||id); o.value=id; sel.append(o); }
+  for(const id of LIB.domains){ const o=el('option',null,metaOf(id).title||id); o.value=id; sel.append(o); }
 }
 
 function render(res){
