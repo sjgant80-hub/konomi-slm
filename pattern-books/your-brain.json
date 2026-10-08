@@ -1,0 +1,19 @@
+{
+  "grownAt": "2026-10-08T18:10:16.041Z",
+  "dataDir": "demo",
+  "gateAuc": 0.6,
+  "organs": [
+    {
+      "name": "online-shoppers-intention",
+      "file": "online_shoppers_intention.csv",
+      "verified": true,
+      "heldAuc": 0.870349,
+      "rows": 12330,
+      "held": 4931,
+      "seed": "◊ seed.v1 online-shoppers-intention 59855 f:3edc862d02cc2d26d52d 07eb84afac11",
+      "cutWhy": null
+    }
+  ],
+  "libraryBytes": 79,
+  "meanHeldAuc": 0.870349
+}

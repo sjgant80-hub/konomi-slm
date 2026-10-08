@@ -25,7 +25,10 @@ jobs:
         run: node tools/witness.mjs mutate konomi-slm.mjs --cap 400 --baseline witness.baseline.json --timeout 60000 --test node --test tests/konomi-slm.test.mjs > witness.out.json
       - name: mutation gate (growth engine)
         run: node tools/witness.mjs mutate grow-tier.mjs --cap 400 --baseline witness-tier.baseline.json --timeout 60000 --test node --test tests/grow-tier.test.mjs > witness-tier.out.json
+      - name: mutation gate (your-brain, queue 11 the product)
+        run: node tools/witness.mjs mutate tools/your-brain.mjs --cap 400 --timeout 240000 --test node --test tests/your-brain.test.mjs > witness-brain.out.json
       - name: refuse anything short of clean
         run: |
           node scripts/check-clean.mjs witness.out.json
           node scripts/check-clean.mjs witness-tier.out.json
+          node scripts/check-clean.mjs witness-brain.out.json

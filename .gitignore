@@ -4,3 +4,4 @@ node_modules/
 witness*.out.json
 witness*.err.log
 .DS_Store
+_gate-*.json

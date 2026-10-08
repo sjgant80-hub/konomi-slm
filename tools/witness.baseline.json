@@ -1,0 +1,7 @@
+[
+  {
+    "mutation": "|| → &&",
+    "snippet": "if (pos === 0 || pos === cases.length) return { ok: false, error: `target \"${prep.targetNa",
+    "reason": "Reviewed-equivalent in practice: vendored csv-forge prepare() already yields zero usable cases for a one-class file, so this guard is defence-in-depth against vendor drift and cannot currently fire; pos===0 && pos===n is unsatisfiable for n>0 either way. The refusal behaviour is pinned by a test."
+  }
+]

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Brain</title>
+<meta name="description" content="A company's own brain, on its own machines: point one command at a folder of your CSVs and walk away owning a booted, verified mind. Each file becomes an organ only if it predicts held-out rows it never saw — no signal, no organ, no pretending. The organs compress to seeds you keep; think() answers with a tamper-evident receipt or abstains. No cloud, no rented tokens, no black box." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --warn:#f0b254; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55}
+  .wrap{max-width:820px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 22px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:66ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:38px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  .step{counter-reset:s;list-style:none;padding:0;margin:0}
+  .step li{position:relative;padding:2px 0 18px 36px}
+  .step li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#06281d;font-weight:700;font-size:13px;display:grid;place-items:center}
+  pre{overflow:auto;font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin:8px 0 0}
+  pre .c{color:var(--muted)} pre .g{color:var(--accent)} pre .w{color:var(--warn)}
+  .grid{display:grid;gap:14px} @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h3{margin:0 0 6px;font-size:15px} .card p{margin:0;color:var(--muted);font-size:13.5px}
+  .demo{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 7%,var(--panel)),var(--panel));border:1px solid color-mix(in srgb,var(--accent) 32%,var(--line));border-radius:14px;padding:18px 20px}
+  .foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · your brain</div>
+    <h1>Your company's brain,<br>on your own machines.</h1>
+    <p class="lede">Point one command at a folder of <b>your CSVs</b> — sales, churn, credit, operations — and walk away <b>owning a booted mind</b>. Each file becomes an organ <b>only if it predicts held-out rows it never saw</b>; a file with no real signal is refused, with the reason written down. The organs compress to seeds measured in <b>bytes</b>, and <code>think()</code> answers with a tamper-evident receipt — or says <b>"I don't know."</b> No cloud. No rented tokens. No black box.</p>
+  </header>
+
+  <h2>The whole product, three steps</h2>
+  <ol class="step">
+    <li><b>Clone the engine</b> — MIT, zero dependencies, runs anywhere Node runs:
+<pre>git clone https://github.com/sjgant80-hub/konomi-slm && cd konomi-slm</pre></li>
+    <li><b>Drop your CSVs in a folder</b> (optionally name each file's target column):
+<pre>data/churn.csv  data/invoices.csv  data/incidents.csv
+<span class="c">data/brain.config.json  →  { "targets": { "churn.csv": "Churned" } }</span></pre></li>
+    <li><b>One command.</b> It grows, gates, cuts, boots — and writes the receipts:
+<pre>node tools/your-brain.mjs data
+<span class="g">  ✓ organ churn: held-out AUC 0.87 on 4,931 rows it never saw</span>
+<span class="w">  ✗ CUT invoices: held-out AUC 0.51 below gate 0.6 — no verified signal, no organ</span>
+<span class="g">think(a held-out case) → VERIFIED (receipt 78729dfe39ec…)</span>
+<span class="g">think(junk)            → ABSTAIN</span></pre></li>
+  </ol>
+
+  <h2>The demo run — real data, reproducible</h2>
+  <div class="demo" id="demo">loading the committed receipts…</div>
+
+  <div class="grid" style="margin-top:28px">
+    <div class="card"><h3>It refuses to pretend</h3><p>A file with no held-out-provable signal does not become an organ — it is cut, with the reason in the receipts. The embarrassing honesty is the feature: a brain that can say "no signal" is a brain whose "yes" means something.</p></div>
+    <div class="card"><h3>You own it, byte for byte</h3><p>Each organ is a readable scorecard compressed to a seed (tens of bytes). The seeds re-grow the brain offline, on your metal, forever — no subscription, no API key, no vendor in the loop.</p></div>
+    <div class="card"><h3>Receipts on every answer</h3><p>think() routes to a verified organ and returns a content-hashed receipt, or abstains on out-of-distribution input. The same discipline our whole <a href="https://sjgant80-hub.github.io/kar-hub/">shelf</a> runs on.</p></div>
+    <div class="card"><h3>Enterprise scale is the same code</h3><p>This is the engine under <a href="cortex.html">the cortex</a> — the full cognition stack (organs, neurons, synapses, sleep, evolution) boots on a laptop today and sizes up to a 512&nbsp;GB box unchanged. Board-level cost case on request via <a href="https://github.com/sjgant80-hub/kar-hub/issues">the contact channel</a>.</p></div>
+  </div>
+
+  <h2>For agents</h2>
+  <p style="color:var(--muted);font-size:14px;margin:0">Machine surfaces: <a href="pattern-books/your-brain.json">the demo receipts</a> · <a href="https://sjgant80-hub.github.io/kar-hub/catalog.json">the catalog</a> · <a href="https://sjgant80-hub.github.io/kar-hub/agents.md">how to verify before relying</a>. The demo verdict reproduces deterministically from the committed data — clone and run the command above.</p>
+
+  <div class="foot">The engine: <a href="./">konomi-slm</a> · the running body: <a href="cortex.html">the cortex</a> · the door: <a href="https://sjgant80-hub.github.io/kar-hub/">kar-hub</a>. CSV kernel vendored from <a href="https://github.com/sjgant80-hub/csv-forge">csv-forge</a>. Demo data: UCI Online Shoppers (Sakar &amp; Kastro 2018, CC BY 4.0). Powered by the Konomi architecture, created by Thomas Frumkin.</div>
+</div>
+<script type="module">
+const el=document.getElementById('demo');
+try{
+  const r=await (await fetch('./pattern-books/your-brain.json?cb='+Date.now())).json();
+  const kept=r.organs.filter(o=>o.verified), cut=r.organs.filter(o=>!o.verified);
+  el.innerHTML = `<div style="font-family:var(--mono);font-size:13px">
+    ${kept.map(o=>`<div>✓ <b>${o.name}</b> — held-out AUC <b style="color:var(--accent)">${o.heldAuc}</b> on ${o.held} unseen rows · seed ${o.seed? o.seed.length+' B':''}</div>`).join('')}
+    ${cut.map(o=>`<div style="color:var(--warn)">✗ CUT ${o.name} — ${o.cutWhy||''}</div>`).join('')}
+    <div style="margin-top:8px;color:var(--muted)">library ${r.libraryBytes} B of seeds · mean held-out AUC ${r.meanHeldAuc} · gate ${r.gateAuc} · grown ${r.grownAt.slice(0,10)}</div>
+  </div>`;
+}catch(e){ el.textContent='receipts unavailable — run: node tools/your-brain.mjs --demo'; }
+</script>
+</body>
+</html>

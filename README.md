@@ -1,3 +1,7 @@
+## Own a brain from your CSVs
+
+**NEW — queue #11, THE PRODUCT:** `node tools/your-brain.mjs data` turns a folder of YOUR CSVs into a booted, verified mind you own — organs kept only if they predict held-out rows (demo: AUC 0.870 on 4,931 unseen), no-signal files refused with the reason. **Live: https://sjgant80-hub.github.io/konomi-slm/brain.html**
+
 # The Konomi SLM
 
 **▶ Live: https://sjgant80-hub.github.io/konomi-slm/** — grow the library and ask it in your browser; nothing is sent anywhere.
