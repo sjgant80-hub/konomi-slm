@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konomi Neurons</title>
+<meta name="description" content="The thinking unit is a cube: eight small workers and a rule-based resolver. A neuron is verified only if the cube beats its average worker. 127 addresses are the neuron map — the swarm, from simulated to a real addressable layer." />
+<meta name="color-scheme" content="dark light" />
+<style>
+  :root{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835;
+    --accent:#5ad1a8; --accent2:#6aa8ff; --warn:#f0b254; --radius:14px; --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  :root:not([data-theme="light"]){ color-scheme:dark; }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f6f8fb; --panel:#fff; --panel2:#f0f3f8; --ink:#141a22; --muted:#5d6b7d; --line:#e2e8f0; }}
+  :root[data-theme="dark"]{ --bg:#0b0e12; --panel:#121720; --panel2:#0e131b; --ink:#e8eef6; --muted:#8b97a7; --line:#1f2835; }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px 70px}
+  header{padding:54px 0 20px;border-bottom:1px solid var(--line)}
+  .tag{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  h1{font-size:clamp(28px,5vw,44px);margin:10px 0 12px;letter-spacing:-.02em;font-weight:770}
+  .lede{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:68ch;margin:0}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:14px;margin:34px 0 10px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(16,1fr);gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .cell{aspect-ratio:1;border-radius:3px;background:var(--panel2);border:1px solid var(--line)}
+  .cell.pop{border-color:transparent}
+  .cell.ver{background:var(--accent);opacity:.55} .cell.best{background:var(--accent);opacity:1} .cell.un{background:var(--warn);opacity:.7}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px} .sw{width:11px;height:11px;border-radius:3px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+  th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)} th{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+  td.n{font-family:var(--mono);text-align:right} tr.best td:first-child{color:var(--accent)}
+  .up{color:var(--accent)} .dn{color:var(--warn)}
+  .foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  a{color:var(--accent2)} #status{color:var(--muted);font-family:var(--mono);font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="tag">KONOMI · neurons</div>
+    <h1>The thinking unit: a cube of eight.</h1>
+    <p class="lede">A neuron is Thomas Frumkin's <b>cube</b> — eight small workers, each a pattern grown on its own seed so they disagree, and a <b>rule-based resolver</b> (a skill-weighted vote, not a model judging) that combines them. It is <b>verified only if the cube beats its average worker</b> on held-out — the whole worth more than its parts, provably. The 127 addresses below are the neuron map: the swarm, from simulated to a real addressable layer.</p>
+  </header>
+  <h2>The 127-address neuron map</h2>
+  <div class="grid" id="grid"></div>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--accent);opacity:1"></span>cube beats its best worker</span>
+    <span><span class="sw" style="background:var(--accent);opacity:.55"></span>verified (beats the average)</span>
+    <span><span class="sw" style="background:var(--warn);opacity:.7"></span>not verified</span>
+    <span><span class="sw" style="background:var(--panel2);border:1px solid var(--line)"></span>empty address</span>
+  </div>
+  <h2>The neurons</h2>
+  <table id="tbl"><thead><tr><th>@</th><th>organ</th><th style="text-align:right">cube</th><th style="text-align:right">vs mean</th><th style="text-align:right">vs best</th></tr></thead><tbody id="rows"></tbody></table>
+  <div id="status">loading the map…</div>
+  <div class="foot">Same discipline as the <a href="council.html">council</a> (no model judges) and the <a href="synapses.html">synapses</a> — deterministic, re-runnable. The engine: <a href="./">the Konomi SLM</a>. The cube / MACCubeFACE is Thomas Frumkin's; powered by the Konomi architecture.</div>
+</div>
+<script type="module">
+const $=(s)=>document.querySelector(s); const el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+(async()=>{
+  let m; try{ m=await (await fetch('./pattern-books/neurons.json?cb='+Date.now())).json(); }catch(e){ $('#status').textContent='no neuron map yet.'; return; }
+  const byAddr={}; for(const n of (m.neurons||[])) byAddr[n.address]=n;
+  const grid=$('#grid'); grid.innerHTML='';
+  for(let a=0;a<(m.addressSpace||127);a++){ const c=el('div','cell'); const n=byAddr[a];
+    if(n){ c.classList.add('pop', n.beatsBest?'best':(n.verified?'ver':'un')); c.title=`@${a} ${n.domain}: cube ${n.neuronAuc} (best worker ${n.bestWorker})`; }
+    grid.append(c); }
+  const rows=$('#rows'); for(const n of (m.neurons||[])){ const tr=el('tr', n.beatsBest?'best':'');
+    const lm=n.liftVsMean>=0?`<span class="up">+${n.liftVsMean}</span>`:`<span class="dn">${n.liftVsMean}</span>`;
+    const lb=n.liftVsBest>=0?`<span class="up">+${n.liftVsBest}</span>`:`<span class="dn">${n.liftVsBest}</span>`;
+    tr.innerHTML=`<td class="n">${n.address}</td><td>${n.domain}${n.real?' · REAL':''}</td><td class="n">${n.neuronAuc}</td><td class="n">${lm}</td><td class="n">${lb}</td>`; rows.append(tr); }
+  $('#status').textContent=`${m.populated} neurons of ${m.addressSpace} addresses · ${m.verified} verified (cube beats its average worker) · mean lift vs average +${m.meanLift}`;
+})();
+</script>
+</body>
+</html>
