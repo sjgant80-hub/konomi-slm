@@ -13,35 +13,35 @@
       "heldAuc": 0.645106,
       "selectedBy": "bred from stem + observed",
       "feats": "pastPurchases/timeOnSiteMin/adExposures",
-      "secs": "77"
+      "secs": "98"
     },
     {
       "domain": "churn",
-      "heldAuc": 0.781674,
-      "selectedBy": "bred from proposal + observed",
+      "heldAuc": 0.795946,
+      "selectedBy": "cross-bred (bred from proposal × proposal) + observed",
       "feats": "usageDropPct/supportTickets/contractMonthsLeft/loginsPerWeek",
-      "secs": "69"
+      "secs": "79"
     },
     {
       "domain": "credit",
       "heldAuc": 0.672461,
       "selectedBy": "bred from stem",
       "feats": "delinquencies/utilisation/loanToValue/incomeK",
-      "secs": "64"
+      "secs": "73"
     },
     {
       "domain": "fraud",
       "heldAuc": 0.768272,
       "selectedBy": "bred from proposal + observed",
       "feats": "merchantRisk/cardNotPresent",
-      "secs": "58"
+      "secs": "64"
     },
     {
       "domain": "maintenance",
       "heldAuc": 0.781302,
       "selectedBy": "bred from proposal",
       "feats": "hoursSinceService",
-      "secs": "62"
+      "secs": "66"
     },
     {
       "domain": "intrusion",
@@ -55,14 +55,14 @@
       "heldAuc": 0.820803,
       "selectedBy": "bred from proposal",
       "feats": "demandVar/reorderGap/seasonalityIdx/supplierReliab/daysOfStock/leadTimeDays",
-      "secs": "132"
+      "secs": "81"
     },
     {
       "domain": "energy",
       "heldAuc": 0.782707,
       "selectedBy": "bred from proposal + observed",
       "feats": "loadMW/humidity/priceMWh",
-      "secs": "126"
+      "secs": "70"
     }
   ],
   "count": 9

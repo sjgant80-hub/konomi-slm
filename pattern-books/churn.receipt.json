@@ -1,12 +1,12 @@
 {
   "model": "patternforge/1",
   "domain": "churn",
-  "selectedBy": "bred from proposal + observed",
-  "valAuc": 0.748062,
-  "heldAuc": 0.781674,
-  "heldAcc": 0.718056,
+  "selectedBy": "cross-bred (bred from proposal × proposal) + observed",
+  "valAuc": 0.796728,
+  "heldAuc": 0.795946,
+  "heldAcc": 0.723611,
   "held": 720,
-  "ownedSeed": "◊ seed.v1 churn 7 f:df64fb1821432a148f08 8e5fd32c4bd5",
+  "ownedSeed": "◊ seed.v1 churn 7 f:bf690c3ea5963114eb38 e8ab8a1d485d",
   "ownedSeedBytes": 53,
   "hypotheses": [
     {
@@ -27,5 +27,5 @@
     }
   ],
   "proposer": "qwen2.5:7b",
-  "receiptHash": "17f16a5e4bb296dd42dcb7adf5cbbaccd647c3bd8462423a4c56f6c998c4b44d"
+  "receiptHash": "8cc562302cee4a36532b3db6419c2b579918a7c04f3b2e460a544441dc5a6788"
 }
