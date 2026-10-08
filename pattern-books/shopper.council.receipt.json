@@ -1,0 +1,53 @@
+{
+  "model": "konomi-slm/council",
+  "domain": "shopper",
+  "council": [
+    "qwen14b",
+    "qwen7b",
+    "llama1b"
+  ],
+  "winner": "qwen14b (bred)",
+  "heldAuc": 0.813532,
+  "heldAcc": 0.844868,
+  "held": 4725,
+  "ownedSeed": "◊ seed.v1 shopper 7 f:1e785a2176032512f516 3ad3c7c0c75d",
+  "scoreboard": [
+    {
+      "member": "qwen14b (bred)",
+      "val": 0.932509,
+      "test": 0.813532
+    },
+    {
+      "member": "llama1b (bred)",
+      "val": 0.932212,
+      "test": 0.811062
+    },
+    {
+      "member": "qwen7b (bred)",
+      "val": 0.92948,
+      "test": 0.795082
+    },
+    {
+      "member": "search (no model)",
+      "val": 0.923759,
+      "test": 0.780393
+    },
+    {
+      "member": "qwen14b (raw)",
+      "val": 0.787259,
+      "test": 0.766882
+    },
+    {
+      "member": "llama1b (raw)",
+      "val": 0.664366,
+      "test": 0.672617
+    },
+    {
+      "member": "qwen7b (raw)",
+      "val": 0.643345,
+      "test": 0.648677
+    }
+  ],
+  "dropped": [],
+  "receiptHash": "4d4690b9958fc962356b49b602845c312665b0788599d523d12d802b296a5eac"
+}
