@@ -68,4 +68,10 @@ v1 proves the **architecture** on structured-prediction domains, where "predict 
 
 ## Credit
 
+Draws on three of **Gary W. Floyd's** Guided Entropy Principle (GEP) papers. The Konomi SLM itself is the estate's own work.
+
+- Keeping a rule only if it predicts held-out data (so a confident but wrong prior cannot take hold) and allowing "I don't know" as an answer: **Gary W. Floyd, Lumiea Systems Research Division — ThunderStruck Service LLC — "From GEP Stabilization to Dual-Map Ethical Reasoning: A derivation of positive ethical evidence, negative ethical evidence, and non-legal moral reasoning," Derivation v0.2. Open Defensive Prior Art (Creative Commons).**
+- The sleep cycle (consolidate at night, keep a dream only if it passes a check): **Gary W. Floyd, Lumiea Systems Research Division — ThunderStruck Service LLC — "Dream State Architecture: GEP-Guided Memory Consolidation and Entropy Regulation in Artificial Consciousness Systems," 2025. Open Defensive Prior Art (Creative Commons).**
+- Knowledge living outside the model, with the model only proposing and routing: **Gary W. Floyd, Lumiea Systems Research Division — ThunderStruck Service LLC — "NEXUS — Distributed Synthetic Intelligence: Architecture, Ethics, and the GEP-Native Mind," 2026. Open Defensive Prior Art (Creative Commons).**
+
 Powered by the Konomi architecture, created by **Thomas Frumkin**. The grow→grade-on-held-out ribosome, the SENTINEL guard and the SHA-256 are vendored verbatim from the seed-library / fall-spore lineage (`./vendor`). Real data: UCI Online Shoppers (Sakar & Kastro, 2018, CC BY 4.0). MIT licensed.
