@@ -62,6 +62,10 @@ Measured (`node tools/run-propose.mjs`, UNGRADED / local / non-deterministic):
 
 Honest finding: the neural layer produces real value, **the gate guarantees it can never poison the result**, and reliably *harnessing* weak priors on small domains wants a more robust (multi-fold) selector — noted, not faked. The loop is real now, not a stub: neural proposes, the gate decides.
 
+## A node of the shared foundation
+
+`node/konomi-node.mjs` runs konomi-slm as a cell of the estate's shared foundation (`vendor/fall-kit-core`, copied verbatim from [fall-kit/core](https://sjgant80-hub.github.io/fall-kit/core/) and pinned). Each verified domain is a skill; an answer carries this library's receipt, which the asker re-hashes; an input no verified pattern covers is an abstain; and the node's genome is the seeds its patterns grew from, so it can be re-grown and checked pattern for pattern. It is one of the two nodes in the foundation's Phase 1 proof, with [break-it](https://sjgant80-hub.github.io/break-it/).
+
 ## Honest scope
 
 v1 proves the **architecture** on structured-prediction domains, where "predict held-out or die" is measurable. The verified patterns are interpretable scorecards, not free-form text generation. The small model's job (free text → which domain) is optional and kept out of everything graded. The defensible claim is *"beats a flat model on any domain it has a verified pattern for, and refuses instead of guessing on anything it doesn't"* — not "beats GPT at everything." Breadth grows as the library grows.
