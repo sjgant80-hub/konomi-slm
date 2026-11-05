@@ -7,7 +7,7 @@
 <meta name="description" content="A neurosymbolic verified knowledge engine: a model proposes, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a readable, compressed pattern-library, not opaque weights. It grows by adding verified rules, not by retraining. Runs in your browser." />
 <meta name="color-scheme" content="dark light" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"A neurosymbolic, self-growing, verified knowledge engine with selective abstention. A neural model proposes answers; only verified rules that predict held-out data are kept (predict-or-be-cut); out-of-distribution inputs are abstained, not hallucinated; every answer carries a tamper-evident receipt. Knowledge lives in a readable, lossless-compressed pattern-library, not opaque weights, and the engine grows by adding verified rules rather than retraining. In the family of evolutionary program search (FunSearch, AlphaEvolve) — owned, CPU-scale, multi-domain, compression-native."}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","description":"A neurosymbolic, self-growing, verified knowledge engine with selective abstention. A neural model proposes answers; only verified rules that predict held-out data are kept (predict-or-be-cut); out-of-distribution inputs are abstained, not hallucinated; every answer carries a tamper-evident receipt. Knowledge lives in a readable, lossless-compressed pattern-library, not opaque weights, and the engine grows by adding verified rules rather than retraining. In the family of evolutionary program search (FunSearch, AlphaEvolve) — owned, CPU-scale, multi-domain, compression-native."}
 </script>
 <style>
   :root{
@@ -58,6 +58,51 @@
   .foot{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
   a{color:var(--accent2)}
   .note{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:10px 0}
+  /* ── explainer, multiplier and brochure (same tokens as above) ── */
+  .navbar{display:flex;flex-wrap:wrap;gap:6px 14px;margin:18px 0 0;font-size:13px}
+  .navbar a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
+  .navbar a:hover{color:var(--accent2)}
+  .plain{margin-top:18px}
+  .plain p{margin:0 0 8px}
+  ol.steps{margin:0;padding-left:22px}
+  ol.steps li{margin:0 0 8px}
+  ol.steps li b{color:var(--ink)}
+  code{font-family:var(--mono);font-size:12.5px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:1px 5px}
+  h3.sec{font-size:15.5px;margin:22px 0 6px}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th,.tbl td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{color:var(--muted);font-weight:600;font-size:12px}
+  .tbl td.num,.tbl th.num{text-align:right;font-family:var(--mono);white-space:nowrap}
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .claim{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start;padding:10px 0;border-bottom:1px solid var(--line)}
+  .claim:last-child{border-bottom:0}
+  .claim .txt{font-size:13.5px}
+  .claim .fig{grid-column:2;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .diagrams{display:grid;gap:12px}
+  @media(min-width:760px){.diagrams{grid-template-columns:1fr 1fr}}
+  .diagram{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .diagram svg{display:block;width:100%;max-width:460px;height:auto;margin:0 auto}
+  .dg-box{fill:var(--panel);stroke:var(--line);stroke-width:1.2}
+  .dg-ok{stroke:var(--ok);stroke-width:1.6}
+  .dg-warn{stroke:var(--warn);stroke-width:1.6}
+  .dg-bad{stroke:var(--bad);stroke-width:1.6}
+  .dg-t{fill:var(--ink);font:600 13px var(--sans)}
+  .dg-s{fill:var(--muted);font:11.5px var(--sans)}
+  .dg-k{fill:var(--accent);font:600 11px var(--mono);letter-spacing:.04em}
+  .dg-line{stroke:var(--muted);stroke-width:1.4;fill:none}
+  .dg-head{fill:var(--muted)}
+  .organ code{font-size:12px}
+  .organ .kv{display:grid;grid-template-columns:52px 1fr;gap:8px;text-align:left}
+  .organ .kv b{font-weight:500;color:var(--ink)}
+  .role h3{font-size:14.5px}
+  .role p{margin:0;font-size:13.5px;color:var(--muted)}
+  .calc label.f input{width:120px}
+  .big2{font-size:18px;font-weight:700}
+  .paper p{margin:0 0 10px;font-size:14.5px}
+  .paper h3{font-size:15px;margin:18px 0 6px}
+  ul.tight{margin:6px 0 0;padding-left:20px}
+  ul.tight li{margin:0 0 5px;font-size:13.5px}
+  .sources li{font-size:12.5px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -66,10 +111,32 @@
     <div class="tag">KONOMI · neurosymbolic verified knowledge engine</div>
     <h1>It proves what it says,<br>or it abstains.</h1>
     <p class="lede"><b>This is not an LLM — and that's the point.</b> A model <em>proposes</em>, but only rules that predict unseen data are kept, so the engine proves what it says and says "I don't know" when it can't. Knowledge lives in a <b>verified, readable, compressed pattern-library</b> — each rule predicted held-out cases it never saw, or it was cut — not smeared across opaque weights, so it can't be shrunk away and it doesn't hallucinate. It grows by adding verified rules, not by retraining. The whole knowledge-base compresses to a seed, and it runs entirely in this browser.</p>
+    <div class="panel plain">
+      <p><b>In plain words.</b> You give it past cases that already have an outcome — rows in a spreadsheet: a shop visit and whether it bought, a set of readings and whether it was critical. It grows a handful of rules you can read, and it keeps them <b>only if they correctly rank cases it was never shown</b>. Then, for a new case, it either answers from those rules and hands you a receipt anyone can re-check, or — if the case is unlike anything it checked — it says <b>"I won't guess."</b></p>
+      <p class="muted" style="margin:0">It runs in this browser tab. Nothing you type or grow here is sent anywhere.</p>
+    </div>
     <p class="note">In field terms: <b>neurosymbolic AI</b> (a neural proposer + symbolic verified rules) · <b>selective prediction</b> (it abstains) · <b>evolutionary program search</b> (the FunSearch / AlphaEvolve family — propose, test on held-out, keep only winners) · <b>compression-as-intelligence</b> (the shortest model that predicts the data). Fused into one owned, CPU-scale, multi-domain system. We don't compete on "is the model big enough" — we stand on "is the answer verified."</p>
+    <nav class="navbar" aria-label="On this page">
+      <a href="#start">Start here</a><a href="#s-grow">Try it</a><a href="#multiplier">The multiplier test</a><a href="#how">How it works</a><a href="#blueprint">Blueprint</a><a href="#adoption">Adoption</a><a href="#business">For business</a><a href="#paper">White paper</a>
+    </nav>
   </header>
 
-  <h2>1 · Grow the library</h2>
+  <h2 id="start">Start here</h2>
+  <p class="sub">Five minutes, in this tab, no install. Every number you see is computed by the same code the tests and the mutation gate check.</p>
+  <div class="panel">
+    <ol class="steps">
+      <li><b>Grow the library.</b> Press <em>Grow the library</em> in section 1. Each tiny seed grows a pattern on its training cases and is graded on cases held back; only patterns that clear the gate stay. The cards show each one's held-out score and its seed size in bytes.</li>
+      <li><b>Ask it a real case.</b> In section 3 a real held-out case is already filled in. Press <em>Ask</em>: you get an answer, how well the case fits the pattern, and a receipt.</li>
+      <li><b>Check the receipt.</b> Open the receipt, press <em>verify receipt</em> (genuine), then <em>tamper one field</em> (caught). That is how anyone downstream re-checks an answer.</li>
+      <li><b>Watch it refuse.</b> Press <em>Make it out-of-distribution</em>, then <em>Ask</em>. It abstains instead of guessing.</li>
+      <li><b>Climb the ladder (optional).</b> In section 2, <em>Grow tier 2 from tier 1</em> adds new domains and deepens old ones; a domain is never allowed to get worse.</li>
+      <li><b>Keep it.</b> Section 4 downloads the library (a text file of seeds) and the last receipt. They are yours, offline.</li>
+      <li><b>Read the head-to-head.</b> <a href="#multiplier">The multiplier test</a> pits the shop pattern against bigger raw language models on real sessions it never saw — sealed before it ran, kept whatever it showed.</li>
+      <li><b>Run it on your own data.</b> Clone the repo and run <code>node tools/your-brain.mjs &lt;folder of CSVs&gt;</code> — each file becomes an organ only if it predicts its own held-out rows (<a href="brain.html">your-brain</a>).</li>
+    </ol>
+  </div>
+
+  <h2 id="s-grow">1 · Grow the library</h2>
   <p class="sub">The library is a handful of tiny Konomi seeds. A ribosome grows each into a working pattern on local data and grades it on held-out cases. Only patterns that clear the gate stay.</p>
   <div class="panel">
     <div class="row"><button id="grow">Grow the library</button><span id="growState" class="muted mono" style="font-size:12.5px">idle</span></div>
@@ -77,14 +144,14 @@
     <div id="libCards" class="grid cards" style="margin-top:12px"></div>
   </div>
 
-  <h2>2 · Climb the ladder — tier 1 builds tier 2</h2>
+  <h2 id="s-climb">2 · Climb the ladder — tier 1 builds tier 2</h2>
   <p class="sub">Scaling here is library-growth, not weight-training. Tier 1's champions warm-start tier 2's search; every existing domain is kept only if it holds or beats tier 1 (monotone — never worse); new verticals broaden it. The whole rung is gated and runs on this page.</p>
   <div class="panel">
     <div class="row"><button id="climb" disabled>Grow tier 2 from tier 1</button><span id="climbState" class="muted mono" style="font-size:12.5px">grow the library first</span></div>
     <div id="tierReceipt" style="margin-top:14px"></div>
   </div>
 
-  <h2>3 · Ask the SLM</h2>
+  <h2 id="s-ask">3 · Ask the SLM</h2>
   <p class="sub">Pick a domain, give it a case. It routes to a verified pattern and answers with a receipt — or, if the input is outside anything it has verified, it refuses.</p>
   <div class="panel" id="askPanel" aria-disabled="true" style="opacity:.5;pointer-events:none">
     <div class="row">
@@ -97,13 +164,250 @@
     <div id="result"></div>
   </div>
 
-  <h2>4 · Own it</h2>
+  <h2 id="s-own">4 · Own it</h2>
   <p class="sub">The whole library is a few hundred bytes of seeds. Download it and the last receipt — yours, offline, re-growable.</p>
   <div class="panel row">
     <button class="ghost" id="dlLib" disabled>Download the library (seeds)</button>
     <button class="ghost" id="dlReceipt" disabled>Download the last receipt</button>
   </div>
   <p class="sub" style="margin-top:10px">Or browse the <a href="pattern-books.html">forged pattern-book library</a> — each domain's core rules in plain language, proposed by a local model and kept only because they predicted held-out data. Grown, not retrained.</p>
+
+  <h2 id="multiplier">The multiplier test — sealed before it ran</h2>
+  <p class="sub">The question: on real shop sessions it never saw, does the Konomi pattern book — a few readable rules, kept only because they predicted months they were never grown on — rank buyers above browsers better than a raw language model many times its size? And does handing a raw model that book make it better? The claims, the prompt, the sample and the pass bars were committed in <a href="CLAIMS-MULTIPLIER.md">CLAIMS-MULTIPLIER.md</a> before any code that measures them existed. Every model reply is recorded; GitHub's runner re-scores every claim from those replies with no model.</p>
+  <div class="panel" id="mxPanel">
+    <div id="mxHead" class="big2 muted">loading the sealed receipt…</div>
+    <div id="mxSub" class="muted" style="font-size:13px;margin-top:4px"></div>
+    <div class="tblwrap" style="margin-top:14px"><table class="tbl" id="mxArms"></table></div>
+    <h3 class="sec">The claims, each held or failed on its own</h3>
+    <div id="mxClaims"></div>
+    <details><summary>What this does not prove</summary><p id="mxNot" class="muted" style="font-size:13px"></p></details>
+    <details><summary>How to re-check it yourself</summary>
+      <p class="muted" style="font-size:13px">Clone the repo and run <code>node tools/check-multiplier.mjs</code>: it re-derives the sample and the three Konomi arms from the data, checks every recorded prompt is the sealed prompt, re-parses every recorded reply and re-computes every claim, and fails on any difference. To re-ask the models, install Ollama with the sealed model digests and run <code>node tools/run-multiplier.mjs</code> — a model's replies are not reproducible byte for byte, which is why the receipt keeps every one.</p>
+      <p class="muted" style="font-size:13px" id="mxFiles"></p>
+    </details>
+  </div>
+
+  <h2 id="how">How it works</h2>
+  <p class="sub">Two flows, drawn from the code: growing a pattern once, and answering every case after. The numbers in the boxes are read from the kernel and from the shipped shop pattern's receipt as this page loads.</p>
+  <div class="diagrams">
+    <div class="diagram" role="img" aria-labelledby="dgGrowT">
+      <svg viewBox="0 0 400 610" xmlns="http://www.w3.org/2000/svg">
+        <title id="dgGrowT">Growing a pattern: past cases, hold some back, a seed grows rules, the gate keeps or cuts, the library is seeds</title>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs>
+        <text x="200" y="18" text-anchor="middle" class="dg-k">GROW · ONCE, ON YOUR MACHINE</text>
+        <rect x="20" y="30" width="360" height="58" rx="10" class="dg-box"/>
+        <text x="200" y="54" text-anchor="middle" class="dg-t">Past cases you already have</text>
+        <text x="200" y="73" text-anchor="middle" class="dg-s">named numbers per case + the outcome that happened</text>
+        <path d="M200 88 V112" class="dg-line" marker-end="url(#ah)"/>
+        <rect x="20" y="114" width="360" height="70" rx="10" class="dg-box"/>
+        <text x="200" y="138" text-anchor="middle" class="dg-t">Hold some cases back</text>
+        <text x="200" y="157" text-anchor="middle" class="dg-s">rules grow on the rest; graded only on cases never seen</text>
+        <text x="200" y="174" text-anchor="middle" class="dg-s" id="dgHeld">(real shop data: grown on Feb–Oct, graded on Nov–Dec)</text>
+        <path d="M200 184 V208" class="dg-line" marker-end="url(#ah)"/>
+        <rect x="20" y="210" width="360" height="70" rx="10" class="dg-box"/>
+        <text x="200" y="234" text-anchor="middle" class="dg-t">A seed grows a pattern</text>
+        <text x="200" y="253" text-anchor="middle" class="dg-s">a few readable rules: "when X is above v, more likely"</text>
+        <text x="200" y="270" text-anchor="middle" class="dg-s">search + fit on the grow cases only</text>
+        <path d="M200 280 V304" class="dg-line" marker-end="url(#ah)"/>
+        <rect x="60" y="306" width="280" height="62" rx="10" class="dg-box dg-ok"/>
+        <text x="200" y="330" text-anchor="middle" class="dg-t">The gate</text>
+        <text x="200" y="352" text-anchor="middle" class="dg-s" id="dgGate">held-out AUC at or above the gate?</text>
+        <path d="M140 368 V400" class="dg-line" marker-end="url(#ah)"/>
+        <path d="M260 368 V400" class="dg-line" marker-end="url(#ah)"/>
+        <text x="128" y="390" text-anchor="end" class="dg-k">YES</text>
+        <text x="272" y="390" class="dg-k">NO</text>
+        <rect x="20" y="402" width="174" height="76" rx="10" class="dg-box dg-ok"/>
+        <text x="107" y="426" text-anchor="middle" class="dg-t">KEEP</text>
+        <text x="107" y="446" text-anchor="middle" class="dg-s">into the library,</text>
+        <text x="107" y="463" text-anchor="middle" class="dg-s">stored as its seed</text>
+        <rect x="206" y="402" width="174" height="76" rx="10" class="dg-box dg-bad"/>
+        <text x="293" y="426" text-anchor="middle" class="dg-t">CUT</text>
+        <text x="293" y="446" text-anchor="middle" class="dg-s">written down with</text>
+        <text x="293" y="463" text-anchor="middle" class="dg-s">the reason, never used</text>
+        <path d="M107 478 V506" class="dg-line" marker-end="url(#ah)"/>
+        <rect x="20" y="508" width="360" height="86" rx="10" class="dg-box"/>
+        <text x="200" y="532" text-anchor="middle" class="dg-t">The library is a text file of seeds</text>
+        <text x="200" y="552" text-anchor="middle" class="dg-s">each seed re-grows its rules byte for byte</text>
+        <text x="200" y="572" text-anchor="middle" class="dg-s" id="dgSeed">the shipped shop pattern's owned seed: … bytes</text>
+      </svg>
+    </div>
+    <div class="diagram" role="img" aria-labelledby="dgAskT">
+      <svg viewBox="0 0 400 610" xmlns="http://www.w3.org/2000/svg">
+        <title id="dgAskT">Answering a case: the router measures fit, below the line it abstains, above it the rules answer, a receipt is hashed and anyone can re-check it</title>
+        <text x="200" y="18" text-anchor="middle" class="dg-k">ASK · EVERY CASE</text>
+        <rect x="20" y="30" width="360" height="58" rx="10" class="dg-box"/>
+        <text x="200" y="54" text-anchor="middle" class="dg-t">A new case</text>
+        <text x="200" y="73" text-anchor="middle" class="dg-s">the same named numbers, no outcome yet</text>
+        <path d="M200 88 V112" class="dg-line" marker-end="url(#ah2)"/>
+        <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs>
+        <rect x="20" y="114" width="360" height="86" rx="10" class="dg-box"/>
+        <text x="200" y="138" text-anchor="middle" class="dg-t">The router</text>
+        <text x="200" y="157" text-anchor="middle" class="dg-s">does every number sit where the pattern's</text>
+        <text x="200" y="174" text-anchor="middle" class="dg-s">grow cases sat? (1 inside the middle half, fading outside)</text>
+        <text x="200" y="191" text-anchor="middle" class="dg-s" id="dgRoute">route fit at or above the line?</text>
+        <path d="M140 200 V232" class="dg-line" marker-end="url(#ah2)"/>
+        <path d="M260 200 V232" class="dg-line" marker-end="url(#ah2)"/>
+        <text x="128" y="222" text-anchor="end" class="dg-k">NO</text>
+        <text x="272" y="222" class="dg-k">YES</text>
+        <rect x="20" y="234" width="174" height="86" rx="10" class="dg-box dg-warn"/>
+        <text x="107" y="258" text-anchor="middle" class="dg-t">ABSTAIN</text>
+        <text x="107" y="278" text-anchor="middle" class="dg-s">"I won't guess" — the</text>
+        <text x="107" y="295" text-anchor="middle" class="dg-s">case goes to a person</text>
+        <rect x="206" y="234" width="174" height="86" rx="10" class="dg-box dg-ok"/>
+        <text x="293" y="258" text-anchor="middle" class="dg-t">ANSWER</text>
+        <text x="293" y="278" text-anchor="middle" class="dg-s">add the weights of the</text>
+        <text x="293" y="295" text-anchor="middle" class="dg-s">rules that fire; compare to</text>
+        <text x="293" y="312" text-anchor="middle" class="dg-s">the pattern's threshold</text>
+        <path d="M293 320 V350" class="dg-line" marker-end="url(#ah2)"/>
+        <rect x="20" y="352" width="360" height="104" rx="10" class="dg-box"/>
+        <text x="200" y="376" text-anchor="middle" class="dg-t">The receipt</text>
+        <text x="200" y="396" text-anchor="middle" class="dg-s">which pattern, its held-out score, the gate,</text>
+        <text x="200" y="413" text-anchor="middle" class="dg-s">the route fit, the score, the threshold, the answer —</text>
+        <text x="200" y="430" text-anchor="middle" class="dg-s">and a SHA-256 hash over all of it</text>
+        <path d="M200 456 V486" class="dg-line" marker-end="url(#ah2)"/>
+        <rect x="20" y="488" width="360" height="106" rx="10" class="dg-box dg-ok"/>
+        <text x="200" y="512" text-anchor="middle" class="dg-t">Anyone re-checks it</text>
+        <text x="200" y="532" text-anchor="middle" class="dg-s">re-hash the fields: the same hash means untouched;</text>
+        <text x="200" y="549" text-anchor="middle" class="dg-s">change one field and it no longer matches</text>
+        <text x="200" y="569" text-anchor="middle" class="dg-s">(try "tamper one field" in section 3)</text>
+      </svg>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:12px">
+    <b>Traced from a real run — the shipped shop pattern</b>
+    <ol class="steps" id="trace" style="margin-top:10px"><li class="muted">loading the pattern's receipt…</li></ol>
+  </div>
+  <details><summary>Step by step, in the code</summary>
+    <ol class="steps" style="margin-top:10px">
+      <li><code>buildPattern()</code> in <code>konomi-slm.mjs</code> loads a domain, makes a seed, and <code>germinate()</code> (the vendored seed-library ribosome) grows and grades it: a short search for rules on the training rows, scored by AUC on the held-out rows.</li>
+      <li><code>fit()</code> turns the champion into a scorecard of rules; <code>operatingThreshold()</code> sets the cut-off from the training rows' base rate; <code>fingerprint()</code> records each feature's spread on the training rows.</li>
+      <li><code>buildLibrary()</code> keeps a pattern only if its held-out AUC is at or above <code>GATE_AUC</code>; anything else is listed as cut, with why.</li>
+      <li><code>route()</code> scores a new case against each pattern with <code>membership()</code> — 1 inside the middle half of the training spread, decaying outside — and <code>answer()</code> abstains below <code>ROUTE_MIN</code>.</li>
+      <li>Above the line, <code>scoreInput()</code> adds the weights of the rules that fire, compares to the threshold, and <code>answer()</code> hashes the record into the receipt; <code>verifyReceipt()</code> re-hashes it.</li>
+      <li><code>growTier()</code> in <code>grow-tier.mjs</code> climbs the ladder: each old domain is deepened from its champion and kept only if it does not get worse on held-out; new domains enter only through the gate.</li>
+    </ol>
+  </details>
+
+  <h2 id="blueprint">Blueprint — organ by organ</h2>
+  <p class="sub">Every file that does work, what it does, and how the repo checks it. "Mutation-gated" means CI flips operators in the file one at a time and the tests must catch every change (witness, pinned at v0.6), with any reviewed-equivalent survivor written down with its reason.</p>
+  <div class="grid cards" id="organs"></div>
+  <p class="sub" style="margin-top:12px">Every push runs all of it on GitHub's runner — the unit tests, the measured report, the ladder, each mutation gate and the multiplier re-score — and refuses anything short of clean: <a href="https://github.com/sjgant80-hub/konomi-slm/actions/workflows/ci.yml">the gate's runs</a> · <a href="https://github.com/sjgant80-hub/konomi-slm">the source</a>.</p>
+
+  <h2 id="adoption">Adoption — what it does for a team, and how to roll it out</h2>
+  <p class="sub">Any decision your team makes over and over from records, where the outcome is later known: will this visit buy, is this reading critical, will this machine fail, is this transaction risky, will this customer leave. The engine answers the cases it can prove, with a receipt, and hands the rest to a person.</p>
+  <div class="panel">
+    <ol class="steps">
+      <li><b>Pick one decision.</b> One question with a yes/no outcome you already record, and enough history to hold some back.</li>
+      <li><b>Export the history.</b> A CSV of past cases with their outcome column. It stays on your machine.</li>
+      <li><b>Grow it where it will run.</b> <code>node tools/your-brain.mjs data/</code> grows an organ per file and keeps it only if it predicts that file's held-out rows; a file with no signal is refused, with the reason in the receipts.</li>
+      <li><b>Read what it kept.</b> Each organ prints as a short pattern book your team can challenge in plain language. If a rule looks wrong to the people who do the work, find out why before going further.</li>
+      <li><b>Run it in the shadow.</b> Let it answer alongside the team for a period you choose, and compare its answers and its abstains with what people decided.</li>
+      <li><b>Go live on what it answers.</b> Verified answers go straight through with their receipt; abstains route to people as today. Log every receipt — they re-check offline.</li>
+      <li><b>Grow it.</b> Add files and decisions; re-grow as new months arrive. The ladder keeps a domain only if it does not get worse on held-out.</li>
+    </ol>
+  </div>
+
+  <h2 id="business">For business — the brochure</h2>
+  <p class="sub">What it is: an owned engine that answers one repeated decision from your own history, proves each answer on cases it never saw, shows its working, and refuses what it cannot prove. Supplied by <a href="https://www.ai-nativesolutions.com">AI Native Solutions</a>.</p>
+
+  <h3 class="sec">What it does for each role</h3>
+  <div class="grid cards">
+    <div class="card role"><h3>CEO</h3><p>One decision your business repeats every day, answered by an engine you own outright. Every answer shows its working; where it cannot prove an answer it says so instead of being confidently wrong. Nothing rented, nothing that stops when a vendor changes its terms.</p></div>
+    <div class="card role"><h3>CFO</h3><p>The cost case below, on your own volumes, from public sources. The engine has no per-call bill and no licence to renew; its running cost is the extra electricity of a computer you already have. The saving is staff time on the cases it answers — and the share it answers is measured on your data, not promised.</p></div>
+    <div class="card role"><h3>COO</h3><p>Cases it can prove are answered at once with a receipt; cases it cannot are flagged for your people, so the queue shrinks without risk landing on the hard cases. The rules are short and readable, so the team sees why, and can challenge it.</p></div>
+    <div class="card role"><h3>CTO / CISO</h3><p>Static files: runs in a browser tab or under Node on your machines. The engine makes no network call and has no model in anything graded. Deterministic, MIT source you can read, unit tests and mutation gates re-run on every push, tamper-evident receipts on every answer.</p></div>
+    <div class="card role"><h3>The teams</h3><p>Fewer routine cases; the ones that reach a person are the ones that need one. A tool that refuses rather than overrules them, rules they can read and argue with, and new patterns grown from new files without a data-science project.</p></div>
+    <div class="card role"><h3>Procurement</h3><p>One supplier, an MIT licence, no lock-in: the engine is files you keep. Support, service levels, warranty and liability are agreed per deployment. Exit is keeping the files — it keeps running without us.</p></div>
+  </div>
+
+  <h3 class="sec">The cost case — your numbers, public prices</h3>
+  <p class="sub">Computed in this tab by <code>costcase.mjs</code> (tested in <code>tests/costcase.test.mjs</code>, mutation-gated in CI) from a sourced basis copied byte for byte (<code>vendor/sovereign-enterprise/data/basis.json</code>). Staff time is at the UK median wage with on-costs left out, so it is a floor. Change the inputs to yours.</p>
+  <div class="panel calc">
+    <div class="grid cards">
+      <div>
+        <label class="f"><span>cases a week</span><input type="number" id="c-cases" min="0" step="1"></label>
+        <label class="f"><span>minutes a person spends per case</span><input type="number" id="c-mins" min="0" step="0.5"></label>
+        <label class="f"><span>share it answers (%)</span><input type="number" id="c-share" min="0" max="100" step="1"></label>
+        <label class="f"><span>assistant licences you would rent</span><input type="number" id="c-seats" min="0" step="1"></label>
+      </div>
+      <div>
+        <label class="f"><span>cloud route: tokens in per case</span><input type="number" id="c-tin" min="0" step="100"></label>
+        <label class="f"><span>cloud route: tokens out per case</span><input type="number" id="c-tout" min="0" step="50"></label>
+        <label class="f"><span>years</span><input type="number" id="c-years" min="1" max="10" step="1"></label>
+        <p class="muted" style="font-size:12.5px;margin:8px 0 0">The share is the share of cases it <em>answers</em>; the rest it refuses and a person takes. Measure yours by growing on your own history — the default is a placeholder, not a promise.</p>
+      </div>
+    </div>
+    <div id="c-head" class="big2" style="margin-top:14px"></div>
+    <div class="tblwrap" style="margin-top:10px"><table class="tbl" id="c-table"></table></div>
+    <details><summary>Where every figure comes from</summary><ul class="tight sources" id="c-src"></ul></details>
+  </div>
+
+  <h3 class="sec">Against what you may pay now</h3>
+  <div class="panel" id="cmp"><span class="muted">loading the sourced prices…</span></div>
+
+  <h3 class="sec">Security and data protection</h3>
+  <div class="panel">
+    <ul class="tight">
+      <li><b>It runs where you run it.</b> Growing, answering and receipts all run in the browser tab or under Node on your own machine. The engine makes no network call; this page fetches only its own files from the site that served it.</li>
+      <li><b>Your data stays put.</b> Nothing is uploaded. <code>your-brain</code> reads CSVs from a local folder and writes its receipts beside them.</li>
+      <li><b>No accounts, no tracking.</b> No sign-in, no cookies, no analytics on this page.</li>
+      <li><b>Every answer is tamper-evident.</b> The receipt carries a SHA-256 hash over the pattern, its held-out score, the route fit, the score and the answer; change one field and it no longer verifies.</li>
+      <li><b>It is auditable.</b> A pattern is a few named rules with weights, printable as a pattern book; the library is a text file of seeds that re-grow those rules exactly.</li>
+      <li><b>It refuses outside what it proved.</b> A case unlike the grow cases gets an abstain, not an invented answer.</li>
+      <li><b>It is deterministic.</b> Same data and seed, same rules, same answers — no clock or randomness at answer time.</li>
+      <li><b>No model in the graded path.</b> An optional local model may propose candidate rules; only the held-out gate decides what is kept.</li>
+      <li><b>Open source.</b> MIT. Every line is readable, and CI re-runs the tests and mutation gates on GitHub's runner on every push.</li>
+      <li><b>Data protection.</b> Because nothing leaves the machine it runs on, it adds no new data transfer and no new third-party processor to your data map.</li>
+    </ul>
+  </div>
+
+  <h3 class="sec">Roll-out</h3>
+  <div class="panel"><p style="margin:0;font-size:14px">The <a href="#adoption">adoption steps above</a> are the roll-out: one decision, its history exported, grown on your machine, its pattern book read by the people who do the work, a shadow run you size, then live on the share it answers with abstains routed to people, then grown decision by decision. Nothing to install beyond Node for the command-line path; the browser path needs nothing.</p></div>
+
+  <h3 class="sec">Ownership, support and exit</h3>
+  <div class="panel">
+    <ul class="tight">
+      <li><b>Supplier.</b> AI Native Solutions — <a href="https://www.ai-nativesolutions.com">www.ai-nativesolutions.com</a>; contact through that site.</li>
+      <li><b>Support, service levels, warranty and liability</b> are agreed per deployment, in writing, before it goes live.</li>
+      <li><b>Licence.</b> MIT: run it, copy it, change it, keep it.</li>
+      <li><b>It keeps running without us.</b> Static files, plain JavaScript and a text file of seeds. No server of ours, no account, no subscription to lapse.</li>
+      <li><b>Exit.</b> Keep the files. There is nothing to migrate out of.</li>
+    </ul>
+  </div>
+
+  <h3 class="sec">Risks, answered straight</h3>
+  <div class="panel">
+    <ul class="tight">
+      <li><b>Will it work on our decision?</b> Only if your history predicts it. The gate tells you: a file with no real signal is refused with the reason. Nothing is claimed for your data until it is measured on your data.</li>
+      <li><b>How much will it answer?</b> Measured, not promised. It abstains on cases unlike the ones it grew on; that share goes to people. The share is your input to the cost case.</li>
+      <li><b>Is it as capable as a large AI model?</b> It is not a chat model: it does not write text, it ranks and answers structured cases. The <a href="#multiplier">multiplier test</a> is the sealed head-to-head against bigger raw models on real data, shown whatever it found.</li>
+      <li><b>What if things change?</b> Grading on the latest months shows drift; re-grow, and the ladder keeps a domain only if it does not get worse on held-out.</li>
+      <li><b>Small histories.</b> On small data the validation slice is noisy: the gate still stops a bad pattern getting in, but the gain over a simple baseline can be modest. This repo measured that and kept it on the record.</li>
+      <li><b>Certification.</b> This software has no third-party security certification. The claims on this page are architecture you can check in the source and in CI.</li>
+      <li><b>Demo data.</b> The shop domain is real (UCI). The other domains on this page are realistic-synthetic and labelled as such.</li>
+    </ul>
+  </div>
+
+  <h3 class="sec">The case for the board</h3>
+  <div class="panel"><p style="margin:0;font-size:14.5px">One repeated decision, answered by an engine the business owns outright. It proves each answer on cases it never saw, shows its working, refuses what it cannot prove, runs on hardware the business already has, and leaves no rented dependency behind. The cost case uses public figures and the business's own volumes; the head-to-head against bigger models was sealed before it ran and is shown whatever it found. Start with one decision in a shadow run; let its receipts decide whether it goes further.</p></div>
+
+  <h2 id="paper">White paper — the inversion, in short</h2>
+  <div class="panel paper">
+    <h3>The problem</h3>
+    <p>A language model keeps what it knows smeared across billions of weights. You cannot read it, you cannot check which part produced an answer, and when it does not know it still answers. Shrinking it to run cheaply loses knowledge, because the weights <em>are</em> the knowledge. Renting it means your decisions depend on someone else's model, prices and terms.</p>
+    <h3>The inversion</h3>
+    <p>Put the knowledge somewhere you can read and check — a library of small patterns, each a few rules with weights — and let a model, if one is used at all, only propose. A pattern enters the library only if it ranks cases it was never shown at or above a published gate. The library stores each pattern as a short seed that re-grows it exactly, so the whole knowledge base is a text file.</p>
+    <h3>Answer or abstain</h3>
+    <p>For a new case, a router measures how far each number sits from where the pattern's grow cases sat. If the case fits, the rules answer and the answer is hashed into a receipt anyone can re-check. If it does not fit, the engine abstains. Refusing the unanswerable is not a weakness to hide: on a mixed stream of answerable and unanswerable cases it is where the advantage over an always-guess model comes from (section 1's run measures it).</p>
+    <h3>Growth without retraining</h3>
+    <p>The library grows by adding verified patterns and deepening old ones — never by retraining weights. Each rung of the ladder starts from the last rung's champions and keeps a domain only if it holds or beats the last rung on held-out cases, so the record can only improve. It runs on an ordinary CPU.</p>
+    <h3>Where it sits in the field</h3>
+    <p>Neurosymbolic AI (a neural proposer with symbolic, checked rules), selective prediction (it abstains), evolutionary program search in the FunSearch / AlphaEvolve family (propose, test on held-out, keep only winners), and minimum description length (the shortest model that predicts the data). This is those four, fused into one owned system.</p>
+    <h3>What it does not do</h3>
+    <p>It does not write free text or hold a conversation. It works on structured, repeated decisions with a known outcome to learn from. Its claims are about the domains it has verified patterns for, and the measured results on this page — including the ones that did not come out in its favour.</p>
+    <h3>Credits</h3>
+    <p>Powered by the Konomi architecture, created by Thomas Frumkin. The held-out gate, the right to say "I don't know", the sleep cycle and knowledge living outside the model draw on Gary W. Floyd's GEP papers (Lumiea Systems Research Division — ThunderStruck Service LLC), cited in full below.</p>
+  </div>
 
   <div class="foot">
     <p><b>Honest scope.</b> v1 proves the architecture on structured-prediction domains, where "predict held-out or die" is measurable. The verified patterns are interpretable scorecards, not free-form text generation. The small model's job (free text → which domain) is optional and kept out of everything graded. The defensible claim is <em>"beats a flat model on any domain it has a verified pattern for, and refuses instead of guessing on anything it doesn't"</em> — not "beats GPT at everything." Breadth grows as the library grows.</p>
@@ -270,6 +574,156 @@ $('#exJunk').onclick=()=>{ setInput(junkExample($('#domain').value)); $('#result
 $('#ask').onclick=()=>{ const id=$('#domain').value; renderResult(answer(LIB,readInput()), id); };
 $('#dlLib').onclick=()=>{ if(LIB) download('konomi-slm-library.txt', Object.values(LIB.seeds).join('\n')+'\n'); };
 $('#dlReceipt').onclick=()=>{ if(LASTRECEIPT) download('konomi-slm-receipt.json', JSON.stringify(LASTRECEIPT,null,2),'application/json'); };
+</script>
+<script type="module">
+// The explainer, the multiplier receipt and the brochure. Every number here is read from the repo's own files as the
+// page loads (the kernel's constants, the shipped pattern's receipt, the sealed multiplier receipt, the sourced basis) —
+// none is typed in. Fetches only this site's own files.
+import { GATE_AUC, ROUTE_MIN } from './konomi-slm.mjs';
+import { readSeal } from './tools/multiplier.mjs';
+import { costCase, sourcesOf, DEFAULTS, BASIS_PATH } from './costcase.mjs';
+import { SHOPPER_FEATURES } from './vendor/seed-library/domains.mjs';
+
+const $ = (s) => document.querySelector(s);
+const el = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; };
+const getJSON = async (p) => { try { const r = await fetch(p, { cache: 'no-cache' }); return r.ok ? r.json() : null; } catch { return null; } };
+const getText = async (p) => { try { const r = await fetch(p, { cache: 'no-cache' }); return r.ok ? r.text() : null; } catch { return null; } };
+const gbp = (x) => '£' + Number(x).toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const gb = (bytes) => (bytes / 1e9).toLocaleString('en-GB', { maximumFractionDigits: 2 }) + ' GB';
+const REPO = 'https://github.com/sjgant80-hub/konomi-slm';
+
+// ── the diagrams: the kernel's own thresholds ──
+$('#dgGate').textContent = `held-out AUC ≥ ${GATE_AUC}?  (GATE_AUC in konomi-slm.mjs)`;
+$('#dgRoute').textContent = `route fit ≥ ${ROUTE_MIN}?  (ROUTE_MIN in konomi-slm.mjs)`;
+
+// ── the trace: the shipped shop pattern's receipt ──
+const shop = await getJSON('pattern-books/shopper.receipt.json');
+const trace = $('#trace'); trace.innerHTML = '';
+if (shop) {
+  $('#dgSeed').textContent = `the shipped shop pattern's owned seed: ${shop.ownedSeedBytes} bytes`;
+  $('#dgHeld').textContent = `(real shop data: graded on ${shop.held.toLocaleString('en-GB')} Nov–Dec sessions)`;
+  const steps = [
+    `Past cases: the real UCI Online Shoppers sessions, ${SHOPPER_FEATURES.length} named numbers each and whether the visit bought.`,
+    `Held back: November and December — ${shop.held.toLocaleString('en-GB')} sessions the pattern never saw while it grew.`,
+    `Proposed: a local model (${shop.proposer}) named ${shop.hypotheses.length} features it thought carry the signal (${shop.hypotheses.map((h) => h.feature + ' ' + h.direction).join(', ')}). It only proposed.`,
+    `Grown and chosen: candidates were bred and compared on a validation slice cut from the training months; kept: "${shop.selectedBy}" (validation AUC ${shop.valAuc}).`,
+    `The gate: held-out AUC ${shop.heldAuc} on the ${shop.held.toLocaleString('en-GB')} unseen sessions, against a gate of ${GATE_AUC} — kept.`,
+    `Stored: an owned seed of ${shop.ownedSeedBytes} bytes; the readable book is pattern-books/shopper.book.txt.`,
+    `Receipt: ${shop.receiptHash.slice(0, 16)}… — the multiplier test below re-derives this pattern with no model and lands on that hash exactly.`,
+  ];
+  for (const s of steps) trace.append(el('li', null, s));
+} else trace.append(el('li', 'muted', 'the pattern receipt could not be loaded — reload to retry'));
+
+// ── the multiplier: the sealed receipt ──
+const ARM_TEXT = {
+  KF: ['Konomi pattern book', 'the shipped shop pattern (primary)'],
+  K3: ['Konomi tier-3 pattern', 'the ladder\'s shop pattern (no bar)'],
+  K1: ['Konomi tier-1 pattern', 'section 1\'s shop pattern (no bar)'],
+  R14: ['qwen2.5:14b, raw', 'asked zero-shot'],
+  R7: ['qwen2.5:7b, raw', 'asked zero-shot'],
+  B7: ['qwen2.5:7b + the book', 'the same 7b, handed the pattern book'],
+};
+const [rec, claimsText] = await Promise.all([getJSON('receipts/multiplier.json'), getText('CLAIMS-MULTIPLIER.md')]);
+const seal = claimsText ? readSeal(claimsText) : { ok: false };
+if (seal.ok) $('#mxNot').textContent = seal.seal.notProven;
+$('#mxFiles').append('Files: ', Object.assign(el('a', null, 'CLAIMS-MULTIPLIER.md'), { href: 'CLAIMS-MULTIPLIER.md' }), ' (the seal) · ',
+  Object.assign(el('a', null, 'receipts/multiplier.json'), { href: 'receipts/multiplier.json' }), ' (every reply, every score) · ',
+  Object.assign(el('a', null, 'tools/multiplier.mjs'), { href: REPO + '/blob/main/tools/multiplier.mjs' }), ' (the scoring kernel, mutation-gated).');
+const claimText = (id) => (seal.ok ? (seal.seal.claims.find((c) => c.id === id) || {}).claim : '') || '';
+if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt) {
+  const v = rec.verdict;
+  $('#mxHead').className = 'big2 ' + (v.multiplierProven ? 'ok' : 'warn');
+  $('#mxHead').textContent = v.multiplierProven ? 'X1 · the multiplier: PROVEN' : 'X1 · the multiplier: NOT PROVEN — kept on the record';
+  const n = rec.sample.length, pos = rec.y.filter((y) => y === 1).length;
+  $('#mxSub').append(`${n} held-out sessions (${pos} purchases, ${n - pos} not), run ${rec.run.startedAt.slice(0, 10)} on one local machine (${rec.run.cpu}, ${rec.run.memoryGb} GB, Ollama ${rec.run.ollama || '?'}). Sealed in `,
+    Object.assign(el('a', 'mono', (rec.sealCommit || '').slice(0, 7)), { href: REPO + '/commit/' + rec.sealCommit }), ' before the code existed.');
+  const t = $('#mxArms');
+  const hr = el('tr'); for (const h of ['arm', 'what it is', 'size', 'AUC', 'balanced accuracy']) hr.append(el('th', /AUC|accuracy|size/.test(h) ? 'num' : null, h)); t.append(hr);
+  const size = { KF: `${rec.sizes.KFownedSeedBytes} B seed`, K3: 'seed', K1: 'seed', R14: gb(rec.sizes.R14weightsBytes), R7: gb(rec.sizes.R7weightsBytes), B7: gb(rec.sizes.R7weightsBytes) + ' + book' };
+  for (const a of ['KF', 'R14', 'R7', 'B7', 'K3', 'K1']) {
+    const tr = el('tr');
+    tr.append(el('td', null, ARM_TEXT[a][0]), el('td', 'muted', ARM_TEXT[a][1]), el('td', 'num', size[a]),
+      el('td', 'num', v.auc[a] != null ? String(v.auc[a]) : '—'), el('td', 'num', v.balancedAccuracy[a] != null ? String(v.balancedAccuracy[a]) : '—'));
+    t.append(tr);
+  }
+  const box = $('#mxClaims');
+  for (const c of v.claims) {
+    const row = el('div', 'claim');
+    row.append(el('span', 'pill ' + (c.holds ? 'ok' : 'bad'), (c.holds ? 'HELD ' : 'FAILED ') + c.id), el('div', 'txt', claimText(c.id)));
+    const fig = c.diff !== undefined
+      ? `${c.metric === 'auc' ? 'AUC' : 'balanced accuracy'} ${c.arm} − ${c.minus} = ${c.diff}   95% interval [${c.lo}, ${c.hi}]`
+      : c.parsed ? 'replies read: ' + Object.entries(c.parsed).map(([k, x]) => `${k} ${x}`).join(' · ') + ` (bar ${c.min})` : (c.why || '');
+    row.append(el('div', 'fig', fig));
+    box.append(row);
+  }
+  if (rec.konomi && rec.konomi.KF) box.append(el('p', 'muted', `The Konomi pattern book abstained on ${rec.konomi.KF.abstained} of the ${n} sessions (counted as wrong answers for balanced accuracy). Its AUC on all ${shop ? shop.held.toLocaleString('en-GB') : ''} held-out sessions is ${rec.konomi.KF.heldAucAll}.`));
+} else {
+  $('#mxHead').textContent = 'Sealed — the run\'s receipt lands here when it finishes';
+  $('#mxSub').textContent = 'The claims below were committed before the code; the run asks the local models one session at a time.';
+  if (seal.ok) for (const c of seal.seal.claims) { const row = el('div', 'claim'); row.append(el('span', 'pill', c.id), el('div', 'txt', c.claim)); $('#mxClaims').append(row); }
+}
+
+// ── the blueprint ──
+const ORGANS = [
+  ['konomi-slm.mjs', 'The engine: grow a pattern from a seed, the held-out gate, the router, answer-or-abstain, the receipt and its check, and the ungraded imagination stub.', 'tests/konomi-slm.test.mjs', 'mutation-gated in CI; reviewed equivalents written down in witness.baseline.json'],
+  ['grow-tier.mjs', 'The ladder: each tier warm-starts from the last tier\'s champions, deepens every domain, keeps it only if it does not get worse, and adds new domains through the gate.', 'tests/grow-tier.test.mjs', 'mutation-gated in CI; reviewed equivalents written down in witness-tier.baseline.json'],
+  ['domains-ext.mjs', 'The realistic-synthetic verticals the ladder adds (fraud, maintenance, credit, churn, energy, intrusion, inventory), each generated from a known rule and labelled synthetic.', 'tests/grow-tier.test.mjs', 'exercised by the ladder\'s tests'],
+  ['vendor/seed-library/', 'The ribosome (grow, fit, grade on held-out), the seeded generator, the stratified split, the AUC, the SENTINEL guard, SHA-256, and the real UCI shop data and loader — copied verbatim from the seed-library / fall-spore lineage.', 'gated in its home repo', 'vendored, never edited here'],
+  ['tools/your-brain.mjs', 'The product: a folder of your CSVs becomes a booted, owned brain — an organ per file, kept only if it predicts its own held-out rows, refused with the reason otherwise.', 'tests/your-brain.test.mjs', 'mutation-gated in CI; one reviewed equivalent written down in tools/witness.baseline.json'],
+  ['tools/multiplier.mjs', 'The multiplier test\'s scorer: the sealed sample, prompt, parse rule, AUC, balanced accuracy, paired bootstrap and claims. tools/run-multiplier.mjs asks the local models; tools/check-multiplier.mjs re-scores the receipt with no model.', 'tests/multiplier.test.mjs', 'mutation-gated in CI; the receipt re-scored in CI'],
+  ['costcase.mjs', 'The cost case in the brochure, from the sourced basis copied byte for byte.', 'tests/costcase.test.mjs', 'mutation-gated in CI'],
+  ['node/konomi-node.mjs', 'Runs the engine as a node of the estate\'s shared foundation (vendor/fall-kit-core): each verified domain a skill, answers carry receipts, the genome is the seeds.', 'node/konomi-node.test.mjs', 'mutation-gated in CI'],
+  ['tools/patternforge.mjs · council.mjs', 'The neurosymbolic loop: a local model proposes features, candidates are bred and gated on a validation slice cut from training, the best ships as a readable pattern book; the council runs several proposers with no vote — the gate ranks them.', 'tests/patternforge.test.mjs · tests/council.test.mjs', 'unit-tested with a stub proposer (the model itself is ungraded)'],
+  ['tools/synapses · sleep · neurons · evolution', 'The organs as a graph, nightly consolidation that keeps a fold only if recall survives, the cube of workers with a rule resolver, and feature-set evolution that never gets worse.', 'tests/synapses · sleep · neurons · evolution .test.mjs', 'unit-tested; each has its own live page'],
+  ['tools/cortex.mjs · body.mjs', 'Boots the whole stack into one running body with a single think() — verified answer with receipt, or abstain — and sizes a model to the host it runs on.', 'tests/cortex.test.mjs · tests/body.test.mjs', 'unit-tested'],
+  ['tools/propose-local.mjs · llm-duel.mjs', 'Optional local-model tooling: the proposer and an informal duel. Non-deterministic, so it is kept out of everything graded.', 'tests/propose-local.test.mjs (parse + compile only)', 'ungraded by design'],
+];
+const PAGES = { 'tools/patternforge.mjs · council.mjs': ['pattern-books.html', 'council.html'], 'tools/synapses · sleep · neurons · evolution': ['synapses.html', 'sleep.html', 'neurons.html', 'evolution.html'], 'tools/cortex.mjs · body.mjs': ['cortex.html', 'body.html'], 'tools/your-brain.mjs': ['brain.html'] };
+const og = $('#organs');
+for (const [file, what, tests, gate] of ORGANS) {
+  const c = el('div', 'card organ'); const h = el('h3'); h.append(el('code', null, file)); c.append(h);
+  c.append(el('p', null, what)); c.lastChild.style.cssText = 'margin:4px 0 8px;font-size:13.5px';
+  const kv = (k, val) => { const r = el('div', 'kv'); r.append(el('span', null, k), el('b', null, val)); c.append(r); };
+  kv('tests', tests); kv('gate', gate);
+  if (PAGES[file]) { const p = el('div', 'kv'); p.append(el('span', null, 'live')); const b = el('b'); PAGES[file].forEach((u, k) => { if (k) b.append(' · '); b.append(Object.assign(el('a', null, u.replace('.html', '')), { href: u })); }); p.append(b); c.append(p); }
+  og.append(c);
+}
+
+// ── the cost case + the comparison ──
+const basis = await getJSON(BASIS_PATH);
+const ids = { casesPerWeek: 'c-cases', minutesPerCase: 'c-mins', share: 'c-share', seats: 'c-seats', tokensIn: 'c-tin', tokensOut: 'c-tout', years: 'c-years' };
+for (const [k, id] of Object.entries(ids)) $('#' + id).value = k === 'share' ? DEFAULTS.share * 100 : DEFAULTS[k];
+const num = (id) => Number($('#' + id).value);
+function renderCase() {
+  if (!basis) { $('#c-head').textContent = 'the sourced basis could not be loaded — reload to retry'; return; }
+  const r = costCase(basis, { casesPerWeek: num('c-cases'), minutesPerCase: num('c-mins'), share: num('c-share') / 100, seats: num('c-seats'), tokensIn: num('c-tin'), tokensOut: num('c-tout'), years: num('c-years') });
+  const t = $('#c-table'); t.innerHTML = '';
+  if (!r.ok) { $('#c-head').className = 'big2 warn'; $('#c-head').textContent = 'Check the inputs — ' + r.why; return; }
+  $('#c-head').className = 'big2 ok';
+  $('#c-head').textContent = `Owning it saves ${gbp(r.savingPerYear)} a year — ${gbp(r.savingOver)} over ${r.inputs.years} year${r.inputs.years > 1 ? 's' : ''}`;
+  const hr = el('tr'); for (const h of ['route', 'what it costs', 'a year', `over ${r.inputs.years} yr`]) hr.append(el('th', /year|yr/.test(h) ? 'num' : null, h)); t.append(hr);
+  const rows = [
+    ['Today', `${r.lines.hoursPerWeek} staff hours a week on this decision`, r.perYear.today, r.over.today],
+    ['Rent AI assistants', `today's staff time + ${r.inputs.seats} assistant licences (${gbp(r.lines.seats)} a year); they help, but take no case off`, r.perYear.rentSeats, r.over.rentSeats],
+    ['A cloud model on every case', `staff time on the cases it does not take + the API bill (${gbp(r.lines.api)} a year), and the data leaves`, r.perYear.cloudApi, r.over.cloudApi],
+    ['Own the engine', `staff time on the cases it refuses + the extra electricity of a computer already on (${gbp(r.lines.power)} a year)`, r.perYear.own, r.over.own],
+  ];
+  for (const [a, b, c, d] of rows) { const tr = el('tr'); tr.append(el('td', null, a), el('td', 'muted', b), el('td', 'num', gbp(c)), el('td', 'num', gbp(d))); t.append(tr); }
+  const f = el('tr'); f.append(el('td', null, 'Own vs the cloud model'), el('td', 'muted', 'the same share of cases off both ways; the difference is the API bill (and where the data goes)'), el('td', 'num', ''), el('td', 'num', gbp(r.versusCloudOver))); t.append(f);
+}
+for (const id of Object.values(ids)) $('#' + id).addEventListener('input', renderCase);
+renderCase();
+if (basis) {
+  $('#c-src').append(...sourcesOf(basis).map((s) => { const li = el('li', null, s.what + (s.source ? ' — ' : '')); if (s.source) li.append(Object.assign(el('a', null, new URL(s.source).hostname), { href: s.source, target: '_blank', rel: 'noopener' })); return li; }));
+  const seat = basis['seat.copilot'], api = basis.frontier, fx = basis.fxGbpPerUsd;
+  const cmp = $('#cmp'); cmp.innerHTML = '';
+  const tb = el('table', 'tbl'); const hr = el('tr'); for (const h of ['what you may pay now', 'price (sourced)', 'what it does for this decision']) hr.append(el('th', null, h)); tb.append(hr);
+  const row = (a, b, c, src) => { const tr = el('tr'); const td = el('td', null, a); td.append(' ', Object.assign(el('a', null, 'source'), { href: src, target: '_blank', rel: 'noopener' })); tr.append(td, el('td', 'mono', b), el('td', 'muted', c)); tb.append(tr); };
+  row(seat.product, `£${seat.value.toFixed(2)} ${seat.unit.replace('GBP ', '')}`, 'helps each person with their own work; takes no case off the queue', seat.source);
+  row(api.product, `$${api.inPerM} in / $${api.outPerM} out ${api.unit.replace('USD ', '')}`, 'can be asked every case; a bill per call, and the case data leaves your machine', api.source);
+  const wrap = el('div', 'tblwrap'); wrap.append(tb); cmp.append(wrap);
+  cmp.append(el('p', 'muted', `Dollar prices are turned into pounds at ${fx.value} (${fx.what}). All prices ex-VAT, as the basis records them. The engine on this page has no price in this comparison: these are your costs, not ours.`));
+}
 </script>
 </body>
 </html>

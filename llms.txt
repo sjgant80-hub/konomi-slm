@@ -20,6 +20,18 @@
 - The ladder is monotone: tier N+1 never regresses a domain, only deepens or broadens — grow libraries, not weights.
 - Kernel + growth-engine mutation gates CLEAN; CI re-runs them on a clean runner.
 
+## The multiplier test (sealed)
+- Sealed in CLAIMS-MULTIPLIER.md before any code that measures it: the shipped shop pattern book (a 55-byte owned
+  seed) vs raw qwen2.5:14b and qwen2.5:7b on 200 real held-out sessions, by AUC and balanced accuracy with a paired
+  bootstrap; and qwen2.5:7b handed the book vs itself and vs the raw 14b. Every reply is in receipts/multiplier.json;
+  tools/check-multiplier.mjs re-scores every claim with no model, in CI. Results, held or failed: the live page.
+
+## For business
+- Supplied by AI Native Solutions (https://www.ai-nativesolutions.com); support/SLA/warranty/liability agreed per
+  deployment; MIT; static files + a seeds text file, so it keeps running without the supplier.
+- The live page carries the brochure: benefits by role, a cost case computed by costcase.mjs from a sourced basis,
+  security and data protection, roll-out, risks, and the case for the board.
+
 ## Credit
 Powered by the Konomi architecture, created by Thomas Frumkin. Lineage vendored from seed-library / fall-spore.
 Draws on three of Gary W. Floyd's Guided Entropy Principle (GEP) papers (the engine itself is the estate's own work):

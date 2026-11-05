@@ -79,7 +79,7 @@ export async function forgeOrgan(ds, { label1 = 'the positive outcome', seed = 7
   const core = { model: 'patternforge/1', domain: ds.name, selectedBy: champ.how, valAuc: champ.val,
     heldAuc: pattern.heldAuc, heldAcc: pattern.heldAcc, held: pattern.held, ownedSeed, ownedSeedBytes: ownedSeed.length,
     hypotheses: prop.ok ? prop.hypotheses : [], proposer: prop.ok ? prop.model : 'stem (proposer unavailable)' };
-  return { ok: true, ...core, book, receipt: { ...core, receiptHash: sha256Hex(JSON.stringify(core)) },
+  return { ok: true, ...core, pattern, book, receipt: { ...core, receiptHash: sha256Hex(JSON.stringify(core)) },
     // the knowledge to feed the mind — the verified book as a system-prompt snippet (grow-not-retrain level-up)
     mindContext: `Verified patterns for ${ds.name} (predicting "${label1}"), each proven on held-out data:\n${book}` };
 }

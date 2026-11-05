@@ -1,10 +1,18 @@
-## Own a brain from your CSVs
-
-**NEW — queue #11, THE PRODUCT:** `node tools/your-brain.mjs data` turns a folder of YOUR CSVs into a booted, verified mind you own — organs kept only if they predict held-out rows (demo: AUC 0.870 on 4,931 unseen), no-signal files refused with the reason. **Live: https://sjgant80-hub.github.io/konomi-slm/brain.html**
-
 # The Konomi SLM
 
-**▶ Live: https://sjgant80-hub.github.io/konomi-slm/** — grow the library and ask it in your browser; nothing is sent anywhere.
+**▶ Live: https://sjgant80-hub.github.io/konomi-slm/** — grow the library and ask it in your browser; nothing is sent anywhere. The page explains itself: plain words, START HERE, how it works (diagrams traced from the shipped shop pattern), the blueprint organ by organ, adoption, the brochure for business with a cost case computed from sourced figures, and a short white paper.
+
+## Own a brain from your CSVs
+
+`node tools/your-brain.mjs data` turns a folder of YOUR CSVs into a booted, verified mind you own — organs kept only if they predict held-out rows (demo: AUC 0.870 on 4,931 unseen), no-signal files refused with the reason. **Live: https://sjgant80-hub.github.io/konomi-slm/brain.html**
+
+## The multiplier test (sealed)
+
+Does the shipped shop pattern book — a few readable rules, a 55-byte owned seed — rank real unseen shop sessions better than raw `qwen2.5:14b` and `qwen2.5:7b` asked the same question? And does handing `qwen2.5:7b` the book make it better, even better than the raw 14b? The claims, prompt, sample and bars were sealed in [`CLAIMS-MULTIPLIER.md`](CLAIMS-MULTIPLIER.md) (commit `24c240e`) before any code that measures them. `node tools/run-multiplier.mjs` asks the local models and records every reply in `receipts/multiplier.json`; `node tools/check-multiplier.mjs` re-scores every claim from those replies with no model, and CI runs it on every push. The result — held or failed, claim by claim — is on the live page under *The multiplier test*.
+
+## For business
+
+Supplied by [AI Native Solutions](https://www.ai-nativesolutions.com) (contact via that site); support, service levels, warranty and liability are agreed per deployment. MIT licensed; it is static files plus a text file of seeds, so it keeps running without us. The brochure on the live page has the benefits by role, the cost case (`costcase.mjs`, from `vendor/sovereign-enterprise/data/basis.json` copied byte for byte from the estate's sourced basis), security and data protection, roll-out, risks and the case for the board.
 
 **A neurosymbolic verified knowledge engine with abstention.** A model *proposes*, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a **verified, readable, compressed pattern-library** instead of opaque weights, and it grows by adding verified rules — not by retraining.
 
@@ -34,8 +42,11 @@ The edge is the **abstain**: it refuses what it cannot verify instead of halluci
 npm run         # build the library and print the measured report
 npm test        # the unit tests (the gate's teeth)
 npm run witness # the mutation gate — mutate the kernel, the tests must catch every change
+npm run check-multiplier  # re-score the sealed multiplier receipt with no model
 npm run duel    # optional, ungraded: verified pattern vs llama3.2:1b (needs local Ollama)
 ```
+
+CI (`.github/workflows/ci.yml`) runs the unit tests, the measured report, the ladder, the multiplier re-score, and the witness mutation gate (pinned at `v0.6` of [sjgant80-hub/witness](https://github.com/sjgant80-hub/witness)) on `konomi-slm.mjs`, `grow-tier.mjs`, `tools/your-brain.mjs`, `node/konomi-node.mjs`, `tools/multiplier.mjs` and `costcase.mjs`, and refuses anything short of clean.
 
 ## The ladder — tier 1 builds tier 2
 

@@ -1,0 +1,13 @@
+{
+  "kind": "konomi-slm.vendor",
+  "note": "Copied byte for byte. Never edit a vendored file; re-vendor. The basis lists every external figure the brochure's cost case reads, each with its source URL.",
+  "files": [
+    {
+      "path": "vendor/sovereign-enterprise/data/basis.json",
+      "from": "sjgant80-hub/liveware vendor/ai-first-company/vendor/sovereign-enterprise/data/basis.json",
+      "commit": "ee580e4bebeeb1ddbf2fb30817a471572a414c80",
+      "sha256": "83e9c2effa2f81596dcfa7110f030940032c1910cdf928d27d628ae59d73bb42",
+      "what": "the estate's sourced basis (wage, CPI, electricity, FX, assistant licence and API prices), first written in sjgant80-hub/sovereign-enterprise data/basis.json"
+    }
+  ]
+}
