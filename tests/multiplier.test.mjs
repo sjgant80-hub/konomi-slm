@@ -216,6 +216,21 @@ test('judge · a tie fails, a loss fails, a positive point with a low end at or 
   assert.equal(up.lo > 0, up.holds);
 });
 
+test('judge · the bar is strict on both sides: a point of exactly 0 fails, a low end of exactly 0 fails', () => {
+  // diff exactly 0 on the whole sample, yet the one resample favours KF (its low end is above 0): still not held
+  const Y12 = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0];
+  const A = { scores: [10, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5] }, B = { scores: [0, 10, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5] };
+  const zeroPoint = claim(judge({ KF: A, R14: B }, Y12, PARSED, { resamples: 1, seed: 3 }), 'X1');
+  assert.deepEqual(zeroPoint, { id: 'X1', metric: 'auc', arm: 'KF', minus: 'R14', diff: 0, lo: 0.06, hi: 0.06, holds: false });
+  // the sealed 100 + 100 sample and the sealed 2,000 resamples: KF ahead by one session, so about a third of the
+  // resamples miss that session and tie — the low end is exactly 0, and the claim is not held
+  const y200 = [...Array(100).fill(1), ...Array(100).fill(0)];
+  const base = y200.map((v, i) => (v ? (i % 7) + 3 : (i % 5) + 4));
+  const ahead = base.slice(); ahead[0] = 100;
+  const zeroLow = claim(judge({ KF: { scores: ahead }, R14: { scores: base } }, y200, PARSED), 'X1');
+  assert.deepEqual(zeroLow, { id: 'X1', metric: 'auc', arm: 'KF', minus: 'R14', diff: 0.01, lo: 0, hi: 0.03, holds: false });
+});
+
 test('judge · X6 needs 190 of 200 replies read from every model arm', () => {
   assert.equal(claim(judge(ARMS(), Y, { R14: 190, R7: 190, B7: 190 }, SMALL), 'X6').holds, true);
   assert.equal(claim(judge(ARMS(), Y, { R14: 190, R7: 189, B7: 200 }, SMALL), 'X6').holds, false);

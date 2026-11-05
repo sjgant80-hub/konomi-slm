@@ -122,7 +122,7 @@
   </header>
 
   <h2 id="start">Start here</h2>
-  <p class="sub">Five minutes, in this tab, no install. Every number you see is computed by the same code the tests and the mutation gate check.</p>
+  <p class="sub">In this tab, no install, no sign-in. Every number you see is computed by the same code the tests and the mutation gate check.</p>
   <div class="panel">
     <ol class="steps">
       <li><b>Grow the library.</b> Press <em>Grow the library</em> in section 1. Each tiny seed grows a pattern on its training cases and is graded on cases held back; only patterns that clear the gate stay. The cards show each one's held-out score and its seed size in bytes.</li>
@@ -301,6 +301,7 @@
       <li><b>Export the history.</b> A CSV of past cases with their outcome column. It stays on your machine.</li>
       <li><b>Grow it where it will run.</b> <code>node tools/your-brain.mjs data/</code> grows an organ per file and keeps it only if it predicts that file's held-out rows; a file with no signal is refused, with the reason in the receipts.</li>
       <li><b>Read what it kept.</b> Each organ prints as a short pattern book your team can challenge in plain language. If a rule looks wrong to the people who do the work, find out why before going further.</li>
+      <li><b>Plug it in.</b> From any Node script, import <code>answer()</code> from <code>konomi-slm.mjs</code> and pass it the library and a case as named numbers; it returns <code>VERIFIED</code> with the answer and its receipt, or <code>ABSTAIN</code> with the reason. A browser page can do the same, as this one does. There is no server to run.</li>
       <li><b>Run it in the shadow.</b> Let it answer alongside the team for a period you choose, and compare its answers and its abstains with what people decided.</li>
       <li><b>Go live on what it answers.</b> Verified answers go straight through with their receipt; abstains route to people as today. Log every receipt — they re-check offline.</li>
       <li><b>Grow it.</b> Add files and decisions; re-grow as new months arrive. The ladder keeps a domain only if it does not get worse on held-out.</li>
@@ -339,6 +340,7 @@
     </div>
     <div id="c-head" class="big2" style="margin-top:14px"></div>
     <div class="tblwrap" style="margin-top:10px"><table class="tbl" id="c-table"></table></div>
+    <p class="muted" style="font-size:12.5px;margin:10px 0 0"><b>Not in this case:</b> whatever you agree with the supplier for set-up or support (agreed per deployment — add it to the <em>Own</em> line), and your own team's time for the shadow run. <b>Assumptions you can see:</b> rented assistants are counted as taking no case off, because they help a person work a case rather than take it away; the cloud route is counted as taking the same share off as owning it, so the two differ only in the bill and where the data goes; the token counts are placeholders for your own prompt size.</p>
     <details><summary>Where every figure comes from</summary><ul class="tight sources" id="c-src"></ul></details>
   </div>
 
@@ -356,7 +358,9 @@
       <li><b>It refuses outside what it proved.</b> A case unlike the grow cases gets an abstain, not an invented answer.</li>
       <li><b>It is deterministic.</b> Same data and seed, same rules, same answers — no clock or randomness at answer time.</li>
       <li><b>No model in the graded path.</b> An optional local model may propose candidate rules; only the held-out gate decides what is kept.</li>
-      <li><b>Open source.</b> MIT. Every line is readable, and CI re-runs the tests and mutation gates on GitHub's runner on every push.</li>
+      <li><b>Open source, no third-party packages.</b> MIT. Every line is readable; <code>package.json</code> has no dependencies, and vendored code is copied in with its source named. CI re-runs the tests and mutation gates on GitHub's runner on every push.</li>
+      <li><b>A swapped pattern shows.</b> Each receipt names its pattern by a hash of the seed and its rules; keep the seeds file under version control and any change to a rule is a visible diff.</li>
+      <li><b>Host it inside your network.</b> This copy is served from GitHub Pages. For production, put the same static files on your own web server or file share — they need nothing else, so even the page load stays inside.</li>
       <li><b>Data protection.</b> Because nothing leaves the machine it runs on, it adds no new data transfer and no new third-party processor to your data map.</li>
     </ul>
   </div>
@@ -370,6 +374,7 @@
       <li><b>Supplier.</b> AI Native Solutions — <a href="https://www.ai-nativesolutions.com">www.ai-nativesolutions.com</a>; contact through that site.</li>
       <li><b>Support, service levels, warranty and liability</b> are agreed per deployment, in writing, before it goes live.</li>
       <li><b>Licence.</b> MIT: run it, copy it, change it, keep it.</li>
+      <li><b>What you grow is yours.</b> The library grown from your data is a file on your machine; the licence covers the code and makes no claim on it. The software never needs the supplier to see your data; if a support arrangement ever does, that is written into the deployment terms.</li>
       <li><b>It keeps running without us.</b> Static files, plain JavaScript and a text file of seeds. No server of ours, no account, no subscription to lapse.</li>
       <li><b>Exit.</b> Keep the files. There is nothing to migrate out of.</li>
     </ul>
@@ -398,7 +403,7 @@
     <h3>The inversion</h3>
     <p>Put the knowledge somewhere you can read and check — a library of small patterns, each a few rules with weights — and let a model, if one is used at all, only propose. A pattern enters the library only if it ranks cases it was never shown at or above a published gate. The library stores each pattern as a short seed that re-grows it exactly, so the whole knowledge base is a text file.</p>
     <h3>Answer or abstain</h3>
-    <p>For a new case, a router measures how far each number sits from where the pattern's grow cases sat. If the case fits, the rules answer and the answer is hashed into a receipt anyone can re-check. If it does not fit, the engine abstains. Refusing the unanswerable is not a weakness to hide: on a mixed stream of answerable and unanswerable cases it is where the advantage over an always-guess model comes from (section 1's run measures it).</p>
+    <p>For a new case, a router measures how far each number sits from where the pattern's grow cases sat. If the case fits, the rules answer and the answer is hashed into a receipt anyone can re-check. If it does not fit, the engine abstains. Refusing the unanswerable is not a weakness to hide: on a mixed stream of answerable and unanswerable cases it is where the advantage over an always-guess model comes from. The measured report, <code>node tools/run.mjs</code>, scores that mixed stream against an always-guess baseline, and CI runs it on every push.</p>
     <h3>Growth without retraining</h3>
     <p>The library grows by adding verified patterns and deepening old ones — never by retraining weights. Each rung of the ladder starts from the last rung's champions and keeps a domain only if it holds or beats the last rung on held-out cases, so the record can only improve. It runs on an ordinary CPU.</p>
     <h3>Where it sits in the field</h3>
@@ -630,7 +635,7 @@ $('#mxFiles').append('Files: ', Object.assign(el('a', null, 'CLAIMS-MULTIPLIER.m
   Object.assign(el('a', null, 'receipts/multiplier.json'), { href: 'receipts/multiplier.json' }), ' (every reply, every score) · ',
   Object.assign(el('a', null, 'tools/multiplier.mjs'), { href: REPO + '/blob/main/tools/multiplier.mjs' }), ' (the scoring kernel, mutation-gated).');
 const claimText = (id) => (seal.ok ? (seal.seal.claims.find((c) => c.id === id) || {}).claim : '') || '';
-if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt) {
+try { if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt) {
   const v = rec.verdict;
   $('#mxHead').className = 'big2 ' + (v.multiplierProven ? 'ok' : 'warn');
   $('#mxHead').textContent = v.multiplierProven ? 'X1 · the multiplier: PROVEN' : 'X1 · the multiplier: NOT PROVEN — kept on the record';
@@ -661,7 +666,7 @@ if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt) {
   $('#mxHead').textContent = 'Sealed — the run\'s receipt lands here when it finishes';
   $('#mxSub').textContent = 'The claims below were committed before the code; the run asks the local models one session at a time.';
   if (seal.ok) for (const c of seal.seal.claims) { const row = el('div', 'claim'); row.append(el('span', 'pill', c.id), el('div', 'txt', c.claim)); $('#mxClaims').append(row); }
-}
+} } catch { $('#mxHead').textContent = 'the multiplier receipt could not be read — open receipts/multiplier.json directly'; }
 
 // ── the blueprint ──
 const ORGANS = [
@@ -670,7 +675,7 @@ const ORGANS = [
   ['domains-ext.mjs', 'The realistic-synthetic verticals the ladder adds (fraud, maintenance, credit, churn, energy, intrusion, inventory), each generated from a known rule and labelled synthetic.', 'tests/grow-tier.test.mjs', 'exercised by the ladder\'s tests'],
   ['vendor/seed-library/', 'The ribosome (grow, fit, grade on held-out), the seeded generator, the stratified split, the AUC, the SENTINEL guard, SHA-256, and the real UCI shop data and loader — copied verbatim from the seed-library / fall-spore lineage.', 'gated in its home repo', 'vendored, never edited here'],
   ['tools/your-brain.mjs', 'The product: a folder of your CSVs becomes a booted, owned brain — an organ per file, kept only if it predicts its own held-out rows, refused with the reason otherwise.', 'tests/your-brain.test.mjs', 'mutation-gated in CI; one reviewed equivalent written down in tools/witness.baseline.json'],
-  ['tools/multiplier.mjs', 'The multiplier test\'s scorer: the sealed sample, prompt, parse rule, AUC, balanced accuracy, paired bootstrap and claims. tools/run-multiplier.mjs asks the local models; tools/check-multiplier.mjs re-scores the receipt with no model.', 'tests/multiplier.test.mjs', 'mutation-gated in CI; the receipt re-scored in CI'],
+  ['tools/multiplier.mjs', 'The multiplier test\'s scorer: the sealed sample, prompt, parse rule, AUC, balanced accuracy, paired bootstrap and claims. tools/run-multiplier.mjs asks the local models; tools/check-multiplier.mjs re-scores the receipt with no model.', 'tests/multiplier.test.mjs', 'mutation-gated in CI; one reviewed equivalent written down in witness-multiplier.baseline.json; the receipt re-scored in CI'],
   ['costcase.mjs', 'The cost case in the brochure, from the sourced basis copied byte for byte.', 'tests/costcase.test.mjs', 'mutation-gated in CI'],
   ['node/konomi-node.mjs', 'Runs the engine as a node of the estate\'s shared foundation (vendor/fall-kit-core): each verified domain a skill, answers carry receipts, the genome is the seeds.', 'node/konomi-node.test.mjs', 'mutation-gated in CI'],
   ['tools/patternforge.mjs · council.mjs', 'The neurosymbolic loop: a local model proposes features, candidates are bred and gated on a validation slice cut from training, the best ships as a readable pattern book; the council runs several proposers with no vote — the gate ranks them.', 'tests/patternforge.test.mjs · tests/council.test.mjs', 'unit-tested with a stub proposer (the model itself is ungraded)'],
@@ -700,7 +705,7 @@ function renderCase() {
   const t = $('#c-table'); t.innerHTML = '';
   if (!r.ok) { $('#c-head').className = 'big2 warn'; $('#c-head').textContent = 'Check the inputs — ' + r.why; return; }
   $('#c-head').className = 'big2 ok';
-  $('#c-head').textContent = `Owning it saves ${gbp(r.savingPerYear)} a year — ${gbp(r.savingOver)} over ${r.inputs.years} year${r.inputs.years > 1 ? 's' : ''}`;
+  $('#c-head').textContent = `On these inputs, owning it saves ${gbp(r.savingPerYear)} a year — ${gbp(r.savingOver)} over ${r.inputs.years} year${r.inputs.years > 1 ? 's' : ''}`;
   const hr = el('tr'); for (const h of ['route', 'what it costs', 'a year', `over ${r.inputs.years} yr`]) hr.append(el('th', /year|yr/.test(h) ? 'num' : null, h)); t.append(hr);
   const rows = [
     ['Today', `${r.lines.hoursPerWeek} staff hours a week on this decision`, r.perYear.today, r.over.today],

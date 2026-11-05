@@ -40,6 +40,7 @@ const konomi = konomiScores(arms, sample);
 console.log(`  KF re-derived to its shipped receipt: ${arms.kfReceiptMatches} · sample ${sample.length} sessions (${y.filter((v) => v === 1).length} purchases)`);
 
 let rec = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : null;
+const resuming = !RESCORE && !!rec && !(rec.run && rec.run.finishedAt);
 if (rec && rec.claimsSha256 !== sha(claimsText)) { console.error('the recorded run was made under a different claims file — refusing to mix them'); process.exit(1); }
 if (!rec) {
   let sealCommit = null;
@@ -47,7 +48,9 @@ if (!rec) {
   rec = { kind: 'konomi-slm.multiplier.receipt', v: 1, claimsFile: 'CLAIMS-MULTIPLIER.md', claimsSha256: sha(claimsText), sealCommit,
     run: { startedAt: new Date().toISOString(), resumes: 0, cpu: os.cpus()[0] && os.cpus()[0].model, memoryGb: Math.round(os.totalmem() / 2 ** 30), platform: os.platform() },
     models: {}, replies: { R14: [], R7: [], B7: [] } };
-} else if (!RESCORE && MODEL_ARMS.some((a) => rec.replies[a].length < sample.length)) rec.run.resumes++;
+}
+// a resume is said in the receipt: when, from which session of each arm, under which Ollama build, and why it stopped
+if (resuming) rec.run.resumes++;
 
 async function getJson(path, body) {
   const r = await fetch(OLLAMA + path, body ? { method: 'POST', body: JSON.stringify(body), signal: AbortSignal.timeout(120000) } : { signal: AbortSignal.timeout(10000) });
@@ -66,7 +69,12 @@ const save = () => { fs.mkdirSync(here('../receipts'), { recursive: true }); fs.
 
 if (!RESCORE) {
   const tags = await getJson('/api/tags');
-  try { rec.run.ollama = (await getJson('/api/version')).version; } catch { /* optional */ }
+  let ollama = null;
+  try { ollama = (await getJson('/api/version')).version; } catch { /* optional */ }
+  if (resuming) {
+    (rec.run.resumeLog ||= []).push({ at: new Date().toISOString(), ollama, from: Object.fromEntries(MODEL_ARMS.map((a) => [a, rec.replies[a].length])),
+      why: process.env.MULTIPLIER_RESUME_WHY || 'the earlier run stopped before every reply was recorded' });
+  } else rec.run.ollama = ollama;
   for (const a of MODEL_ARMS) {
     const m = (tags.models || []).find((x) => x.name === MODEL_OF[a]);
     if (!m || m.digest !== DIGEST_OF[a]) { console.error(`refused: ${MODEL_OF[a]} on this machine is not the sealed digest`); process.exit(1); }

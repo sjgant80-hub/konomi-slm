@@ -1,0 +1,7 @@
+[
+ {
+  "mutation": "|| → &&",
+  "snippet": "if (table[a] === undefined || table[m] === undefined || !diffs[id] || !diffs[id].length) {",
+  "reason": "True equivalent, the FIRST || only (the second and third are killed by the one-class and zero-resample tests). table[x] is undefined exactly when arm x fails covers() for that metric: both test the same array and the same length (scores for AUC, labels for balanced accuracy). So whenever table[a] or table[m] is missing, bootstrap pushed nothing for this pair and !diffs[id] || !diffs[id].length is already true; turning the first || into && cannot change which claims are reported missing. Checked by hand on 2026-11-05: the mutant passes, mutants two and three fail the suite."
+ }
+]
