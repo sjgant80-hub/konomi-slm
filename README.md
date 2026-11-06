@@ -26,7 +26,7 @@ Every other small model shrinks a big one (quantize/distil) until accuracy falls
 - **A tiny model only routes.** Shrinking it loses nothing, because the knowledge is in the library.
 - **The gate guarantees fidelity.** Out-of-distribution input is abstained, not guessed. Every answer carries a tamper-evident receipt naming the pattern that earned it and its held-out score.
 
-## Measured (this repo, reproducible with `npm run`)
+## Measured (this repo, reproducible with `node tools/run.mjs`)
 
 | | |
 |---|---|
@@ -39,7 +39,7 @@ Every other small model shrinks a big one (quantize/distil) until accuracy falls
 The edge is the **abstain**: it refuses what it cannot verify instead of hallucinating. On a commonsense domain (triage) a general 1B model ties it; the Konomi SLM's advantage is on abstract domains (verified ranking) and on refusing the unanswerable.
 
 ```
-npm run         # build the library and print the measured report
+npm run run     # build the library and print the measured report
 npm test        # the unit tests (the gate's teeth)
 npm run witness # the mutation gate — mutate the kernel, the tests must catch every change
 npm run check-multiplier  # re-score the sealed multiplier receipt with no model

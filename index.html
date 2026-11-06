@@ -6,6 +6,7 @@
 <title>The Konomi SLM</title>
 <meta name="description" content="A neurosymbolic verified knowledge engine: a model proposes, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a readable, compressed pattern-library, not opaque weights. It grows by adding verified rules, not by retraining. Runs in your browser." />
 <meta name="color-scheme" content="dark light" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZrWddQShoc5Frk86RPfPklAyEDm9h8UEAsy7FlP+moI=' 'sha256-5rCVOI6wa8yWfnNUUOV5YtC+I4u2yV0xgjCLMU0FI5Q='; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","description":"A neurosymbolic, self-growing, verified knowledge engine with selective abstention. A neural model proposes answers; only verified rules that predict held-out data are kept (predict-or-be-cut); out-of-distribution inputs are abstained, not hallucinated; every answer carries a tamper-evident receipt. Knowledge lives in a readable, lossless-compressed pattern-library, not opaque weights, and the engine grows by adding verified rules rather than retraining. In the family of evolutionary program search (FunSearch, AlphaEvolve) — owned, CPU-scale, multi-domain, compression-native."}
 </script>
@@ -177,6 +178,7 @@
   <div class="panel" id="mxPanel">
     <div id="mxHead" class="big2 muted">loading the sealed receipt…</div>
     <div id="mxSub" class="muted" style="font-size:13px;margin-top:4px"></div>
+    <p id="mxPlain" style="font-size:14px;margin:10px 0 0"></p>
     <div class="tblwrap" style="margin-top:14px"><table class="tbl" id="mxArms"></table></div>
     <h3 class="sec">The claims, each held or failed on its own</h3>
     <div id="mxClaims"></div>
@@ -298,7 +300,7 @@
   <div class="panel">
     <ol class="steps">
       <li><b>Pick one decision.</b> One question with a yes/no outcome you already record, and enough history to hold some back.</li>
-      <li><b>Export the history.</b> A CSV of past cases with their outcome column. It stays on your machine.</li>
+      <li><b>Export the history.</b> A CSV of past cases with their outcome column (two values, such as bought / did not). It stays on your machine. The tool picks the outcome column itself — a two-valued column named like an outcome, otherwise the last two-valued one; to choose it, put a <code>brain.config.json</code> beside the files: <code>{"targets": {"visits.csv": "Revenue"}}</code>.</li>
       <li><b>Grow it where it will run.</b> <code>node tools/your-brain.mjs data/</code> grows an organ per file and keeps it only if it predicts that file's held-out rows; a file with no signal is refused, with the reason in the receipts.</li>
       <li><b>Read what it kept.</b> Each organ prints as a short pattern book your team can challenge in plain language. If a rule looks wrong to the people who do the work, find out why before going further.</li>
       <li><b>Plug it in.</b> From any Node script, import <code>answer()</code> from <code>konomi-slm.mjs</code> and pass it the library and a case as named numbers; it returns <code>VERIFIED</code> with the answer and its receipt, or <code>ABSTAIN</code> with the reason. A browser page can do the same, as this one does. There is no server to run.</li>
@@ -335,7 +337,7 @@
         <label class="f"><span>cloud route: tokens in per case</span><input type="number" id="c-tin" min="0" step="100"></label>
         <label class="f"><span>cloud route: tokens out per case</span><input type="number" id="c-tout" min="0" step="50"></label>
         <label class="f"><span>years</span><input type="number" id="c-years" min="1" max="10" step="1"></label>
-        <p class="muted" style="font-size:12.5px;margin:8px 0 0">The share is the share of cases it <em>answers</em>; the rest it refuses and a person takes. Measure yours by growing on your own history — the default is a placeholder, not a promise.</p>
+        <p class="muted" style="font-size:12.5px;margin:8px 0 0">The share is the share of cases it <em>answers</em>; the rest it refuses and a person takes. Measure yours by growing on your own history — the default is a placeholder, not a promise.<span id="c-measured"></span></p>
       </div>
     </div>
     <div id="c-head" class="big2" style="margin-top:14px"></div>
@@ -351,6 +353,7 @@
   <div class="panel">
     <ul class="tight">
       <li><b>It runs where you run it.</b> Growing, answering and receipts all run in the browser tab or under Node on your own machine. The engine makes no network call; this page fetches only its own files from the site that served it.</li>
+      <li><b>Your browser enforces that.</b> The page carries a Content-Security-Policy (view the source): it may fetch only from the site that served it, run only its own files and the inline scripts it lists by hash — no other script, no eval — and load no plugin or frame. A test in CI fails if the policy and the scripts drift apart (<code>tests/page-csp.test.mjs</code>).</li>
       <li><b>Your data stays put.</b> Nothing is uploaded. <code>your-brain</code> reads CSVs from a local folder and writes its receipts beside them.</li>
       <li><b>No accounts, no tracking.</b> No sign-in, no cookies, no analytics on this page.</li>
       <li><b>Every answer is tamper-evident.</b> The receipt carries a SHA-256 hash over the pattern, its held-out score, the route fit, the score and the answer; change one field and it no longer verifies.</li>
@@ -385,6 +388,7 @@
     <ul class="tight">
       <li><b>Will it work on our decision?</b> Only if your history predicts it. The gate tells you: a file with no real signal is refused with the reason. Nothing is claimed for your data until it is measured on your data.</li>
       <li><b>How much will it answer?</b> Measured, not promised. It abstains on cases unlike the ones it grew on; that share goes to people. The share is your input to the cost case.</li>
+      <li><b>When it answers, can it be wrong?</b> Yes. An answer is a ranking against a threshold, not a certainty: each pattern's held-out AUC and accuracy are on its card in section 1<span id="rkMx"></span>. Measure it on your own cases in the shadow run before any answer goes straight through.</li>
       <li><b>Is it as capable as a large AI model?</b> It is not a chat model: it does not write text, it ranks and answers structured cases. The <a href="#multiplier">multiplier test</a> is the sealed head-to-head against bigger raw models on real data, shown whatever it found.</li>
       <li><b>What if things change?</b> Grading on the latest months shows drift; re-grow, and the ladder keeps a domain only if it does not get worse on held-out.</li>
       <li><b>Small histories.</b> On small data the validation slice is noisy: the gate still stops a bad pattern getting in, but the gain over a simple baseline can be modest. This repo measured that and kept it on the record.</li>
@@ -642,6 +646,9 @@ try { if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt)
   const n = rec.sample.length, pos = rec.y.filter((y) => y === 1).length;
   $('#mxSub').append(`${n} held-out sessions (${pos} purchases, ${n - pos} not), run ${rec.run.startedAt.slice(0, 10)} on one local machine (${rec.run.cpu}, ${rec.run.memoryGb} GB, Ollama ${rec.run.ollama || '?'}). Sealed in `,
     Object.assign(el('a', 'mono', (rec.sealCommit || '').slice(0, 7)), { href: REPO + '/commit/' + rec.sealCommit }), ' before the code existed.');
+  const log = Array.isArray(rec.run.resumeLog) ? rec.run.resumeLog : [];
+  if (log.length) $('#mxSub').append(` The run stopped and resumed ${log.length === 1 ? 'once' : log.length + ' times'}, as the seal allows, at the first session without a reply: `
+    + log.map((r) => `${r.at.slice(0, 16).replace('T', ' ')} UTC from R14 ${r.from.R14} · R7 ${r.from.R7} · B7 ${r.from.B7}, Ollama ${r.ollama || '?'} (${r.why})`).join('; ') + '. No reply was re-asked.');
   const t = $('#mxArms');
   const hr = el('tr'); for (const h of ['arm', 'what it is', 'size', 'AUC', 'balanced accuracy']) hr.append(el('th', /AUC|accuracy|size/.test(h) ? 'num' : null, h)); t.append(hr);
   const size = { KF: `${rec.sizes.KFownedSeedBytes} B seed`, K3: 'seed', K1: 'seed', R14: gb(rec.sizes.R14weightsBytes), R7: gb(rec.sizes.R7weightsBytes), B7: gb(rec.sizes.R7weightsBytes) + ' + book' };
@@ -662,6 +669,11 @@ try { if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt)
     box.append(row);
   }
   if (rec.konomi && rec.konomi.KF) box.append(el('p', 'muted', `The Konomi pattern book abstained on ${rec.konomi.KF.abstained} of the ${n} sessions (counted as wrong answers for balanced accuracy). Its AUC on all ${shop ? shop.held.toLocaleString('en-GB') : ''} held-out sessions is ${rec.konomi.KF.heldAucAll}.`));
+  // in plain words, from the same receipt: what ranked the sessions best, and how big each arm is
+  $('#mxPlain').textContent = `In plain words: AUC is the chance that a buyer is ranked above a browser (0.5 is a coin toss, 1 is perfect). On these ${n} sessions the Konomi pattern book, a ${rec.sizes.KFownedSeedBytes}-byte seed, scored ${v.auc.KF}; raw qwen2.5:14b (${gb(rec.sizes.R14weightsBytes)} of weights) scored ${v.auc.R14}; raw qwen2.5:7b (${gb(rec.sizes.R7weightsBytes)}) scored ${v.auc.R7}; the same 7b handed the book scored ${v.auc.B7}. A claim holds only if its whole 95% interval is above zero.`;
+  // the brochure reads its measured figures from the same receipt
+  if (v.balancedAccuracy.KF != null) $('#rkMx').textContent = `; in the multiplier test above, the shop pattern's own yes/no answers on ${n} real held-out sessions scored a balanced accuracy of ${v.balancedAccuracy.KF} (0.5 is a coin toss), abstains counted as wrong`;
+  if (rec.konomi && rec.konomi.KF) $('#c-measured').textContent = ` For reference: on the real shop data the shipped pattern answered ${n - rec.konomi.KF.abstained} of the ${n} held-out sessions in the multiplier sample and abstained on ${rec.konomi.KF.abstained}; your share depends on how alike your new cases are to your history.`;
 } else {
   $('#mxHead').textContent = 'Sealed — the run\'s receipt lands here when it finishes';
   $('#mxSub').textContent = 'The claims below were committed before the code; the run asks the local models one session at a time.';
@@ -681,7 +693,8 @@ const ORGANS = [
   ['tools/patternforge.mjs · council.mjs', 'The neurosymbolic loop: a local model proposes features, candidates are bred and gated on a validation slice cut from training, the best ships as a readable pattern book; the council runs several proposers with no vote — the gate ranks them.', 'tests/patternforge.test.mjs · tests/council.test.mjs', 'unit-tested with a stub proposer (the model itself is ungraded)'],
   ['tools/synapses · sleep · neurons · evolution', 'The organs as a graph, nightly consolidation that keeps a fold only if recall survives, the cube of workers with a rule resolver, and feature-set evolution that never gets worse.', 'tests/synapses · sleep · neurons · evolution .test.mjs', 'unit-tested; each has its own live page'],
   ['tools/cortex.mjs · body.mjs', 'Boots the whole stack into one running body with a single think() — verified answer with receipt, or abstain — and sizes a model to the host it runs on.', 'tests/cortex.test.mjs · tests/body.test.mjs', 'unit-tested'],
-  ['tools/propose-local.mjs · llm-duel.mjs', 'Optional local-model tooling: the proposer and an informal duel. Non-deterministic, so it is kept out of everything graded.', 'tests/propose-local.test.mjs (parse + compile only)', 'ungraded by design'],
+  ['scripts/csp.mjs · csp-write.mjs', 'This page\'s Content-Security-Policy: fetch only from its own site, run only its own files and the inline scripts it lists by hash. csp-write.mjs brings the policy in step after a script is edited.', 'tests/page-csp.test.mjs', 'unit-tested in CI: fails if the policy and the page\'s scripts drift apart'],
+  ['tools/propose-local.mjs · llm-duel.mjs','Optional local-model tooling: the proposer and an informal duel. Non-deterministic, so it is kept out of everything graded.', 'tests/propose-local.test.mjs (parse + compile only)', 'ungraded by design'],
 ];
 const PAGES = { 'tools/patternforge.mjs · council.mjs': ['pattern-books.html', 'council.html'], 'tools/synapses · sleep · neurons · evolution': ['synapses.html', 'sleep.html', 'neurons.html', 'evolution.html'], 'tools/cortex.mjs · body.mjs': ['cortex.html', 'body.html'], 'tools/your-brain.mjs': ['brain.html'] };
 const og = $('#organs');
