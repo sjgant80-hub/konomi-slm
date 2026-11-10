@@ -1,0 +1,5086 @@
+{
+ "kind": "konomi-slm.multiplier.receipt",
+ "v": 1,
+ "claimsFile": "CLAIMS-MULTIPLIER.md",
+ "claimsSha256": "927317b2b8ce4ce6e90216c231cc278bd57544e949a909544b41c13752b6278a",
+ "sealCommit": "24c240efee3ea0b182d3222afd93189896960024",
+ "run": {
+  "startedAt": "2026-11-05T14:15:54.227Z",
+  "resumes": 4,
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "memoryGb": 16,
+  "platform": "win32",
+  "ollama": "0.40.13",
+  "resumeLog": [
+   {
+    "at": "2026-11-05T19:15:07.828Z",
+    "ollama": "0.40.14",
+    "from": {
+     "R14": 61,
+     "R7": 0,
+     "B7": 0
+    },
+    "why": "the first run (started 2026-11-05T14:15Z) stopped after 61 R14 replies when the session that ran it hit a usage limit; no reply had been scored"
+   },
+   {
+    "at": "2026-11-06T00:20:32.473Z",
+    "ollama": "0.40.14",
+    "from": {
+     "R14": 200,
+     "R7": 105,
+     "B7": 0
+    },
+    "why": "the run resumed at 2026-11-05T19:15Z stopped after 105 R7 replies (receipt last written 2026-11-05T20:30Z) when the session that ran it was cut off by a usage limit; no reply had been scored"
+   },
+   {
+    "at": "2026-11-06T00:32:47.583Z",
+    "ollama": "0.40.14",
+    "from": {
+     "R14": 200,
+     "R7": 114,
+     "B7": 0
+    },
+    "why": "stopped by hand at 2026-11-06T00:28:51Z with 114 R7 replies recorded: the next R7 call had timed out once at 120 s and its retry was still waiting, because another process on this machine was calling qwen2.5:7b with a different context size and Ollama reloaded the model between its calls and ours; no reply for that session had been received or recorded, and the run resumed after that process had gone quiet"
+   },
+   {
+    "at": "2026-11-10T21:27:36.092Z",
+    "ollama": "0.40.14",
+    "from": {
+     "R14": 200,
+     "R7": 168,
+     "B7": 0
+    },
+    "why": "the earlier run stopped before every reply was recorded"
+   }
+  ],
+  "finishedAt": "2026-11-10T22:04:56.617Z"
+ },
+ "models": {
+  "R14": {
+   "name": "qwen2.5:14b",
+   "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+   "sizeBytes": 8988124069,
+   "parameters": "14.8B",
+   "quantization": "Q4_K_M"
+  },
+  "R7": {
+   "name": "qwen2.5:7b",
+   "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+   "sizeBytes": 4683087332,
+   "parameters": "7.6B",
+   "quantization": "Q4_K_M"
+  },
+  "B7": {
+   "name": "qwen2.5:7b",
+   "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+   "sizeBytes": 4683087332,
+   "parameters": "7.6B",
+   "quantization": "Q4_K_M"
+  }
+ },
+ "replies": {
+  "R14": [
+   {
+    "reply": "75",
+    "attempts": 2,
+    "promptSha256": "8fa0b6c7051627ef47f3df0adfa24598c2b2ad2124c2bf7346ce02e96fb1d641"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "add3d532de9237951d435f009d2ea7a743342c7bf6401565eb634ea52f0311e8"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "b2845e353734a5483e79d6f113ddc71206de364a59d039524acb913747f0ba15"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "fb6a89bf3530a886b6488ccbf4329d1f85d117d3022a89d4534483ac8a5dd546"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "6efdef43e88c75d78ff95e18a495f4331368e1058eea964a260b20edd470bf87"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "92a75c5ac2bd3f559b75ca72c417728f4629982314cac9a350c4ceb78180ea3d"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "4e5997e390c436e047866fe46431c2bac4e73765f86bc76f95bd1271a6f32323"
+   },
+   {
+    "reply": "58",
+    "attempts": 1,
+    "promptSha256": "7bbb475ec0765bddeb9d4844fffa8816d3923359879d102ad16a8f2684990bb1"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "875b4c105e71dae0591df8e1796a02fba912fc393030e76daf2ce619b68e3b12"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "f985e30640cd723e7c33dcab207d6b3467e3723856fdb0e674afeb5267d69161"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "e877651b05e10a9bc6084d541212bcb28dda73b9fdcb722c5bda5beab2000297"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "7062f9a9c7c020f152e22ddec15d4ac4edad757fda717a7d16b08cab41999d1f"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "a0fe401ca8b95b4f6afa40aca6028ba49e0cece833a43aa472797013b6a6a147"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "cf9a080200ddcdae02912de88ba19f75d13d9eae1a389811f741e99d221941b2"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "d68ac41da1d654c954e642e67cf151585d10aa8b0bbafb099f9cd7845bcac4d3"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "e25cebb7394a10acb6fab0e430eddca8a8c4cde16edb260a25dc5eb2d19068c2"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "a88638f6cc1a105068289cc9abf12206b407306ac792a4d06c8f0e5e446a0a5b"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "4ecae5ff3cdf7f6ae7b56e6c2cf7cb999f608cf20abc8d73e149b64464ee75c0"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "08e0eb8c42b9eb7ea6359c1d2e020e560b045f2ba70fdd9e5c65edd81494e7ec"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "227347155e73aa52c525967c18299fab4befb51597d45bafa81333ca5091df17"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4a6ddd108fe134dd84b2cff60ea3c1b8c85e9706d1e99b08f0e9aabe3a1b72b9"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4b01e74d1288a2046bb0e74bebeda52647e69430f0b0b43ccd8584c2498bf401"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "e26d2d8dbafae9ab490c57492a418c3cf43ec277b83d6334fbb3b2ffac672153"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "36a68e1f4d90232d2274a63b5a2b90d22b821284fceb12da3932eaf244e2bbc8"
+   },
+   {
+    "reply": "58",
+    "attempts": 1,
+    "promptSha256": "9528842a423f28554c70a1356839f117af3a208be39825a090d6dec7a156ed8d"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "1c6b9757739f4467b5af4da3e64a6d6635413404908492cf4e600f9932c5ad7f"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "77d3c3a0137837fec34c7b99855d7b105e314ea0a3c5d2ca8dbe63b65e0928a8"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "4855e3b7f24d7cea0b358d97a04964b4f897f266f41d6d3d9f483b9f2bc006dc"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "300927e41a6dc3d173ee31ecd07f5f8e38d163a4f3b2a49a077797f1303b846b"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "962f8cafe0a6291b6ebd13bf42b4404cd55cf72bf134d903bdfee7da88940820"
+   },
+   {
+    "reply": "65",
+    "attempts": 1,
+    "promptSha256": "38f1deedeeedee5ff2ff1c0689f722b63dab4d3f1ebe62f2c174f4a36dec977d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4ec362527b253c7b61c49c4906298282b5a41c9d0e9fd2457a44da4de7045ff7"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "15a6316da0c18a573a2799ffd2dc5ed9ffe5304ddc7111cd913992f20d509eea"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "16534917dc4a934ea283e1a9d039ce30ccc28308b6628b6724e21311d7944d9a"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "f1038171464fe497dc25691f5115dbfdd3b73e184cdc34552f8ec3b1ac7cb0d0"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "2a80d2e242c3403ff86ffdfd62d65173e831c7d18f29aa62f25a4a45ffdfd981"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "e9ea7cb601478f14199de37ad9ae02d4b5816cc8ab7526861b95d0dd68c61420"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "e68121f68794223d068fde2365580a4142f18d8cb49a0d114bee085a6dc9b823"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6afd5b607230670fdcf40eca358d87bd87e38eefcd39f19927858173441d2351"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "87975b6bdb8a736c6ede20be6f328c6f9f453dfb2d12f92c4ffc3422420f2f14"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "ffee7af01b181a5c5a4c9ac63823134579d1ee7fc6b7c4cce566947f7ecd5006"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "462339e446c48085b7fe54bfd79f5d6b5f66509b05812c594927d3c13e650edd"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "63b264b65fcdd3984634dea0ef18a5c4e91b5552103dc2f79d6b5533bb4cb0ea"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "8bd5f4952e8de1f3a5f9706e932cc59ae5335760db27c0819a4ce7b0370af6d8"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "aadffb3e1f9bfe95f4079405ff4298dbb782a376c8198cc5f20c20ab9a2cc91e"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "6553b5aaf4a951c6027ffa833008abbc7b8e6b1997a1d4d0105027355f593966"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "55c3223c2dcd430f0600664b9c2ced6c14351054d197474f576f07130d82f218"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "12cd4a6e1e793be4fc7e9e7f2eb35611db4a5590b0aab78786e8ae75a713f31b"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "0d8b89b3c1dcc9623db3364b98c28b6094aef47a3190fda9be1e3cf1c52e2688"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "9ce16957f50b4bd1f94a017c4a00406d6a4fc7491775d9f5b44dce184b5c2a53"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "036f6f9d45cf1c74b2b01d4f42c15986cc253c66f2fc3fe48c7b1d11017631ca"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "99ffeb6cb0c8a86c551e403d2de01d54dd8f9cf092aa2bd4aed21adfade6f57e"
+   },
+   {
+    "reply": "65",
+    "attempts": 1,
+    "promptSha256": "d8f59c8df903a03bf2c73733dff0137c584e9e44b8592ccb42d08bb12520ec8b"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "1bb03e0f9649ed2b4190956d266b2ce4a47d1f1ba0053ef2ff5c819e1c48561e"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "fad0ab15021cc6f5a4298457ffde4d9b9b99643d2c1b5b83ba35b1f5d52b6df0"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "72d4be8479e3ae5db961c79a127da29f55f0c2bc55d4b761310820f25b186ee2"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "8134e6e82cb05dfe6ad84053034915826889a98166489b96b9d05149d038369f"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "889b70edd0f87d385d2d53b7fa4866c799cc4d826f35db5d05a467c5d427b87e"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "56d63fc2ce95d35b16f369ee5902bfd3a858f0cb2087368a9fb4d7c19cb2d6f4"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "0a6f52e4730411540aab1f6496e88af282f015cadde15b0ce81ee0f454ff7afb"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "84f2b59fb5c58fd57289ea6e51d799fc227623b8b86be50f7ed3a2187318c76b"
+   },
+   {
+    "reply": "75",
+    "attempts": 2,
+    "promptSha256": "f7e149e3ebf15999d7a7cc1708102b06f8e8b20e8f8d534f006b9f550b267238"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "6eb518cb49213f46881822077a43dc88ecac92007fb9acd0ef4f63cf3b04b638"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "ce24d52982af4d916953cb9db10ba30dbf9c4b85598b2b08eac505584869af77"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "92beded7e242592272baa83ca9ad92181b5595990aa3016241b67ebd3b5255ad"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "d5addb73c2323cee9b1c4f5e88ecd9867b9b9fade4d3556de32cfba227379dc9"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "aa191e310b866fed0f40d80d61a85d7b7ca0db05388322fa74ca5db856e6a53a"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "6c6e05ffdf3fe869fe930f8b369f36ffdec0ce8927fd7a01cd78538aff099cc7"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "0991553be8c9c31ef9460528a4e9b7f7ee7fcf00de1441e763444b1180c51a41"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "c697cf302652d01588bfbaaf7c08c37a955b6a3b7d2afbe8249d8b53f6b0d444"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "868ed9d1cfd907027e5405ee499f9031b40509c2327a8f62b58848eb4a167c26"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "20b3c60ec6c6b56819618fdee7436645ccc57ada8d0f674acaaee9517610ab4e"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "c23ccc5028499768fae864802f2c0a0a5688875aaca465576f27f9f97461b9ce"
+   },
+   {
+    "reply": "45",
+    "attempts": 1,
+    "promptSha256": "f2250e4ee746f18172d498585ca5d860b33aeb80025b3aa41f9f94587067d11a"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "ee2e554b2fa5cdc827eef67cf2ba1d4c9b0542b64aa13dbe3b68dcb187463170"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "6b518fe009beb6c288d95e3aa793c2062542c0f80ad3e74ed5652f35ecb45007"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "ab2bd885e8929f805355b56fd04a05bedd32a6989f432d24158244783e9ff1ce"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "77a88c6f739570a90cd84821a30cd5afb61c4619a9d4d03a4ddddf2f4e5a2132"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "37e18b0803706964781a8af9d8220ef138975a62e43a4b67e2de24139683f072"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "3831b68c6301fc45a75d6465680a9c7365bf3cc3ee92e91e61f3147c1d02c4e5"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "240ed140a4b6e6741afb1e1ccd33f1d2adcbf060cbfdc6388ea45a89c587b2c4"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "d8f69414b23586ca4d32c9b299889861c9fdf80ebe0abe0ca1e91fd398de2fb2"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "aea27dc7cfd7bbd68bfe052a04c9d990770f61c00bbae251bfc8d0e86a59f455"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "d8e85cbdfd85ecba0c623938fb9dc95ea0e9b539ffa41ffbb1be8e5b237437ca"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "8c677f2f5b003c5c5b66a2afb75f1c95a9c8cdcf68279c777e2a3d3f89cddbda"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "ca9b01e436f5d0fefbdbe27fc0b3de05bf32ad15cddc33afac6d4daa57c4a25f"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "4410ec0ccb27500ba184740707d48d2e2ac4735cc265a86d3df6d2f2b7ec10e2"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "55afa5fcf08f6df4926eca82dfda1d921404a08b76c82da937ad39280421d9a8"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "b896df0d1279bcae6b718f717f6c148e6586008904b0df137f42aa6a3154a38c"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "9fa2f3a148744da67f618f1cbf62e4e530d7b4c8922a71dc136d5ac643fd17f4"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4343d2ab4428a92432dd31e5c219d325654839a6f0b8a996e84d2b45045dec0b"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "6ffcdef3c72f5648e5f604574d939593c729654fb464edbd876f212c5c5f761d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "88a548fcf957378cb8420ffc6aebcc0b64cd5b7142e3e6d02e52b1b60ef85e1c"
+   },
+   {
+    "reply": "58",
+    "attempts": 1,
+    "promptSha256": "89d6e133142f83fda9234e46e8d8045e11509d384a96841e683fcb66f319850b"
+   },
+   {
+    "reply": "45",
+    "attempts": 1,
+    "promptSha256": "5ab8411dbb76056a954925a9dda15e451a9b69889bc0080f8320806d4c960235"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "2ace34453eb94167a2d14de238ded2fe9b1cae149a04dc56d60da4603593dd32"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "92a2a68c63cf4fd3f327570e500d080021cf5152eaa401565984c475bdaa61c1"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "d2ff9879d3c159161bb1dd8324d33958e7824ca9c42f0fc5b37507e687b66a80"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "38d2366345ae9e958576d72d6d98aea141e294366a617f089eeeb9b80e613c30"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "eda2de732e807f4240dbaca472260835237c2081a23e6f55cda661aa588875e9"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "3c3b5b4e6d4f2d5a00fd1bcf80a519557cb4f38c580c9fbfbfccec0a089881f0"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "77ab867a4b50aed8384b18ad13b25b79ca4a3cdd55ce3282384d3471e58b4dd5"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "8f9a90d69162e85fc655c711779a8094c61d4184288252a8287b72ab21a9bc2b"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "f2e2adb635819265446dcf6ff365e4f40a537d1e21ec25c633b72de0e59f4410"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "2172bf4f904dee2344aff6a9a0e5d6c3d4e646dd30f94971a4030ae37d0bf3a1"
+   },
+   {
+    "reply": "15",
+    "attempts": 1,
+    "promptSha256": "bea8f618551c85964e2e6c4ac5c892da0ebe861aa359c2667f2ad65cf4cbba44"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "ebf935609b46979434df836f1edf2360ab05454350311dc4d70218d1dd894a39"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "86e19add81e6892a42b5e4abc4477a63b939c9d2ae18c1617329fd6ed7ae54fb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "518c021c6b6a00e8813403e6fc6dac6d11573b63cb16440e2a875adcb32ebccf"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "8ee551b9afd42303b6ff38acb5c84cb1e341d7d8556241e3b75da20c6c426915"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "252e469a2b8b64a9b5e8f0b63861f57a5a84835eb04a30f046a8e061435c4540"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "788803d97479a4789586bd719eb228d0b570afb8d2762be3bc2824c0d8d19c74"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "7e51587c12e225a6d04c10e947b13ab01b5061831ca3dfcf1bf49fe708aeb2e0"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "691ea223d6a2321939dfc4e203dbed0725b5b01ceff0971f2f13c1cb7e70d72b"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "13c48cefb86d19bf5a300f0b812801fb6947453af2d0678222854b7ed0e2403c"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "955145fd2ed1c9ad4fcd2b8b3e849bab131c0b69b866e3a6664183b60e87eaf8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "b051fcc685a31673334cef15b1b1872111596da6346f871684e0ced4b584e60f"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "a44ca94130f52547e74f1982e829af18cea2062e115fcf337b8cf9ca90b038cf"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "609a2ad537aac8aa0e63991af8d398e45bc6b47896b00af318310f44bc2d3383"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "c983946d6c0b3f30d09b655f17a59b4d1a4c7d38ee51d73843568c72c98e1fd2"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "0a164d52fbcccb011ceb4774f8aa60016d628f473aa88461862f66edef028149"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "58fd2264a426f52c17ee02b5b50dc5d3240132bda06097fc7500fb39f2eaa9b5"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "a2783481f85ef44fd1d457d17ae4c69a0f5c5aa0126fa0ae78283fd1995b920c"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "60e104afd2f1992b30ee5450a10e33d217e67c20385ccfd10244e4c37392b68d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "de570b7a7f13ca1402a643b087091d09ccd7ddc123b42de4e000d2b557c66ad8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "ddff5b357c31d979c32bbf55ffaa716b0d7cc49ba54fc15a69e134b38c1745db"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "72dd8aa512914e1d37119b6b31547a13d3f2ee0704d86ce586e0b27c21b08f3d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "1768844b2f81661bd7d865df30e1989c94c64a3ba52ea1a5cf8ffb75ae088b98"
+   },
+   {
+    "reply": "58",
+    "attempts": 1,
+    "promptSha256": "3a2e59bfee00c02cb88a2b95ddc45564bb9cd38abb4c4a5f28d406e525fcfa99"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "3a2b10abf1a5f7aeb18dfca81cb25fc8b24e1ccd75a0d5ca012ededaf393851c"
+   },
+   {
+    "reply": "45",
+    "attempts": 1,
+    "promptSha256": "f0c8c0ee4543419d88c2cc560fdd612920feef3b24521dc9a430f1ced6957487"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "3eb7d28abecc0c86b8e17121426353909e75df4f852f775a7a76a4bd7d5fc354"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "ebea0e20539e73a4a621c1a6356293e0f4a97fa0d9fe238fcf75532b66230e05"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "9573020b2ba6f239fbfc05d319d77e4345ebe4c00d967653d23eb154e94afb7a"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "faf5d0e96ba1c488ad420323c0234ab446721c17516ecff9d957c3c3d7628e2f"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "d4b60a5173983d7155b492fb004071decb9cf761b32c1b74ddbdd85853376849"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "696940b9e24f9a89f3a5bd50dfa54c90f353c41f48d141403c2ccb349378f773"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "dc6202738a878d78737a3c24ca2655e5a76acde258bbbd8eeedf4b4ed5b2f29a"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "5ee397f1a0ff0cf8937b7467e8e77315b23f41d6fa6439aa87c53a7a3053fe25"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "7ccb9ba9c173cf3cb6b70a03f51d30bcc6767b92fa22ae7a80ea3198721b0fef"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4f75ae2b5a7dfdd01bb269c0eb610c1e2bf0c97816dbcc6c3711840f0cd4d35f"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "26359e79a0f5b1cbaf0c0b8c07c0baa6b30d91e0b017b605cf9779a0e2ff2918"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "3f25ed70d5cba00e14e572282839bef9d88e4fbf99c043354f16f74ae95633fc"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "9d6aa85edde9c4c1fdc824e6a24e583a9733ac4961de53398ac855740ebbe39d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "dfe60df032be958a4b344e66981a10ff109f43a9230c28fe401a26eb06b17eed"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "101428526619ac499652740f636f3e5d77c3329f8daa804e9a6f9a07a80c89db"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "a12ffb3bd462dcf8579e49f3a7491a5a68b169250e3170d00c3eb50987dc1d87"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4f9c1f32d05f4c9420ece19fcac0346cd35999968bf89f66a9a1cc0315b7e4ec"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "e59875013bf8f819fed21e398ff3ec2a20f223c22f38a5f7bd64be29fd73fae4"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "b31eef2771e1b31ac8e48bfa26c70dc80f79ae2602dc9fcb3c19cb170d34923d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "3243b80d098cd1a8bccaa6d3e9ef8a1c403ef15f728051ed2a8ff6859c79937c"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "36cd2f1d7b60b142273202cb67d79d6dbf4bf5691d54071b1f47ca7992081887"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "82f6dc95a9ab1768cfe9b8fb1879004f8df36e908b1c9a96bffeac8dcf8ceafb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "70c95adb785d6c6bdf212d9828f39f7ce5d50a3ad2339b3e0ab198e097720921"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "93b5e9a44ce86cb7c62b5604924edf4c2fb35b435365ca45532e8d60c49bc2ff"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "3b743772580642c8fa230fe6a4a14b0d4e17bfc986853dbbb3db092b4ed92172"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "69c93aac035e76d6c79a72861d1d34c7359a3fd9d9428e5a1daf7dd3ecce60cb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "ecc1586549fe6c6992d990d458aed631cd684057d72639ee016a845f9c3c7816"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "0401507077c5d092ee174d900c3b82548fd62f84f150d9dfdff8867d1d35bd43"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "7fad305a32f54d2093e271464db26812c9a25d95aa57edd02193667cb792a254"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "76530b27e5ff16ad7ece557c3f4542a4b766e7bb37b3460e32f6cda29804de41"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "6f50adcedb1cf7776d6a769c024627431ae6144518bf5666be4e76ea9644cd14"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "c10edfff6b40e7d31316998c7d67ed7aa4b669985a72e95152ef233bac78c163"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "d880c3be037c488d4812bf0afbb864d4272a4984c536c23e3136bc8c6c9523d1"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "01079f19cf78c2dec549865bf17c1c85a21ed64049eb9966800f5e3ad4337993"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "4daa672e2ccea053fb564dcd4b768a685c5204bd8afdee236bf95763dc9a470f"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "08e9324dda2bc87e8853740ee22d01aa39dca5441ce58f306b968b59d1510ad1"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4e9dc7040e06a4cedffa1d201d0e40101549316fa374085e04c77fc501f9943d"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "d5f4e1e01390c2d0b5e45578c71988b6b31cd53a7a6f8d03da93e18c32c461ef"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "0032cd79c14a0820892ef9ef62537010d71218f122330bc93806f5e707075ede"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "0cd1c94c1f879b246de1838b97169978e6dbdb2803d316a91c8679c1e78a36ba"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "4b4d143d2cc22a807d033773120a5e3f3af04bfb4fc5dcac0470bdc42005e91c"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "399cb08b6b62c7a20b67cb24e026638c24e879601f0f5b871e719ad03f19588f"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "08c624597e2f47542b269a21885cb2bfe6c33ddd2e4abe6b82c17b80a3a7a8ca"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "ff550ab14e3429a52eb97625156fa9843e5b4ada038c3bb38573ae65e3f1c0cb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "f4368438014467c3d46670fce237e234b0ebf7dcdf807110523a21ea96340b0d"
+   },
+   {
+    "reply": "55",
+    "attempts": 1,
+    "promptSha256": "d7c19371b7c92cc3ffb33835a112687768d661221e004dfa8df0c54f39308926"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "b0b0beed223a325aa7265564465f90f3c91cc64a5164d814e0242adff2f393cc"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "85c2981069ad1d021c4c7cbc354a2a35faa6016a8c0768d2040229792476e127"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "70f3c43c61e450ea12c832a9e56f5b61456ed1bea7e8030221e8c6a100e35bce"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "8a70c6e3af7c5073d5966a37d87d94b1e548b600446a393f044dcce3d0855a7a"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "23e27c0bcb8f4b0b23739ae90a6e71b726a14e8b0097868682779f3b3d608a64"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "9efe5282f39a95b26937d48d8e8502e115ec0d6d1b4c1186f291fdf6f3eed469"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "9a11d11fbc9bf6ae87cbf0aa0c4823e8a0c6a960b52f98933433a604f1bec1b6"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "8a240aef299b9e33fdf2109adc04b593b1a339051e054ec6f01ee74ca0166163"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "63034228a1f3886d435df27bf860f0625aae591ace3729d39669a612a03d2dcc"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "f88f10521d462fff4fb139123c2cd07c1526a0c125b7f45a41778b86512d2f28"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "991235e99ca0403c268f5d9f13efd41965561775d60f3b2e63fc41d03f47cb52"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "981c0fc91a08ab04b45aec7c636e1c12dff165f8d32655547d79ca5ba06c304b"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "274b10bb86dc6c00d0fc3aaea788b2693a263a62ce34d6296aef795289404b56"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "3746c45674a52cdc259b8d7058385f00b7522ed658848e7eda6b4f1809afc76a"
+   },
+   {
+    "reply": "75",
+    "attempts": 1,
+    "promptSha256": "185579650d7e030b15c9943c29e0b55734baec524ef051259f3e099477c3f62a"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "c5921acbcadb58195ffdda2c665d2428ba3093b60cf1e22687db7b10f5247321"
+   }
+  ],
+  "R7": [
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8fa0b6c7051627ef47f3df0adfa24598c2b2ad2124c2bf7346ce02e96fb1d641"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "add3d532de9237951d435f009d2ea7a743342c7bf6401565eb634ea52f0311e8"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b2845e353734a5483e79d6f113ddc71206de364a59d039524acb913747f0ba15"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "fb6a89bf3530a886b6488ccbf4329d1f85d117d3022a89d4534483ac8a5dd546"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6efdef43e88c75d78ff95e18a495f4331368e1058eea964a260b20edd470bf87"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "92a75c5ac2bd3f559b75ca72c417728f4629982314cac9a350c4ceb78180ea3d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4e5997e390c436e047866fe46431c2bac4e73765f86bc76f95bd1271a6f32323"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "7bbb475ec0765bddeb9d4844fffa8816d3923359879d102ad16a8f2684990bb1"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "875b4c105e71dae0591df8e1796a02fba912fc393030e76daf2ce619b68e3b12"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f985e30640cd723e7c33dcab207d6b3467e3723856fdb0e674afeb5267d69161"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e877651b05e10a9bc6084d541212bcb28dda73b9fdcb722c5bda5beab2000297"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "7062f9a9c7c020f152e22ddec15d4ac4edad757fda717a7d16b08cab41999d1f"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "a0fe401ca8b95b4f6afa40aca6028ba49e0cece833a43aa472797013b6a6a147"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "cf9a080200ddcdae02912de88ba19f75d13d9eae1a389811f741e99d221941b2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d68ac41da1d654c954e642e67cf151585d10aa8b0bbafb099f9cd7845bcac4d3"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e25cebb7394a10acb6fab0e430eddca8a8c4cde16edb260a25dc5eb2d19068c2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a88638f6cc1a105068289cc9abf12206b407306ac792a4d06c8f0e5e446a0a5b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4ecae5ff3cdf7f6ae7b56e6c2cf7cb999f608cf20abc8d73e149b64464ee75c0"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "08e0eb8c42b9eb7ea6359c1d2e020e560b045f2ba70fdd9e5c65edd81494e7ec"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "227347155e73aa52c525967c18299fab4befb51597d45bafa81333ca5091df17"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "4a6ddd108fe134dd84b2cff60ea3c1b8c85e9706d1e99b08f0e9aabe3a1b72b9"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "4b01e74d1288a2046bb0e74bebeda52647e69430f0b0b43ccd8584c2498bf401"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e26d2d8dbafae9ab490c57492a418c3cf43ec277b83d6334fbb3b2ffac672153"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "36a68e1f4d90232d2274a63b5a2b90d22b821284fceb12da3932eaf244e2bbc8"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9528842a423f28554c70a1356839f117af3a208be39825a090d6dec7a156ed8d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "1c6b9757739f4467b5af4da3e64a6d6635413404908492cf4e600f9932c5ad7f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "77d3c3a0137837fec34c7b99855d7b105e314ea0a3c5d2ca8dbe63b65e0928a8"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4855e3b7f24d7cea0b358d97a04964b4f897f266f41d6d3d9f483b9f2bc006dc"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "300927e41a6dc3d173ee31ecd07f5f8e38d163a4f3b2a49a077797f1303b846b"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "962f8cafe0a6291b6ebd13bf42b4404cd55cf72bf134d903bdfee7da88940820"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "38f1deedeeedee5ff2ff1c0689f722b63dab4d3f1ebe62f2c174f4a36dec977d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "4ec362527b253c7b61c49c4906298282b5a41c9d0e9fd2457a44da4de7045ff7"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "15a6316da0c18a573a2799ffd2dc5ed9ffe5304ddc7111cd913992f20d509eea"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "16534917dc4a934ea283e1a9d039ce30ccc28308b6628b6724e21311d7944d9a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f1038171464fe497dc25691f5115dbfdd3b73e184cdc34552f8ec3b1ac7cb0d0"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "2a80d2e242c3403ff86ffdfd62d65173e831c7d18f29aa62f25a4a45ffdfd981"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e9ea7cb601478f14199de37ad9ae02d4b5816cc8ab7526861b95d0dd68c61420"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e68121f68794223d068fde2365580a4142f18d8cb49a0d114bee085a6dc9b823"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6afd5b607230670fdcf40eca358d87bd87e38eefcd39f19927858173441d2351"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "87975b6bdb8a736c6ede20be6f328c6f9f453dfb2d12f92c4ffc3422420f2f14"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ffee7af01b181a5c5a4c9ac63823134579d1ee7fc6b7c4cce566947f7ecd5006"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "462339e446c48085b7fe54bfd79f5d6b5f66509b05812c594927d3c13e650edd"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "63b264b65fcdd3984634dea0ef18a5c4e91b5552103dc2f79d6b5533bb4cb0ea"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8bd5f4952e8de1f3a5f9706e932cc59ae5335760db27c0819a4ce7b0370af6d8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "aadffb3e1f9bfe95f4079405ff4298dbb782a376c8198cc5f20c20ab9a2cc91e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6553b5aaf4a951c6027ffa833008abbc7b8e6b1997a1d4d0105027355f593966"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "55c3223c2dcd430f0600664b9c2ced6c14351054d197474f576f07130d82f218"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "12cd4a6e1e793be4fc7e9e7f2eb35611db4a5590b0aab78786e8ae75a713f31b"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "0d8b89b3c1dcc9623db3364b98c28b6094aef47a3190fda9be1e3cf1c52e2688"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9ce16957f50b4bd1f94a017c4a00406d6a4fc7491775d9f5b44dce184b5c2a53"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "036f6f9d45cf1c74b2b01d4f42c15986cc253c66f2fc3fe48c7b1d11017631ca"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "99ffeb6cb0c8a86c551e403d2de01d54dd8f9cf092aa2bd4aed21adfade6f57e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d8f59c8df903a03bf2c73733dff0137c584e9e44b8592ccb42d08bb12520ec8b"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "1bb03e0f9649ed2b4190956d266b2ce4a47d1f1ba0053ef2ff5c819e1c48561e"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "fad0ab15021cc6f5a4298457ffde4d9b9b99643d2c1b5b83ba35b1f5d52b6df0"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "72d4be8479e3ae5db961c79a127da29f55f0c2bc55d4b761310820f25b186ee2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8134e6e82cb05dfe6ad84053034915826889a98166489b96b9d05149d038369f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "889b70edd0f87d385d2d53b7fa4866c799cc4d826f35db5d05a467c5d427b87e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "56d63fc2ce95d35b16f369ee5902bfd3a858f0cb2087368a9fb4d7c19cb2d6f4"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0a6f52e4730411540aab1f6496e88af282f015cadde15b0ce81ee0f454ff7afb"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "84f2b59fb5c58fd57289ea6e51d799fc227623b8b86be50f7ed3a2187318c76b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f7e149e3ebf15999d7a7cc1708102b06f8e8b20e8f8d534f006b9f550b267238"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6eb518cb49213f46881822077a43dc88ecac92007fb9acd0ef4f63cf3b04b638"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "ce24d52982af4d916953cb9db10ba30dbf9c4b85598b2b08eac505584869af77"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "92beded7e242592272baa83ca9ad92181b5595990aa3016241b67ebd3b5255ad"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "d5addb73c2323cee9b1c4f5e88ecd9867b9b9fade4d3556de32cfba227379dc9"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "aa191e310b866fed0f40d80d61a85d7b7ca0db05388322fa74ca5db856e6a53a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "6c6e05ffdf3fe869fe930f8b369f36ffdec0ce8927fd7a01cd78538aff099cc7"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "0991553be8c9c31ef9460528a4e9b7f7ee7fcf00de1441e763444b1180c51a41"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "c697cf302652d01588bfbaaf7c08c37a955b6a3b7d2afbe8249d8b53f6b0d444"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "868ed9d1cfd907027e5405ee499f9031b40509c2327a8f62b58848eb4a167c26"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "20b3c60ec6c6b56819618fdee7436645ccc57ada8d0f674acaaee9517610ab4e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "c23ccc5028499768fae864802f2c0a0a5688875aaca465576f27f9f97461b9ce"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f2250e4ee746f18172d498585ca5d860b33aeb80025b3aa41f9f94587067d11a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ee2e554b2fa5cdc827eef67cf2ba1d4c9b0542b64aa13dbe3b68dcb187463170"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6b518fe009beb6c288d95e3aa793c2062542c0f80ad3e74ed5652f35ecb45007"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ab2bd885e8929f805355b56fd04a05bedd32a6989f432d24158244783e9ff1ce"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "77a88c6f739570a90cd84821a30cd5afb61c4619a9d4d03a4ddddf2f4e5a2132"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "37e18b0803706964781a8af9d8220ef138975a62e43a4b67e2de24139683f072"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "3831b68c6301fc45a75d6465680a9c7365bf3cc3ee92e91e61f3147c1d02c4e5"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "240ed140a4b6e6741afb1e1ccd33f1d2adcbf060cbfdc6388ea45a89c587b2c4"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d8f69414b23586ca4d32c9b299889861c9fdf80ebe0abe0ca1e91fd398de2fb2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "aea27dc7cfd7bbd68bfe052a04c9d990770f61c00bbae251bfc8d0e86a59f455"
+   },
+   {
+    "reply": "85",
+    "attempts": 2,
+    "promptSha256": "d8e85cbdfd85ecba0c623938fb9dc95ea0e9b539ffa41ffbb1be8e5b237437ca"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8c677f2f5b003c5c5b66a2afb75f1c95a9c8cdcf68279c777e2a3d3f89cddbda"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "ca9b01e436f5d0fefbdbe27fc0b3de05bf32ad15cddc33afac6d4daa57c4a25f"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "4410ec0ccb27500ba184740707d48d2e2ac4735cc265a86d3df6d2f2b7ec10e2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "55afa5fcf08f6df4926eca82dfda1d921404a08b76c82da937ad39280421d9a8"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b896df0d1279bcae6b718f717f6c148e6586008904b0df137f42aa6a3154a38c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9fa2f3a148744da67f618f1cbf62e4e530d7b4c8922a71dc136d5ac643fd17f4"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "4343d2ab4428a92432dd31e5c219d325654839a6f0b8a996e84d2b45045dec0b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6ffcdef3c72f5648e5f604574d939593c729654fb464edbd876f212c5c5f761d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "88a548fcf957378cb8420ffc6aebcc0b64cd5b7142e3e6d02e52b1b60ef85e1c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "89d6e133142f83fda9234e46e8d8045e11509d384a96841e683fcb66f319850b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5ab8411dbb76056a954925a9dda15e451a9b69889bc0080f8320806d4c960235"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2ace34453eb94167a2d14de238ded2fe9b1cae149a04dc56d60da4603593dd32"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "92a2a68c63cf4fd3f327570e500d080021cf5152eaa401565984c475bdaa61c1"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "d2ff9879d3c159161bb1dd8324d33958e7824ca9c42f0fc5b37507e687b66a80"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "38d2366345ae9e958576d72d6d98aea141e294366a617f089eeeb9b80e613c30"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "eda2de732e807f4240dbaca472260835237c2081a23e6f55cda661aa588875e9"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "3c3b5b4e6d4f2d5a00fd1bcf80a519557cb4f38c580c9fbfbfccec0a089881f0"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "77ab867a4b50aed8384b18ad13b25b79ca4a3cdd55ce3282384d3471e58b4dd5"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "8f9a90d69162e85fc655c711779a8094c61d4184288252a8287b72ab21a9bc2b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f2e2adb635819265446dcf6ff365e4f40a537d1e21ec25c633b72de0e59f4410"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "2172bf4f904dee2344aff6a9a0e5d6c3d4e646dd30f94971a4030ae37d0bf3a1"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "bea8f618551c85964e2e6c4ac5c892da0ebe861aa359c2667f2ad65cf4cbba44"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "ebf935609b46979434df836f1edf2360ab05454350311dc4d70218d1dd894a39"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "86e19add81e6892a42b5e4abc4477a63b939c9d2ae18c1617329fd6ed7ae54fb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "518c021c6b6a00e8813403e6fc6dac6d11573b63cb16440e2a875adcb32ebccf"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "8ee551b9afd42303b6ff38acb5c84cb1e341d7d8556241e3b75da20c6c426915"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "252e469a2b8b64a9b5e8f0b63861f57a5a84835eb04a30f046a8e061435c4540"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "788803d97479a4789586bd719eb228d0b570afb8d2762be3bc2824c0d8d19c74"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "7e51587c12e225a6d04c10e947b13ab01b5061831ca3dfcf1bf49fe708aeb2e0"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "691ea223d6a2321939dfc4e203dbed0725b5b01ceff0971f2f13c1cb7e70d72b"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "13c48cefb86d19bf5a300f0b812801fb6947453af2d0678222854b7ed0e2403c"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "955145fd2ed1c9ad4fcd2b8b3e849bab131c0b69b866e3a6664183b60e87eaf8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "b051fcc685a31673334cef15b1b1872111596da6346f871684e0ced4b584e60f"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "a44ca94130f52547e74f1982e829af18cea2062e115fcf337b8cf9ca90b038cf"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "609a2ad537aac8aa0e63991af8d398e45bc6b47896b00af318310f44bc2d3383"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "c983946d6c0b3f30d09b655f17a59b4d1a4c7d38ee51d73843568c72c98e1fd2"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "0a164d52fbcccb011ceb4774f8aa60016d628f473aa88461862f66edef028149"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "58fd2264a426f52c17ee02b5b50dc5d3240132bda06097fc7500fb39f2eaa9b5"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "a2783481f85ef44fd1d457d17ae4c69a0f5c5aa0126fa0ae78283fd1995b920c"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "60e104afd2f1992b30ee5450a10e33d217e67c20385ccfd10244e4c37392b68d"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "de570b7a7f13ca1402a643b087091d09ccd7ddc123b42de4e000d2b557c66ad8"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "ddff5b357c31d979c32bbf55ffaa716b0d7cc49ba54fc15a69e134b38c1745db"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "72dd8aa512914e1d37119b6b31547a13d3f2ee0704d86ce586e0b27c21b08f3d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "1768844b2f81661bd7d865df30e1989c94c64a3ba52ea1a5cf8ffb75ae088b98"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3a2e59bfee00c02cb88a2b95ddc45564bb9cd38abb4c4a5f28d406e525fcfa99"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3a2b10abf1a5f7aeb18dfca81cb25fc8b24e1ccd75a0d5ca012ededaf393851c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f0c8c0ee4543419d88c2cc560fdd612920feef3b24521dc9a430f1ced6957487"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "3eb7d28abecc0c86b8e17121426353909e75df4f852f775a7a76a4bd7d5fc354"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "ebea0e20539e73a4a621c1a6356293e0f4a97fa0d9fe238fcf75532b66230e05"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "9573020b2ba6f239fbfc05d319d77e4345ebe4c00d967653d23eb154e94afb7a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "faf5d0e96ba1c488ad420323c0234ab446721c17516ecff9d957c3c3d7628e2f"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "d4b60a5173983d7155b492fb004071decb9cf761b32c1b74ddbdd85853376849"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "696940b9e24f9a89f3a5bd50dfa54c90f353c41f48d141403c2ccb349378f773"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "dc6202738a878d78737a3c24ca2655e5a76acde258bbbd8eeedf4b4ed5b2f29a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "5ee397f1a0ff0cf8937b7467e8e77315b23f41d6fa6439aa87c53a7a3053fe25"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "7ccb9ba9c173cf3cb6b70a03f51d30bcc6767b92fa22ae7a80ea3198721b0fef"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "4f75ae2b5a7dfdd01bb269c0eb610c1e2bf0c97816dbcc6c3711840f0cd4d35f"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "26359e79a0f5b1cbaf0c0b8c07c0baa6b30d91e0b017b605cf9779a0e2ff2918"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3f25ed70d5cba00e14e572282839bef9d88e4fbf99c043354f16f74ae95633fc"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "9d6aa85edde9c4c1fdc824e6a24e583a9733ac4961de53398ac855740ebbe39d"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "dfe60df032be958a4b344e66981a10ff109f43a9230c28fe401a26eb06b17eed"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "101428526619ac499652740f636f3e5d77c3329f8daa804e9a6f9a07a80c89db"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "a12ffb3bd462dcf8579e49f3a7491a5a68b169250e3170d00c3eb50987dc1d87"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "4f9c1f32d05f4c9420ece19fcac0346cd35999968bf89f66a9a1cc0315b7e4ec"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "e59875013bf8f819fed21e398ff3ec2a20f223c22f38a5f7bd64be29fd73fae4"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "b31eef2771e1b31ac8e48bfa26c70dc80f79ae2602dc9fcb3c19cb170d34923d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "3243b80d098cd1a8bccaa6d3e9ef8a1c403ef15f728051ed2a8ff6859c79937c"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "36cd2f1d7b60b142273202cb67d79d6dbf4bf5691d54071b1f47ca7992081887"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "82f6dc95a9ab1768cfe9b8fb1879004f8df36e908b1c9a96bffeac8dcf8ceafb"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "70c95adb785d6c6bdf212d9828f39f7ce5d50a3ad2339b3e0ab198e097720921"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "93b5e9a44ce86cb7c62b5604924edf4c2fb35b435365ca45532e8d60c49bc2ff"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "3b743772580642c8fa230fe6a4a14b0d4e17bfc986853dbbb3db092b4ed92172"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "69c93aac035e76d6c79a72861d1d34c7359a3fd9d9428e5a1daf7dd3ecce60cb"
+   },
+   {
+    "reply": "0",
+    "attempts": 1,
+    "promptSha256": "ecc1586549fe6c6992d990d458aed631cd684057d72639ee016a845f9c3c7816"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "0401507077c5d092ee174d900c3b82548fd62f84f150d9dfdff8867d1d35bd43"
+   },
+   {
+    "reply": "25",
+    "attempts": 3,
+    "promptSha256": "7fad305a32f54d2093e271464db26812c9a25d95aa57edd02193667cb792a254"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "76530b27e5ff16ad7ece557c3f4542a4b766e7bb37b3460e32f6cda29804de41"
+   },
+   {
+    "reply": "25",
+    "attempts": 3,
+    "promptSha256": "6f50adcedb1cf7776d6a769c024627431ae6144518bf5666be4e76ea9644cd14"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "c10edfff6b40e7d31316998c7d67ed7aa4b669985a72e95152ef233bac78c163"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "d880c3be037c488d4812bf0afbb864d4272a4984c536c23e3136bc8c6c9523d1"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "01079f19cf78c2dec549865bf17c1c85a21ed64049eb9966800f5e3ad4337993"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "4daa672e2ccea053fb564dcd4b768a685c5204bd8afdee236bf95763dc9a470f"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "08e9324dda2bc87e8853740ee22d01aa39dca5441ce58f306b968b59d1510ad1"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "4e9dc7040e06a4cedffa1d201d0e40101549316fa374085e04c77fc501f9943d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "d5f4e1e01390c2d0b5e45578c71988b6b31cd53a7a6f8d03da93e18c32c461ef"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "0032cd79c14a0820892ef9ef62537010d71218f122330bc93806f5e707075ede"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0cd1c94c1f879b246de1838b97169978e6dbdb2803d316a91c8679c1e78a36ba"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "4b4d143d2cc22a807d033773120a5e3f3af04bfb4fc5dcac0470bdc42005e91c"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "399cb08b6b62c7a20b67cb24e026638c24e879601f0f5b871e719ad03f19588f"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "08c624597e2f47542b269a21885cb2bfe6c33ddd2e4abe6b82c17b80a3a7a8ca"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "ff550ab14e3429a52eb97625156fa9843e5b4ada038c3bb38573ae65e3f1c0cb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "f4368438014467c3d46670fce237e234b0ebf7dcdf807110523a21ea96340b0d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "d7c19371b7c92cc3ffb33835a112687768d661221e004dfa8df0c54f39308926"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b0b0beed223a325aa7265564465f90f3c91cc64a5164d814e0242adff2f393cc"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "85c2981069ad1d021c4c7cbc354a2a35faa6016a8c0768d2040229792476e127"
+   },
+   {
+    "reply": "95",
+    "attempts": 1,
+    "promptSha256": "70f3c43c61e450ea12c832a9e56f5b61456ed1bea7e8030221e8c6a100e35bce"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "8a70c6e3af7c5073d5966a37d87d94b1e548b600446a393f044dcce3d0855a7a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "23e27c0bcb8f4b0b23739ae90a6e71b726a14e8b0097868682779f3b3d608a64"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "9efe5282f39a95b26937d48d8e8502e115ec0d6d1b4c1186f291fdf6f3eed469"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "9a11d11fbc9bf6ae87cbf0aa0c4823e8a0c6a960b52f98933433a604f1bec1b6"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "8a240aef299b9e33fdf2109adc04b593b1a339051e054ec6f01ee74ca0166163"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "63034228a1f3886d435df27bf860f0625aae591ace3729d39669a612a03d2dcc"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "589b78a4eeb7a36d81989cfd23249ca98564ee010fc21dc9bfe32afeb5c2aceb"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "f88f10521d462fff4fb139123c2cd07c1526a0c125b7f45a41778b86512d2f28"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "991235e99ca0403c268f5d9f13efd41965561775d60f3b2e63fc41d03f47cb52"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "981c0fc91a08ab04b45aec7c636e1c12dff165f8d32655547d79ca5ba06c304b"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "274b10bb86dc6c00d0fc3aaea788b2693a263a62ce34d6296aef795289404b56"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "3746c45674a52cdc259b8d7058385f00b7522ed658848e7eda6b4f1809afc76a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "185579650d7e030b15c9943c29e0b55734baec524ef051259f3e099477c3f62a"
+   },
+   {
+    "reply": "20",
+    "attempts": 1,
+    "promptSha256": "c5921acbcadb58195ffdda2c665d2428ba3093b60cf1e22687db7b10f5247321"
+   }
+  ],
+  "B7": [
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4c6ee7e4dc7d5270ce3dd87843864a9cad660fa363eb1d6ca3f3e02dc1f2125d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "dec40e4e60599e4f59c6df3c74aa482fdd577c6a08a859d8fe913d8e56e3c589"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "17b7ad17be8d815040592714227665685b599c6a4f0536db73274445099bc1a2"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "5e648a8e52df3f00cf2d8a10af8ef9d2f5132d3da960b999fbd0d06edc2beba6"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4ccb904ffe1f2da62039c4f4701f06b8629dc865ee009ae73a6addff08e5cb5e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2487cd60bbd6e70ee66a4f6b3212e7aaf1d8ff60e00085242ae087b791a6f3c9"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3b5c2dbe35865ec64aa6f6c79aacf2120497426207972c26da023250c7798253"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9c883d09ebb842e88b90a88fe65512afe8204c4786fb896a6c2719045595676b"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "d26cb9f5420f562b0747a7df2fe8cbf8ad6d6e73e035302acc8bb2f7255902e2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b4913e2da54b788c9f8b68a1460ebbddb54f4e9032915a47e81bc303eae71260"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "fd9c93d1a80b187d3f4000df93f30b83e7a97c75349f3db52038937f0231ecd3"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "658c8dd16a0feefa153597d340de3ec38905db2c4fad039ad59312320e789a15"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2117209d9f525f87c7b7615fff55c34f1d30c59953391f3d66654c7bc373f0f6"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "891190a7c4042e1f9b7ccebab8c539397d9b0c0ece39dc3b537989f7f89740ea"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0744b846848a1c903f6c6be4ccfdc7d52699145116bfee86ff0eff84d70f75ac"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "977ea5c969055db11c42d11cd6606be9318a2aac3fc37de59125ff10ca4e3fcb"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "324082eebf02edc449a542bb59d025ef91641ae7f43690828fd5e20efa5c033c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0a9acd17bc3348c28bb6e3f73af83b45d3b5182522fde69968934ebce4008415"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "845bfd84b46336579694adc2b417c5f9edaf507f2f9759dbfc01be8770f01d71"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "dc6ce416f388747415c781daa8bdcbe5f1384a52ecd73d08acd5b84d053aa274"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a0e780b67e607757c467c461c2a166926757b02020d20cdf73f142f5b1f1f16d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5badbede34aaa96b99920e0b8737d1327b049fe8a852377ce27ec30ac52df7cd"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2903b9295b90b1edc4b02793a2860636c666697ce303e47c07a7ee1996496c0a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "25175a192dd379f98c2f2dac7ebf14b9e0681a4b0bc10e96f53cf3a2b09b9397"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "706b475ff4be1c401e8245cccf6f73f6217f2411a7b0670ef049a586d8b9c980"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5e787796d91a4c5d219e44e0e4674259fa65161c656a33677c253f78cc4edf6b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "54a8e18b70523f691fe16239eade0ccf6e5b2d840bd75c763b636fcf8301a5e7"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d0cfcd774a1c3be363f433a4e8205d2d58067511f3405614d797b5927001004a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4b3de7bce51bb316326e7f2381fa7c04def3088f1ab4e66a3a6fec3609643b0b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8dcd5fd9e71d4a9bc069c31a644331536c557897d18485422702f5f87b376e31"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "1ac2fc262e51d761c97973e4d10da2de12703d7be9ae72d1a1a23946c1b4aafe"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "0b155523b800313e8f06a4f60ff3beb9f681afe28c633d5257b5abe39c1e2e09"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d2c4d691c1320aff00ceb9d82fd590365650e01dbca209567ea4ad431ce15147"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3a37e5849e04bc605f6b29089ab5af0e65de2af465ee4e5c1682051c52a83321"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b87ebb85b0024cb9d23ad98992c8efaa34c59ab322c5ccd8044369954ca5195e"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "8a47887c175fedb233105fb1246431f97d0c75946a3b1ba1c0afa8e72c73ffd5"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3e9ae3a79d5427cbaba86959561e74f04ae254341bee04927717b1065fe4ee47"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b7812c484b7fe4bca5e3e0c8ecee8d611fc691e7063a0015e998351196d3cc1c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "43fa179bf76b669020699fac1d86b130335bc65a58c921dcb54bab8de5e31eaa"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3340a2c649711a199bc404db940ada1417d8a589a7da9bcccc937af72f2a3c89"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "41381b96556d8fa8522cb505f09240a80dab7f4568cbef209851ba5c998f2f76"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ae708c2a804886aeecaada88698380ef5e1972ac306b4ae57ecd10791a60b788"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "6186e41a9d7457fe1924010ad7011b621f20f2a23e6ef7489b84f7c1b401b903"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "616eb61208cfb826cd8148c1096f05090478ceef02ffb6603d3458436924baf8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "051636f3978e8c511a19c03947b12c50e779af7ecd6917f7d9fdcaf449c0641a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f83bb62c59f5f4cd87f32a450b3c1d1e23802cb84ba4c8e259ce3929e2e481fa"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5f0f79766a21ca14e080caa522a04377e1cb5fa95a57451ce9d2f649c0af4b61"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8c8622477efbe991730fc81c066c1b0bee5e3e83882f1ccd8cdd3dff9a62fcaf"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "616b84078852a21ddd6bb3c7d607fd0f62b29cc3b80149de5a43b9b81baba97e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "af20198e0e7a3dd9300a840f676968c4a0929f26b69f994d642286dfbfcbf260"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "578685f703c0d4f73f04d5be351067efbf1f7377fc9fd00a009dac5934af0144"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "97e92b246c72717e2131624ff392bb55f55303d00e6622820c4d060743fea68e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "302d003a22f0f57274d530d08f97939d60ce104229727e57b9da71c984de2407"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "df2523b11e890c3b3b044dfc49568ef91b38b654bd5794fab3416fbfe2a17fd1"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "57d33e596c87dff50941d5b71cc255c4a1f5afc1fca95db6b5540824de76064b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "982e37ab9a11e6d574fed2dba68e1363e357ff051f27eff82cd171e031f36939"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "421a76c6f89eed4187347f24c2198d88ba54d76b1f3b6b2ad0b408bc4adbf01e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4b32ca08ec3aa90a294f3cb0d0fa5e3180b88016da496307e5278bee973304f0"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e7d0be3c14d183d31bc4e34112ffa8c95733fc836727b5aeab2ad15372ffc6c9"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2804355e76bed6ebdf2af11cc2123d59d4a04f388a3afddb5384b74061083a82"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5393edb9c9c32b3e7485045e9c0ef695f17235f354b23f2a2bbec50e10dfc5a9"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a63680ba0dfeeeed83fd70b66c3395de985fb26dc28ec006a2015bf966ae10c6"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6451e53b343a481fd778940240583b30618a1ab281d4dfc9b9e2b680042884de"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "c07b5c79c0e0b2670b868b25edf1cffa3993649ca8690d3d549debad2661cb56"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "297c55ac178bbe0d1c3344aebbf6b82becdc0b91557b9f56abf299f96584e227"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "aed6ad4f94ef5a96877edcce7d0746fe12c2fcfd98b4e0c63d2a7f22e558be21"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "cab6d8ac3999d72d6ed8ad9481304363bdd240cf7673db3835fec18217be25b8"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "68aac0f3406e377f166220cb25d84d51cee35a10b2802b5e94ec615d0110e38c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "50e3590fb81f476446be3fc505c6e4ecc245035b128c23e439c2f8b54ca90f19"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "1050f7f4c3fdca77a030fa0c3cbab94c8b1520e2c697c63b8ced8751852d5162"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "1d22ae28d3650605e9fd331b44cfb24e2239635516190d225da337397a9f10ab"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a1415e6451c566e01d108fd6388c63cc7f21a79f01e8f8dd9342db62e3819d2d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b25123d9f75ecd8f74503b0267ed342c9732835ca2639672d29ea472996f8c43"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d274dd2febc843cd83c26a62f0e6642a3247344e397912cda4c500615bbd0e33"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "391d04eef5fd070884f580a31a2385ec5525795e7e3772f598cc0815a5c9f4c0"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f2e20d69c81e6044af2f448a914cb8b41b714ae771d97d9baf13dda9dd7ccf59"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a05aa8123efda26f7b475e994b3713bc2beaab2e9a84f4a91643fa06b4a40ecc"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "7cdee6e416219cca3ea1b4cea0395185203f548a33f53a581f240afd98aad62a"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "7e5b0471e58da8b5cd364de9eb1e8f65c6c383db1a7ca1c76e33f6ff8b50655e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "83dc029378941e32df43f15d8c0a99a62be8fcccfd3eb5bff232d4cb762004bd"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0aabe180c48d70806c7de5cbf41949669da24c417297c85715de370db1352841"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "6a5c0767a6996433a97314aefd1e342c12894a387c39c2854dc2afc3f2764109"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "fca0feff82002f614fc8458fb2e6bee7a9a0725a55f9fe4912fb1f3919775822"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "03343affe39f4506f12ac475f7a9b1e00d430e990f8ef6501022bf07a64f5a59"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "fec272262a21a4bfeadb87230bb51a10b6b5ab60dd49ff6006ed335c8c3f373f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8891db4f77ffb63620459c9841ef36525985e755151c8674f66443536b528f56"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "0cc8506dcda4b3b1fec96b78c9d47e9f7d259111c3351c555cba281b2fcd9057"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "56ef6b16c0fcca5cd88821e64fa6be247221cf545273c947642871fc38b9989c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3861de27a6ff30d49a8e8cc5e97a9833d80c151ab0f5813af17b18d4a126614f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2d99f33faa34cdb6f5f402d2669e2ba7fb8023772878e18eff7c33369d107d7b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "250004339907e0e3be45320afc46504c6140caec38a73359762ba24607272ab0"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "c0c1db6956dce6b27f1c1b2f439b31c3ca052c0c309e90df02515e2222e17338"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "f14acfd72fb25e454ce59ff3c2ef1e01bc4bd268a74f40f0840cb7ad52434b9e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "fcc08b64ccb3aea3192a64cbc7d74eb7d3a99c83917f0b622ef18d43f7751084"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "da2436813b99502a917107c0959422409bf97d91d48f848d1e51fbec51618e0c"
+   },
+   {
+    "reply": "53",
+    "attempts": 1,
+    "promptSha256": "1c310713fc9e5fcb8402c075ecaab929528dd378d57c7957c511485c3fc0a64d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b58694e976ce298a631b7f637b8e1fc5105e4b8083090633ba06132655768c3f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3cbaf7352caa48f6352955405225c81ba936a2f80625fe8121f69cc9d68b15c4"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a1ca48f35e75f95a5e17839e42ee091fc8419349a7e7998bc2d372b2b191832e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "7bdd264886838179fc73b75ed16aa826082a38fb79184b1d69fd8bae73b53848"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "f8030379e4310c690eb5f6b05cf1744595a4385af3dea22dbf8f13c287cd75a9"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3c9e040d4c289293bfb35ab64ef3cda2cc491358fad0dfbdb09c72dfa8823842"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "18a21872e502d6cef4089a947048dbb2864e1b9422a70225e0ffe0ad9fba98b2"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a49525a47e4edb6cbecdcc9d69e497f1a69d2db979068bff36a4ddcbc5b5dbeb"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "7ae2d434b87477b0b3a08adbab4d337eaf8da116aef9ad86d8741cbf1262890e"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "765979c9f6f4d3c63be3a67215ec6794eaa1e9a285544825922d3a51bfad1a25"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "8a1812b926c5e354c31b967c0ba68ff2770acec73e091b9d79ba6163e047de7c"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ac8c59ba2f76174aed8261f8a7c7cb20b0bd9d1f8aab95052f2eb52399cf53a5"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "0d573661aea5974881707149f3550961bf47182d0e44563140444e2938593e46"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2e085e50155bf956550bce1ee82b4b47fb419b9c710049d513ab4836fd5eb29f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "083169ee7201ed779ae9663a7284187b6ccb6cff4185dcd2d8f1fbad5ba0b454"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "831c5da22df9f2b72b7e65d6cd85dbe3afcc370581491047cfdd76dc36159518"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "035b139d793ec8ab47d1a9a8cc57a3b841c9831c93cc832c07926132a146a94f"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "64b49cdd55f20e2b52ef513c60517349f99d34bd66c8b0384cb5ea2c5231ec7b"
+   },
+   {
+    "reply": "38",
+    "attempts": 1,
+    "promptSha256": "9e1996c0999f556009c3735ee1ff38ae5999e4427b05803d6474b0165fe3a88b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "b85b2d79a35c5d3806ab4e18aff503b71ca4ace685027a25634d1535aa6578a9"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9a20055dd51670a33199a8c8d86dff111758720b76a1aa9b1bc1ce9535f08bc9"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "2ac762f2ed4e9a8bc4bff82c661db6a9b2b6d0302d2caae84099d0360c5c6ed7"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "f6b1b57abfa5ffe7dc138a5b7996ea0008d46d574185d0fdf70afc086db7f8b6"
+   },
+   {
+    "reply": "38",
+    "attempts": 1,
+    "promptSha256": "e1edef2a52bec279b7a7ebeff7e3297d7d6008721f10b96edf93ddaa80ece5cd"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "986c5280cb5e1dfc9a983575aa5d15787b8e7fead9fa8931acf4777f1e8d42cc"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "b7d448c1e80042a04263f29a2559862caea285b2d90f25064de36ecf84f789cc"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "ba60ec211d2aa8e0a5e8f71377b7ee46929d406a7123bfea8f6f52e17f7d1159"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d627b89dbeaa915317135aee8427cc95d92cd123256cc92528b1277d95f2b67f"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "61224e7bbbc8f9188d591f08315ca683ec30236de47cc0241bc00c9503a996a9"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "da82a161a15aec5fee762ef8c5e5c885c096ebd5e0bcf9835cc6e903ca84b940"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "df843223efa8c7a423edf75a17885a23e5844d8760a5b62f4452c6bcc5c01194"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "a2e1bb496c65ebe8daa834b04f6f975c8edc6886248f495b432158aaa5f78f58"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4f59259e9c405789bf41ae55f91dcc50be86824208b83ae6a7bc3120196d84e7"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "9818db56afc839018922f4b732a5b4e765390aea2228de185a08a2b89ea122c5"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e751ea23b0928f1fc27dceb3816d9c15cf903f04b2798406c2151a101419bb0f"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5cbeb5af3900ca6738434a1f1a7acd9d44148fd702525b6d3f257cadde6cb1a8"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "53a030895dbb2fc130719b33522cccd3d7b77a7e3dd9e8afa57776450407fa33"
+   },
+   {
+    "reply": "38",
+    "attempts": 1,
+    "promptSha256": "5fbb5196d4fdc2d73f64172b29d718d1075d6a3a728fedfb1c46503b8537ae4d"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "3f9b5befd9c45f93fd5efc67a05c32e2e03440d5eb8aa577b9f88d70e65cb5c8"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "264a2f7ddf45e8edec50c088bdf277df0458bc1ed781ef47a8bbaeccedd10e49"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "c2f7ceaf9a549d15f461a68be2e379365a5a986d1b12ebcd1670113fb55ee1f2"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "158576f0a6fc28918a170e73d4a910ffacac25d6d3d9024168b802402fbd0273"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "93c49f170410af45329cdd09e5291cbce0c195a92503601613f6b358018677e6"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "edab0943f1111c2a758f447d869ecedf4d531e24e9f9520b394b18f661aa6a74"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "1f1fe432f3feab50ac58d36a4327a40fb86742dd92f3c028df159b0c1822340d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e0d90c4d5b705ae72b990f55bbf72eaca23aadb83d8c353f5b56c40d17084333"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5b17b8756c990ac2071b00c08f4a5ad292127376e1980d287cbff16aa681ccdf"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "fc8f2f39079b65e8274559886ac58db3c3aea7bd1ace2c9a539d503aa389fdab"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "4dc9b209a4b2ab4befab62ec70e613b6f57a0a22557bef315163e0bb6c0299ed"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "3c38fb3ef6ab1c22681f4a9f0d5fcba5ce60186a1fc8c2eae8b16ae8421d2a4a"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "b8aada9d3949564fc2741a74458db9cdb094acc314a34b935f2ee328271b1cd8"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "36cbd49032be209bb26e291c46722b29bd409c3d60eae8423735372b53a2da13"
+   },
+   {
+    "reply": "38",
+    "attempts": 1,
+    "promptSha256": "b825b598f33850e70de7676e70d84bd620642ce577bc37c66894dc2d6b09406a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "17c92c5604156be429c2e2b5fab64490e29065f2626e1a9c0f6dfd07d71dbdc5"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "0251da6bf461d76b5b794c844ce6b5be39ec50f17336ce76a3244f79b06dbbc0"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "a87b13e1ca08bb1595c6199576628b2367120ca7ec5ebb6e92371cde7811145d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "e63927a0598c645de61ebf46363e09e247db376d4889115658dfe9ede4468a74"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "f2843c361646d143403c7625cd388e996f2e1a41363f622c8e640bfdc294e9b5"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "6a4601ee199056314b7c7185e827fd35a7603c996e2b08de70d2ad7f69b27f08"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "bf844580ccc7565964d918ffef24e5cc82af5ff433230c62f8b33bee3467de70"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "18c894494240081d25761b1dc3576ce7db2f03e1028f8c5b605ac7750892de74"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "d4f7f61156ba54e3a3f45ceafbde96655d672610d87d65194f62af12c21b0b8b"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "5d488b7e1da8bd122aae050b39b4ef23dfb9a39b05d08d7b0cc9fcfa707ffc4b"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "6fe5f8002477dd0a0e652c36d5cb41988238379a82ceac2f63a1b59c7a2fe413"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "e166cff793ba53464d6f8e25774baefb8e50f975308fae8a95fe4a4967d69ea5"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "1ff1b41d5a484dd823c5f62ca28c7e4ac6419a2feb30e0adaa0b37f72ea1f504"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "26c37e03ca7c37aa7675be03659e35e6e69d6c5bfe1f2a9581e2ad6a184eb03b"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "40d2a4a99d719159dc5fd3a70f1b3a75d7613dfe333b071fc5267b8a087e45a3"
+   },
+   {
+    "reply": "38",
+    "attempts": 1,
+    "promptSha256": "7ea0bea0eceeb3defb28405a713acc207f910e8dc7227ab2f075825aeba34185"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "7ba3164ee14c9aa3f60ca77fa91c07a3127053b8886457e09c5de8a1fd422113"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "8d04a8e04c0ece21bc9ab6f03bdebcd9967bea92ad9fc68b6b7d9204593155f8"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "180641a04547a58497ea3bd8eeee7485983a064402f99b45981a63e9a7032abf"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "7b70aaf8445d3330f2459f3e3fcdfb99dcc293819a0056291a7b44546100d3d3"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "4d823843bdf674230f48ce02e273624ff27de12aed612d8e3bc02f8733d9c1cd"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "287b22697313c1bb2f5dca1c85e18c8d7b628eb941fb0061cf81fbf69e93bca0"
+   },
+   {
+    "reply": "83",
+    "attempts": 1,
+    "promptSha256": "3f94bc8522f5e29b12458804264ca4730bd3d6086812c2d3b317e4ba7c8874c0"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "5eeceb7e6b7eb99b92ed1ee66658907383913cd25cb130fafa8e52424396f48a"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "608c146959fc8cb66a3c1a9c063914926c89949deffdd2c6cbe3c9c8daa067c9"
+   },
+   {
+    "reply": "55",
+    "attempts": 1,
+    "promptSha256": "a221045afcc18b13af7b189b3a12e0c0ef6472439425825a3345835d9f1fae2a"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "19e36503cae6c379d34e35c02f635830f9140d02daa9e5c141788b0c087dd370"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "218f2f03648ddb801a2ab37fa0fedc22c6a8dab3ef54c19fae46c574a3e6c4dc"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "32cd0c95c08dcfe8a711efc8266b3b6f21b1f73516928536d86723746917ee33"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "bab35244a66515543226aeee679921f6c3820632179752e658a0d3f084d55b6d"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "85723e4bcd96aa3c3b95a15aaf2a56471c50401b8e5db504a97f3e3e5c70c40d"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "7080675804f15ba4460ff0fd381a244aedfdd0268d1dab633b7f81c0fb55c816"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "7932f831b1caf57166547aeb0841d02336cdce1444d11df9aa8053ffe7d7171b"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "bd042abece482559393d5ba03a1d8993e380558a9d59a94c710b51da391c0e13"
+   },
+   {
+    "reply": "33",
+    "attempts": 1,
+    "promptSha256": "d30a10b682d9984e62e2dc7a83b8edaef50417660d811f9fccb7c5f36275d82e"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "704b241d43f9d12f3ccac72eb97df45f41ed4700bf3145968890b2c01625d4cb"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "36015c9854a0441e5a7339c6b25947a230b1972af16e1614599aa729d812d2ab"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "2d16093674b965be4c56ef3154718371f7d7a1be72573774685b9e3e18ee408a"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "ced36ff92bf89744ca6d00558deaf44f8499386954365fdef0ad7a0b22cbf309"
+   },
+   {
+    "reply": "35",
+    "attempts": 1,
+    "promptSha256": "8af2a3bac1716a7c1e035af927b54cf064d5d2efdf40e17675234f1b93cfcbe6"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "2e65fc92ecd5cae79aaee489f632413d95ce34a2fe9a095f0f47ccc7f143f908"
+   },
+   {
+    "reply": "32",
+    "attempts": 1,
+    "promptSha256": "c0f3b0f9ad34926c70656fe9013d1e000175c4708e843c9cd7695987045145cf"
+   },
+   {
+    "reply": "23",
+    "attempts": 1,
+    "promptSha256": "0332e361267dd22c0c61861e5292c827cff233a0ba7caa1374b8328a2db26810"
+   },
+   {
+    "reply": "85",
+    "attempts": 1,
+    "promptSha256": "2dc71cf8f4c6f21818545fa1a5f3cc82b955738ba85115484202c301f2534002"
+   },
+   {
+    "reply": "25",
+    "attempts": 1,
+    "promptSha256": "e7945ef1dd15c67df277a61a4438b690f0853d59a966b0280d8559bef71d2382"
+   }
+  ]
+ },
+ "sample": [
+  5464,
+  5656,
+  6163,
+  6433,
+  6753,
+  7069,
+  7208,
+  7532,
+  7691,
+  7875,
+  8026,
+  8078,
+  8128,
+  8182,
+  8251,
+  8284,
+  8323,
+  8340,
+  8364,
+  8410,
+  8453,
+  8501,
+  8560,
+  8612,
+  8645,
+  8692,
+  8733,
+  8794,
+  8818,
+  8849,
+  8900,
+  8958,
+  8999,
+  9041,
+  9097,
+  9133,
+  9202,
+  9254,
+  9286,
+  9341,
+  9378,
+  9433,
+  9516,
+  9548,
+  9604,
+  9644,
+  9689,
+  9736,
+  9785,
+  9843,
+  9893,
+  9952,
+  9998,
+  10046,
+  10103,
+  10159,
+  10191,
+  10238,
+  10280,
+  10318,
+  10354,
+  10392,
+  10438,
+  10481,
+  10514,
+  10546,
+  10615,
+  10663,
+  10715,
+  10787,
+  10828,
+  10877,
+  10930,
+  10987,
+  11065,
+  11113,
+  11137,
+  11181,
+  11218,
+  11269,
+  11310,
+  11370,
+  11432,
+  11458,
+  11494,
+  11531,
+  11571,
+  11623,
+  11682,
+  11721,
+  11771,
+  11822,
+  11878,
+  11927,
+  11986,
+  12049,
+  12114,
+  12158,
+  12201,
+  12234,
+  5463,
+  5875,
+  6137,
+  6508,
+  6782,
+  7136,
+  7442,
+  7794,
+  7997,
+  8041,
+  8088,
+  8137,
+  8180,
+  8224,
+  8271,
+  8324,
+  8386,
+  8433,
+  8476,
+  8526,
+  8571,
+  8620,
+  8668,
+  8714,
+  8765,
+  8812,
+  8865,
+  8912,
+  8956,
+  9005,
+  9054,
+  9099,
+  9147,
+  9192,
+  9237,
+  9288,
+  9331,
+  9384,
+  9427,
+  9471,
+  9513,
+  9566,
+  9613,
+  9659,
+  9708,
+  9755,
+  9800,
+  9847,
+  9892,
+  9938,
+  9984,
+  10029,
+  10078,
+  10120,
+  10169,
+  10219,
+  10270,
+  10316,
+  10368,
+  10416,
+  10465,
+  10518,
+  10567,
+  10609,
+  10656,
+  10702,
+  10748,
+  10791,
+  10841,
+  10887,
+  10932,
+  10976,
+  11021,
+  11063,
+  11110,
+  11163,
+  11215,
+  11260,
+  11309,
+  11355,
+  11400,
+  11449,
+  11499,
+  11554,
+  11599,
+  11645,
+  11690,
+  11737,
+  11785,
+  11831,
+  11876,
+  11920,
+  11969,
+  12011,
+  12058,
+  12099,
+  12150,
+  12197,
+  12247,
+  12289
+ ],
+ "y": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "konomi": {
+  "KF": {
+   "scores": [
+    1.5,
+    0,
+    1.5,
+    -0.25,
+    1.25,
+    1.5,
+    1.5,
+    1.25,
+    0,
+    1.25,
+    1.5,
+    1.5,
+    0,
+    -0.25,
+    1.25,
+    1.25,
+    0.5,
+    1,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    1.25,
+    1.25,
+    1.25,
+    0.25,
+    1.5,
+    1.5,
+    0,
+    -0.25,
+    1.25,
+    -0.5,
+    0.25,
+    0.25,
+    0,
+    -0.25,
+    1.25,
+    1.25,
+    1.25,
+    1.25,
+    0.25,
+    -0.25,
+    -0.5,
+    1.25,
+    -0.5,
+    1.5,
+    1.25,
+    1.25,
+    0,
+    1.5,
+    -0.5,
+    1.5,
+    0.25,
+    -0.25,
+    0,
+    0.25,
+    1.25,
+    0.25,
+    0.25,
+    0.25,
+    1.25,
+    0.25,
+    1.5,
+    -0.25,
+    1.5,
+    0,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.25,
+    1.5,
+    0.25,
+    1.25,
+    1.25,
+    1.25,
+    1.5,
+    -0.5,
+    -0.25,
+    -0.25,
+    1.25,
+    1.5,
+    1.5,
+    1.25,
+    1.5,
+    0,
+    1.5,
+    0.25,
+    1.5,
+    0.25,
+    0,
+    0.25,
+    -0.25,
+    0.25,
+    0.25,
+    1,
+    1.5,
+    0,
+    1.25,
+    1.25,
+    0,
+    0,
+    -0.25,
+    0.25,
+    -0.25,
+    -0.25,
+    0,
+    0,
+    -0.5,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    0,
+    -0.5,
+    -0.5,
+    -0.5,
+    0,
+    -0.25,
+    1.25,
+    1.5,
+    1.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.5,
+    0,
+    0.5,
+    -0.5,
+    0,
+    0,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.25,
+    0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.25,
+    0,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.5,
+    -0.5,
+    1.25,
+    -0.25
+   ],
+   "labels": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "abstained": 0,
+   "receiptMatches": true,
+   "ownedSeedBytes": 55,
+   "heldAucAll": 0.813532,
+   "rules": [
+    {
+     "feat": "BounceRates",
+     "op": "<=",
+     "v": 0,
+     "w": 0.25
+    },
+    {
+     "feat": "PageValues",
+     "op": ">",
+     "v": 11.802337,
+     "w": 1
+    },
+    {
+     "feat": "Administrative",
+     "op": ">",
+     "v": 0,
+     "w": 0.25
+    },
+    {
+     "feat": "PageValues",
+     "op": "<=",
+     "v": 0,
+     "w": -0.5
+    }
+   ]
+  },
+  "K3": {
+   "scores": [
+    1.75,
+    0,
+    2,
+    -0.25,
+    1.5,
+    2,
+    1.75,
+    1.75,
+    0,
+    1.5,
+    1.75,
+    2,
+    0,
+    -0.25,
+    2,
+    1.5,
+    1.75,
+    1.5,
+    0,
+    0,
+    0,
+    0,
+    1.5,
+    1.5,
+    1.75,
+    1.5,
+    2,
+    1.75,
+    1.5,
+    -0.25,
+    1.5,
+    -0.5,
+    1.5,
+    1.5,
+    1.5,
+    0,
+    1.5,
+    1.5,
+    1.75,
+    1.5,
+    1.5,
+    -0.25,
+    -0.5,
+    1.5,
+    -0.5,
+    1.75,
+    1.5,
+    1.5,
+    0,
+    1.75,
+    -0.25,
+    1.75,
+    1.5,
+    -0.5,
+    0,
+    1.5,
+    1.75,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.75,
+    -0.5,
+    2,
+    0,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.5,
+    0,
+    2,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.75,
+    -0.5,
+    -0.5,
+    -0.5,
+    2,
+    2,
+    2,
+    1.75,
+    2,
+    0,
+    1.75,
+    1.5,
+    2,
+    1.5,
+    0,
+    1.5,
+    -0.25,
+    1.5,
+    1.5,
+    1.75,
+    2,
+    0,
+    1.75,
+    2,
+    0,
+    0,
+    -0.5,
+    1.75,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.5,
+    -0.5,
+    0,
+    -0.25,
+    0,
+    0,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    -0.5,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.5,
+    1.75,
+    1.75,
+    1.5,
+    -0.25,
+    0,
+    0,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    0,
+    1.75,
+    -0.5,
+    0,
+    0,
+    0,
+    -0.25,
+    0,
+    0,
+    -0.25,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.25,
+    -0.25,
+    0,
+    0,
+    0,
+    -0.5,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    1.5,
+    -0.25,
+    -0.5,
+    -0.25,
+    -0.5,
+    0,
+    0,
+    1.5,
+    -0.5,
+    -0.25,
+    0,
+    -0.5,
+    -0.25,
+    -0.25,
+    0,
+    -0.5,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.5,
+    -0.25,
+    1.5,
+    0
+   ],
+   "heldAucAll": 0.782578,
+   "rules": [
+    {
+     "feat": "BounceRates",
+     "op": ">",
+     "v": 0,
+     "w": -0.25
+    },
+    {
+     "feat": "PageValues",
+     "op": ">",
+     "v": 0,
+     "w": 2
+    },
+    {
+     "feat": "ProductRelated_Duration",
+     "op": ">",
+     "v": 984,
+     "w": -0.25
+    }
+   ]
+  },
+  "K1": {
+   "scores": [
+    0.5,
+    0,
+    0.5,
+    0,
+    0.5,
+    0.5,
+    0.5,
+    0.75,
+    0,
+    0.75,
+    0.5,
+    0.5,
+    0,
+    0,
+    0.25,
+    0.75,
+    0.5,
+    0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    0.75,
+    0.5,
+    0.75,
+    1,
+    0.5,
+    0.5,
+    0.25,
+    0.25,
+    0.5,
+    0.25,
+    1,
+    1,
+    0.25,
+    -0.25,
+    0.75,
+    0.5,
+    0.25,
+    0.75,
+    0.5,
+    0.5,
+    0.25,
+    1,
+    0.5,
+    0.5,
+    0.75,
+    1,
+    0,
+    0.5,
+    -0.25,
+    0.5,
+    0.75,
+    1,
+    0.25,
+    1,
+    0.25,
+    0.5,
+    0.75,
+    0.5,
+    0.5,
+    0.75,
+    0.5,
+    0.5,
+    0,
+    0.75,
+    -0.25,
+    0.75,
+    1,
+    0.25,
+    -0.25,
+    0.75,
+    0.75,
+    1,
+    0.75,
+    1,
+    0.75,
+    0.5,
+    0.75,
+    1,
+    -0.25,
+    0,
+    0.5,
+    0.5,
+    0,
+    0,
+    1,
+    0.5,
+    0,
+    0.5,
+    1,
+    0.5,
+    0,
+    1,
+    0.75,
+    -0.25,
+    0.75,
+    0.5,
+    0.25,
+    0.25,
+    0.25,
+    0.25,
+    0.5,
+    0,
+    0,
+    0,
+    0.75,
+    0.5,
+    -0.25,
+    0.5,
+    0.5,
+    0.5,
+    -0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.5,
+    0.5,
+    0.5,
+    0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    0.5,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    0.5,
+    0.75,
+    0.75,
+    0.5,
+    1,
+    0,
+    0,
+    -0.25,
+    0.25,
+    -0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    0,
+    0.75,
+    0.25,
+    0,
+    0,
+    -0.25,
+    -0.25,
+    -0.25,
+    0.25,
+    0.5,
+    0.5,
+    0.5,
+    0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    0,
+    -0.25,
+    0.75,
+    0.25,
+    0.25,
+    0,
+    0.25,
+    -0.25,
+    -0.25,
+    0.5,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.25,
+    0.5,
+    0.25,
+    0.25,
+    0.25,
+    0.75,
+    -0.25,
+    0.5,
+    0.5,
+    0.5,
+    1,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    0,
+    0.5,
+    -0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.5,
+    -0.25
+   ],
+   "heldAucAll": 0.675387,
+   "rules": [
+    {
+     "feat": "Informational",
+     "op": ">",
+     "v": 0,
+     "w": 0.5
+    },
+    {
+     "feat": "SpecialDay",
+     "op": ">",
+     "v": 0,
+     "w": -0.5
+    },
+    {
+     "feat": "Administrative",
+     "op": "<=",
+     "v": 0,
+     "w": -0.25
+    },
+    {
+     "feat": "Informational",
+     "op": ">",
+     "v": 1,
+     "w": -0.25
+    },
+    {
+     "feat": "ProductRelated_Duration",
+     "op": ">",
+     "v": 505.55,
+     "w": 0.5
+    }
+   ]
+  }
+ },
+ "parsed": {
+  "R14": [
+   75,
+   35,
+   75,
+   35,
+   75,
+   75,
+   75,
+   58,
+   0,
+   75,
+   75,
+   75,
+   25,
+   23,
+   75,
+   75,
+   75,
+   75,
+   75,
+   35,
+   35,
+   35,
+   75,
+   75,
+   58,
+   75,
+   75,
+   75,
+   85,
+   75,
+   65,
+   35,
+   75,
+   75,
+   75,
+   35,
+   75,
+   75,
+   85,
+   75,
+   75,
+   25,
+   35,
+   75,
+   35,
+   75,
+   75,
+   75,
+   25,
+   75,
+   35,
+   75,
+   65,
+   35,
+   0,
+   75,
+   75,
+   75,
+   75,
+   75,
+   75,
+   75,
+   75,
+   35,
+   75,
+   75,
+   35,
+   0,
+   23,
+   35,
+   35,
+   75,
+   75,
+   45,
+   75,
+   75,
+   75,
+   35,
+   23,
+   23,
+   75,
+   75,
+   75,
+   75,
+   75,
+   35,
+   75,
+   75,
+   75,
+   75,
+   35,
+   75,
+   35,
+   58,
+   45,
+   75,
+   75,
+   35,
+   75,
+   85,
+   35,
+   35,
+   25,
+   75,
+   25,
+   15,
+   35,
+   35,
+   35,
+   23,
+   35,
+   35,
+   35,
+   0,
+   75,
+   35,
+   35,
+   25,
+   25,
+   35,
+   35,
+   35,
+   0,
+   23,
+   35,
+   35,
+   25,
+   0,
+   35,
+   35,
+   58,
+   75,
+   45,
+   23,
+   35,
+   35,
+   35,
+   0,
+   35,
+   35,
+   35,
+   75,
+   35,
+   35,
+   35,
+   75,
+   35,
+   35,
+   35,
+   75,
+   35,
+   35,
+   75,
+   25,
+   35,
+   23,
+   35,
+   35,
+   35,
+   35,
+   35,
+   35,
+   23,
+   35,
+   35,
+   25,
+   0,
+   35,
+   0,
+   25,
+   35,
+   35,
+   35,
+   0,
+   0,
+   35,
+   75,
+   35,
+   35,
+   75,
+   23,
+   35,
+   55,
+   75,
+   35,
+   75,
+   35,
+   35,
+   35,
+   75,
+   35,
+   35,
+   0,
+   35,
+   0,
+   35,
+   35,
+   0,
+   75,
+   35
+  ],
+  "R7": [
+   85,
+   25,
+   85,
+   20,
+   85,
+   85,
+   85,
+   85,
+   0,
+   85,
+   85,
+   85,
+   0,
+   25,
+   85,
+   85,
+   85,
+   85,
+   25,
+   20,
+   0,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   25,
+   85,
+   25,
+   85,
+   85,
+   85,
+   20,
+   85,
+   85,
+   85,
+   85,
+   85,
+   25,
+   25,
+   85,
+   25,
+   85,
+   85,
+   85,
+   0,
+   85,
+   25,
+   85,
+   85,
+   25,
+   0,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   25,
+   85,
+   95,
+   20,
+   25,
+   25,
+   25,
+   20,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   25,
+   25,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   20,
+   95,
+   85,
+   85,
+   85,
+   95,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   25,
+   85,
+   85,
+   0,
+   0,
+   25,
+   85,
+   25,
+   20,
+   95,
+   95,
+   20,
+   0,
+   25,
+   85,
+   0,
+   20,
+   25,
+   20,
+   95,
+   25,
+   25,
+   25,
+   20,
+   25,
+   0,
+   25,
+   25,
+   20,
+   20,
+   20,
+   20,
+   25,
+   85,
+   85,
+   85,
+   25,
+   25,
+   20,
+   25,
+   20,
+   20,
+   25,
+   20,
+   25,
+   25,
+   20,
+   0,
+   85,
+   25,
+   0,
+   0,
+   20,
+   20,
+   20,
+   25,
+   25,
+   25,
+   25,
+   25,
+   20,
+   20,
+   20,
+   0,
+   25,
+   25,
+   25,
+   25,
+   25,
+   25,
+   25,
+   20,
+   25,
+   20,
+   20,
+   25,
+   20,
+   20,
+   25,
+   85,
+   25,
+   25,
+   25,
+   25,
+   20,
+   25,
+   85,
+   85,
+   95,
+   20,
+   25,
+   25,
+   25,
+   25,
+   25,
+   20,
+   20,
+   25,
+   25,
+   25,
+   20,
+   85,
+   20
+  ],
+  "B7": [
+   85,
+   85,
+   85,
+   32,
+   85,
+   85,
+   85,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   35,
+   85,
+   85,
+   85,
+   85,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   23,
+   85,
+   85,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   32,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   32,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   23,
+   35,
+   85,
+   85,
+   25,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   32,
+   35,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   35,
+   85,
+   85,
+   53,
+   85,
+   85,
+   85,
+   85,
+   85,
+   85,
+   32,
+   85,
+   32,
+   32,
+   85,
+   85,
+   23,
+   85,
+   85,
+   85,
+   25,
+   23,
+   85,
+   38,
+   85,
+   85,
+   25,
+   32,
+   38,
+   32,
+   23,
+   85,
+   85,
+   32,
+   23,
+   23,
+   85,
+   35,
+   85,
+   85,
+   85,
+   85,
+   85,
+   38,
+   32,
+   23,
+   25,
+   32,
+   32,
+   85,
+   32,
+   23,
+   85,
+   85,
+   23,
+   85,
+   85,
+   23,
+   23,
+   38,
+   85,
+   32,
+   85,
+   85,
+   32,
+   23,
+   23,
+   25,
+   85,
+   85,
+   35,
+   32,
+   32,
+   85,
+   35,
+   38,
+   23,
+   35,
+   23,
+   25,
+   32,
+   23,
+   23,
+   23,
+   85,
+   83,
+   23,
+   85,
+   55,
+   25,
+   85,
+   85,
+   85,
+   85,
+   25,
+   32,
+   32,
+   33,
+   85,
+   35,
+   23,
+   23,
+   35,
+   25,
+   32,
+   23,
+   85,
+   25
+  ]
+ },
+ "verdict": {
+  "ok": true,
+  "auc": {
+   "KF": 0.83405,
+   "K3": 0.7977,
+   "K1": 0.7342,
+   "R14": 0.7755,
+   "R7": 0.77295,
+   "B7": 0.73765
+  },
+  "balancedAccuracy": {
+   "KF": 0.71,
+   "R14": 0.765,
+   "R7": 0.775,
+   "B7": 0.725
+  },
+  "claims": [
+   {
+    "id": "X1",
+    "metric": "auc",
+    "arm": "KF",
+    "minus": "R14",
+    "diff": 0.05855,
+    "lo": 0.00395,
+    "hi": 0.1131,
+    "holds": true
+   },
+   {
+    "id": "X2",
+    "metric": "auc",
+    "arm": "KF",
+    "minus": "R7",
+    "diff": 0.0611,
+    "lo": 0.00205,
+    "hi": 0.11845,
+    "holds": true
+   },
+   {
+    "id": "X3",
+    "metric": "bal",
+    "arm": "KF",
+    "minus": "R14",
+    "diff": -0.055,
+    "lo": -0.11,
+    "hi": 0,
+    "holds": false
+   },
+   {
+    "id": "X4",
+    "metric": "auc",
+    "arm": "B7",
+    "minus": "R7",
+    "diff": -0.0353,
+    "lo": -0.0977,
+    "hi": 0.026,
+    "holds": false
+   },
+   {
+    "id": "X5",
+    "metric": "auc",
+    "arm": "B7",
+    "minus": "R14",
+    "diff": -0.03785,
+    "lo": -0.10245,
+    "hi": 0.0274,
+    "holds": false
+   },
+   {
+    "id": "X6",
+    "parsed": {
+     "R14": 200,
+     "R7": 200,
+     "B7": 200
+    },
+    "min": 190,
+    "holds": true
+   }
+  ],
+  "multiplierProven": true
+ },
+ "sizes": {
+  "KFownedSeedBytes": 55,
+  "R14weightsBytes": 8988124069,
+  "R7weightsBytes": 4683087332
+ }
+}

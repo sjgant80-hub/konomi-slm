@@ -6,7 +6,7 @@
 <title>The Konomi SLM</title>
 <meta name="description" content="A neurosymbolic verified knowledge engine: a model proposes, but only rules that predict unseen data are kept, so it proves what it says and abstains when it can't. Knowledge lives in a readable, compressed pattern-library, not opaque weights. It grows by adding verified rules, not by retraining. Runs in your browser." />
 <meta name="color-scheme" content="dark light" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZrWddQShoc5Frk86RPfPklAyEDm9h8UEAsy7FlP+moI=' 'sha256-5rCVOI6wa8yWfnNUUOV5YtC+I4u2yV0xgjCLMU0FI5Q='; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZrWddQShoc5Frk86RPfPklAyEDm9h8UEAsy7FlP+moI=' 'sha256-eCwUBJ/kkNfigMQq+5bY8tHihbuRhpJTLvxclay+dvU='; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"The Konomi SLM","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","description":"A neurosymbolic, self-growing, verified knowledge engine with selective abstention. A neural model proposes answers; only verified rules that predict held-out data are kept (predict-or-be-cut); out-of-distribution inputs are abstained, not hallucinated; every answer carries a tamper-evident receipt. Knowledge lives in a readable, lossless-compressed pattern-library, not opaque weights, and the engine grows by adding verified rules rather than retraining. In the family of evolutionary program search (FunSearch, AlphaEvolve) — owned, CPU-scale, multi-domain, compression-native."}
 </script>
@@ -369,7 +369,7 @@
   </div>
 
   <h3 class="sec">Roll-out</h3>
-  <div class="panel"><p style="margin:0;font-size:14px">The <a href="#adoption">adoption steps above</a> are the roll-out: one decision, its history exported, grown on your machine, its pattern book read by the people who do the work, a shadow run you size, then live on the share it answers with abstains routed to people, then grown decision by decision. Nothing to install beyond Node for the command-line path; the browser path needs nothing.</p></div>
+  <div class="panel"><p style="margin:0;font-size:14px">The <a href="#adoption">adoption steps above</a> are the roll-out: one decision, its history exported, grown on your machine, its pattern book read by the people who do the work, a shadow run you size, then live on the share it answers with abstains routed to people, then grown decision by decision. Nothing to install beyond Node (version 18 or later, as package.json states; CI runs it on 20) for the command-line path, and no packages: package.json lists no dependencies. The browser path needs nothing.</p></div>
 
   <h3 class="sec">Ownership, support and exit</h3>
   <div class="panel">
@@ -647,8 +647,13 @@ try { if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt)
   $('#mxSub').append(`${n} held-out sessions (${pos} purchases, ${n - pos} not), run ${rec.run.startedAt.slice(0, 10)} on one local machine (${rec.run.cpu}, ${rec.run.memoryGb} GB, Ollama ${rec.run.ollama || '?'}). Sealed in `,
     Object.assign(el('a', 'mono', (rec.sealCommit || '').slice(0, 7)), { href: REPO + '/commit/' + rec.sealCommit }), ' before the code existed.');
   const log = Array.isArray(rec.run.resumeLog) ? rec.run.resumeLog : [];
-  if (log.length) $('#mxSub').append(` The run stopped and resumed ${log.length === 1 ? 'once' : log.length + ' times'}, as the seal allows, at the first session without a reply: `
-    + log.map((r) => `${r.at.slice(0, 16).replace('T', ' ')} UTC from R14 ${r.from.R14} · R7 ${r.from.R7} · B7 ${r.from.B7}, Ollama ${r.ollama || '?'} (${r.why})`).join('; ') + '. No reply was re-asked.');
+  if (log.length) {
+    $('#mxSub').append(` The run stopped and resumed ${log.length === 1 ? 'once' : log.length + ' times'}, as the seal allows, each time at the first session without a recorded reply; no recorded reply was re-asked. Each resume, with its time and why, is in the receipt's run.resumeLog:`);
+    const d = el('details'), ul = el('ul', 'tight sources');
+    d.append(el('summary', null, `the ${log.length} resume${log.length === 1 ? '' : 's'}, as recorded`), ul);
+    for (const r of log) ul.append(el('li', null, `${r.at.slice(0, 16).replace('T', ' ')} UTC, from R14 ${r.from.R14} · R7 ${r.from.R7} · B7 ${r.from.B7}, Ollama ${r.ollama || '?'}: ${r.why}`));
+    $('#mxSub').after(d);
+  }
   const t = $('#mxArms');
   const hr = el('tr'); for (const h of ['arm', 'what it is', 'size', 'AUC', 'balanced accuracy']) hr.append(el('th', /AUC|accuracy|size/.test(h) ? 'num' : null, h)); t.append(hr);
   const size = { KF: `${rec.sizes.KFownedSeedBytes} B seed`, K3: 'seed', K1: 'seed', R14: gb(rec.sizes.R14weightsBytes), R7: gb(rec.sizes.R7weightsBytes), B7: gb(rec.sizes.R7weightsBytes) + ' + book' };
@@ -671,6 +676,8 @@ try { if (rec && rec.verdict && rec.verdict.ok && rec.run && rec.run.finishedAt)
   if (rec.konomi && rec.konomi.KF) box.append(el('p', 'muted', `The Konomi pattern book abstained on ${rec.konomi.KF.abstained} of the ${n} sessions (counted as wrong answers for balanced accuracy). Its AUC on all ${shop ? shop.held.toLocaleString('en-GB') : ''} held-out sessions is ${rec.konomi.KF.heldAucAll}.`));
   // in plain words, from the same receipt: what ranked the sessions best, and how big each arm is
   $('#mxPlain').textContent = `In plain words: AUC is the chance that a buyer is ranked above a browser (0.5 is a coin toss, 1 is perfect). On these ${n} sessions the Konomi pattern book, a ${rec.sizes.KFownedSeedBytes}-byte seed, scored ${v.auc.KF}; raw qwen2.5:14b (${gb(rec.sizes.R14weightsBytes)} of weights) scored ${v.auc.R14}; raw qwen2.5:7b (${gb(rec.sizes.R7weightsBytes)}) scored ${v.auc.R7}; the same 7b handed the book scored ${v.auc.B7}. A claim holds only if its whole 95% interval is above zero.`;
+  { const failed = v.claims.filter((c) => !c.holds).map((c) => c.id); const x4 = failed.includes('X4'), x5 = failed.includes('X5');
+    if (failed.length) $('#mxPlain').textContent += ' Failed, and kept on the record: ' + failed.join(', ') + (x4 ? '. Handing the 7b the book did not make it rank better than it does without the book' + (x5 ? ', and it did not catch the 14b' : '') : '') + '.'; }
   // the brochure reads its measured figures from the same receipt
   if (v.balancedAccuracy.KF != null) $('#rkMx').textContent = `; in the multiplier test above, the shop pattern's own yes/no answers on ${n} real held-out sessions scored a balanced accuracy of ${v.balancedAccuracy.KF} (0.5 is a coin toss), abstains counted as wrong`;
   if (rec.konomi && rec.konomi.KF) $('#c-measured').textContent = ` For reference: on the real shop data the shipped pattern answered ${n - rec.konomi.KF.abstained} of the ${n} held-out sessions in the multiplier sample and abstained on ${rec.konomi.KF.abstained}; your share depends on how alike your new cases are to your history.`;
